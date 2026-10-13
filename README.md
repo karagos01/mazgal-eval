@@ -148,6 +148,7 @@ groups rather than disappearing over time. That correction is now recorded in
 - [`naion-hfrs-eval`](https://github.com/karagos01/naion-hfrs-eval) — the dual-scale waveform and HFRS charging proposal of October 2026
 - [`hemocyanin-eval`](https://github.com/karagos01/hemocyanin-eval) — the copper-based hemocyanin physiology proposal of October 2026
 - [`intensional-physics-eval`](https://github.com/karagos01/intensional-physics-eval) — Intensional Physics Computing and openQL v1.1 of October 2026
+- [`openomega-eval`](https://github.com/karagos01/openomega-eval) — the openOmega matter-antimatter and sedenion proposal of October 2026
 
 ## Licence
 
