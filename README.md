@@ -95,7 +95,7 @@ says and does not duplicate the rest.
 
 ## Companion evaluations
 
-- [`reference-audit`](https://github.com/karagos01/reference-audit) — whether all 69 citations in all 16 deposits say what they are cited for
+- [`reference-audit`](https://github.com/karagos01/reference-audit) — whether all 81 citations in all 18 deposits say what they are cited for
 - [`phytomining-eval`](https://github.com/karagos01/phytomining-eval) — the quantum biofortification and in-situ phytomining matrix of October 2026
 - [`octonion-mppt-eval`](https://github.com/karagos01/octonion-mppt-eval) — the octonion two-layer/associator template and the Maxwell attribution census
 - [`xternary-eval`](https://github.com/karagos01/xternary-eval) — the 2-bit LLM inference engine
