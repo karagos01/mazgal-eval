@@ -15,7 +15,8 @@ import sys
 
 P = print
 
-# Recorded when the audit was run, 9 October 2026.  Each entry is
+# Recorded when the audit was run, 9 October 2026, and for the last two rows
+# when they were added on 15 October 2026.  Each entry is
 # (record, short name, external refs, in-text markers on external refs,
 #  glosses, first line of the reference list in the extracted text).
 RECORDED = [
@@ -35,11 +36,13 @@ RECORDED = [
     ("23209266", "hemocyanin",          4, 0, 4, 122),
     ("23241148", "openql-v1.1",         5, 0, 0, 150),
     ("23241777", "intensional-physics", 5, 0, 0, 111),
+    ("23263528", "openomega",            5, 0, 0, 103),
+    ("23364732", "hospv",                7, 7, 0, 364),
 ]
 
 # The vocabulary census this project has tracked across the series.  "causal"
 # is the one that moved: it is zero for the first time in openQL / openOL v1.0
-# of 3 October and stays zero in the five deposits after it.  An earlier version
+# of 3 October and stays zero in the seven deposits after it.  An earlier version
 # of the cymatic-eval repository credited the cymatic deposit of 5 October with
 # being first; this census corrected that, and the correction is recorded there.
 VOCAB = ["maxwell", "octonion", "quaternion", "hypercomplex", "non-associative",
@@ -143,7 +146,11 @@ def main(corpus=None):
         P("  'Maxwell' twice and 'quaternion' seven times.  The two deposits of")
         P("  8 October reintroduce 'tensor' and 'intensional' but not the")
         P("  hypercomplex vocabulary, except that openQL v1.1 keeps 'octonion'")
-        P("  in its abstract while dropping it from its keywords.")
+        P("  in its abstract while dropping it from its keywords.  openOmega")
+        P("  of 9 October brings back 'tensor' 10 times and 'octonion' once")
+        P("  with 'causal' still at zero, and HOS-PV 2.0 of 14 October is")
+        P("  zero in nine of the ten columns -- its only hit is 'quantum', 9")
+        P("  times -- the first deposit without 'tensor' since 7 October.")
         return
     P(f"  {'deposit':22s} " + " ".join(f"{k[:9]:>9s}" for k in VOCAB))
     for rec, short, *_ in RECORDED:

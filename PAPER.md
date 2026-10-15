@@ -1,26 +1,29 @@
-# The defence in the references: an audit of all 69 citations in sixteen preprints
+# The defence in the references: an audit of all 81 citations in eighteen preprints
 
 karagos01, October 2026
 
 ## Abstract
 
-The author of sixteen Zenodo preprints has stated publicly that the defence of
+The author of eighteen Zenodo preprints has stated publicly that the defence of
 his arguments is deliberately placed in the references rather than written in
 the text, and that an analysis confined to the text will therefore miss it.
 That is a testable claim. This audit tests it by reading what each cited work
-actually says about the claim it is cited for, across all 69 external
-references in all sixteen records, and by looking for support rather than only
+actually says about the claim it is cited for, across all 81 external
+references in all eighteen records, and by looking for support rather than only
 for error.
 
-The claim is partly vindicated. In two deposits the cited literature carries
+The claim is partly vindicated. In four deposits the cited literature carries
 support the preprints never spell out, and in one case a derivation better than
 the preprint's own: Furey's thesis argues that causality and irreversible time
 emerge from the bracketing of an algebraic expression, which is the conceptual
-core of the whole "Causal" series; and Baez supplies both a real-matrix
-encoding of octonion multiplication and a route to the number 12 through
-sl(3,ℍ) acting on ℝ¹², remarking of that 12 that "this is no coincidence!"
+core of the whole "Causal" series; Baez supplies both a real-matrix encoding of
+octonion multiplication and a route to the number 12 through sl(3,ℍ) acting on
+ℝ¹², remarking of that 12 that "this is no coincidence!"; Shockley and
+Queisser's own footnote 22 names carrier multiplication and sets it aside,
+which is the defence of HOS-PV 2.0's title; and Moreno prints the sedenion
+zero-divisor pair openOmega's mechanism needs.
 
-It does not extend further, for three measured reasons. First, 47 of the 69
+It does not extend further, for three measured reasons. First, 52 of the 81
 references are attached to no claim at all and three deposits have no reference
 list, so for two thirds of the corpus there is no carrier a defence could use.
 Second, where support was found, the same pages refute the mechanism it is
@@ -30,7 +33,7 @@ the manoeuvre the proposed architecture is premised on not making, and Adler's
 central result is that the quaternionic units drop out of the S-matrix. Third,
 fourteen claims are contradicted by their own cited sources in those sources'
 own words, including the two that carry most weight in the agricultural and
-biomedical deposits.
+biomedical deposits and the efficiency figure in the title of the newest one.
 
 ## 1. What this tests, and what it does not
 
@@ -49,7 +52,7 @@ repositories, and the numbers that do not depend on any reading of the
 references are unchanged by anything here.
 
 Where a work could not be read, the audit says so rather than guessing.
-`audit.py` section 3 reports that 38 of 59 verdict rows rest on a full text;
+`audit.py` section 3 reports that 43 of 69 verdict rows rest on a full text;
 the rest rest on an abstract, a contents listing, or — for two unreachable
 books — on the same author's own papers and their own published summary of the
 book, with the substitution named in each row's `source` field.
@@ -67,26 +70,29 @@ the corpus is testable at all.
 
 | | count | share |
 |---|---|---|
-| external reference entries, 16 records | 69 | |
-| attached to a sentence by an in-text marker | **7** | 10.1 % |
-| carrying only a parenthetical gloss | 15 | 21.7 % |
-| **with no stated relation to any claim** | **47** | **68.1 %** |
+| external reference entries, 18 records | 81 | |
+| attached to a sentence by an in-text marker | **14** | 17.3 % |
+| carrying only a parenthetical gloss | 15 | 18.5 % |
+| **with no stated relation to any claim** | **52** | **64.2 %** |
 | self-citations | 4 | |
 
-Two deposits cite an external work in their body text: the Acoustic Projector,
-which marks five of its six -- Putland is listed but never cited -- and SOTP,
-which marks two of five with `[3, 4]` on one sentence. Three deposits — MPPT v1.0, MPPT v1.1 and CQFT — have no reference
+Three deposits cite an external work in their body text: the Acoustic
+Projector, which marks five of its six -- Putland is listed but never cited --
+SOTP, which marks two of five with `[3, 4]` on one sentence, and HOS-PV 2.0 of
+14 October, which marks **all seven of its seven**, the first deposit in the
+corpus to leave no reference unattached. Three deposits — MPPT v1.0, MPPT v1.1
+and CQFT — have no reference
 list at all, so there is nothing for a defence to be hidden in. Three more
 gloss every reference with a note saying what it establishes, which is the most
 directly testable form the claim can take, since the author states the mapping
 himself.
 
-That leaves 22 references across five deposits where the link is stated. Those
+That leaves 29 references across six deposits where the link is stated. Those
 are where a hidden defence could be found, and they are where it was.
 
 ## 3. What the search for support found
 
-Three findings are substantial, and the first is the strongest result in this
+Five findings are substantial, and the first is the strongest result in this
 repository.
 
 **Furey (2016), chapter 2**, cited in SOTP as `[3]`, argues exactly what the
@@ -132,11 +138,54 @@ is an essential destruction of linearity, i.e., f q ⊗ g ≠ (f ⊗ g)q"; Baez 
 Huerta: "the tensor product of quaternionic Hilbert spaces is not naturally a
 quaternionic Hilbert space."
 
-Three smaller findings are in the author's favour and recorded in `hidden.py`:
+**Shockley & Queisser (1961)**, cited in HOS-PV 2.0 as `[1]`, defends that
+deposit's title from a footnote. The claim the deposit is built on is that a
+single junction can exceed 33.7 % because singlet fission puts two carriers in
+the circuit for one photon. Footnote 22 of the paper that set the limit:
+
+> "Once a photon exceeds about three times the energy gap [E_g], the
+> probability of producing two or more hole-electron pairs becomes
+> appreciable"
+
+> "the data can be well fitted up to quantum yields greater than two … This
+> effect would slightly increase the possible quantum efficiency; however, **we
+> shall not consider it further in this article**."
+
+The authors of the limit excluded multiplication by choice, so exceeding it
+this way is legitimate, and the deposit is right about that without ever saying
+where the permission comes from. The rider is the size of the gap, and it is in
+the same deposit's reference [5]: a single junction with multiplication is
+44.4 %, not the 45.9 % claimed, and 45.9 % sits inside that work's two-gap
+tandem range.
+
+**Moreno (1998)**, cited in openOmega as `[3]`, prints the mechanism that
+deposit runs on. Its annihilation step needs two non-zero sedenions whose
+product is exactly zero, and the introduction of the cited paper gives one:
+
+> "for n ≥ 4 this norm-preserving formula is not true in general and this opens
+> the possibility of the existence of zero divisors in A_n for n ≥ 4 i.e. x and
+> y non-zero elements in A_n such that xy = 0 e.g. let **x = e₁ + e₁₀ and
+> y = e₁₅ − e₄** in ℝ¹⁶ = A₄"
+
+That is the pair the companion repository `openomega-eval` found by brute-force
+search over the basis combinations — it reports (e₁ + e₁₀) × (e₄ − e₁₅) = 0,
+the same pair with the sign of y flipped — printed in the reference all along. Two
+riders come out of the same two pages. The zero divisors exist *because*
+‖xy‖ = ‖x‖‖y‖ fails above dimension 8, so the norm is destroyed in the one
+operation the deposit performs "with absolute energy conservation". And
+Moreno's own item 2) removes the need for sedenions in the deposit's own matrix
+formulation: "in an associative (alternative) context as in M_n(ℝ) … 0 ≠ A is a
+zero divisor if and only if det A = 0."
+
+Five smaller findings are in the author's favour and recorded in `hidden.py`:
 Bi et al. genuinely demonstrate the monolithic on-chip non-reciprocity PCTP
 needs to enforce an ordering; Lehmann's abstract genuinely supports biochar
-"as inoculant carriers", which is the smart-pellet concept; and Tesla's patent
-genuinely teaches the distributed capacitance COBAR claims from it.
+"as inoculant carriers", which is the smart-pellet concept; Tesla's patent
+genuinely teaches the distributed capacitance COBAR claims from it; Šmejkal,
+Sinova and Jungwirth's Table III gives HOS-PV 2.0's altermagnetic collector
+**more** spin splitting than the deposit asks for, 1.1–1.4 eV against a claimed
+0.5–1.0 eV; and Rao et al. support the triplet drain the same deposit is built
+to close, in the words of the sentences that precede the marker.
 
 ## 4. The manoeuvre all three share
 
@@ -217,8 +266,8 @@ affinity".
 
 ## 6. Refutations in the sources' own words
 
-Fourteen rows carry the verdict REFUTES, meaning the cited work states the
-opposite of the claim. Six are worth setting out.
+Fifteen rows carry the verdict REFUTES, meaning the cited work states the
+opposite of the claim. Seven are worth setting out.
 
 **Buchachenko, on magnetic isotopes.** The phytomining preprint claims ²⁵Mg and
 ⁶⁷Zn "accelerate the chemical kinetics of DNA transcription and ATP synthesis".
@@ -276,15 +325,46 @@ at a 3 s pulse with 1 s rest — about 0.25 Hz — and finds its best result wit
 low-frequency envelope and contradicts the kHz-to-MHz component it is cited
 beside.
 
+**Hanna & Nozik, on 45.9 %.** HOS-PV 2.0's abstract and its section 2.2 both
+claim that the architecture raises the single-junction limit "from 33.7 % (SQ
+limit) to 45.9 %", with this reference attached. The reference is the right
+one — detailed balance under 1 sun AM1.5G, with singlet fission as a
+multiplication absorber — and its abstract gives a different number for exactly
+that configuration:
+
+> "for single gap photovoltaic (PV) devices the maximum efficiency increases
+> from 33.7 % for cells with no carrier multiplication to **44.4 %** for cells
+> with carrier multiplication"
+
+> "the maximum efficiency of an ideal two gap tandem PV device increases from
+> **45.7 % to 47.7 %**"
+
+45.9 % falls in the tandem range, and being a single junction is the
+architecture's entire selling point. The companion repository `hospv-eval`
+rebuilds the model from the ASTM G173-03 spectrum and reproduces all three of
+that group's published values — 33.77 %, 44.62 %, and 42.09 % at 0.94 eV for
+multiplication capped at two carriers per photon, which is what singlet fission
+does, against their published 42.0 % at 0.95 eV. 45.9 % is above that ceiling
+at any pair of energies.
+
 ## 7. What is correct
 
-Three verdicts are SUPPORTS, and two further findings should be stated plainly
+Four verdicts are SUPPORTS, and two further findings should be stated plainly
 because they correct this audit rather than the preprints.
 
 SOTP's seven Fano triples were machine-checked here and form a **valid Fano
 plane**: all 21 pairs of the seven imaginary units are covered exactly once.
 Its associator definition and its ε rule are Baez's verbatim. Jones et al. and
-Kennedy & Eberhart resolve exactly and support what they are cited beside.
+Kennedy & Eberhart resolve exactly and support what they are cited beside, and
+Moreno is about exactly the zero divisors openOmega is built on.
+
+HOS-PV 2.0 is the cleanest deposit in the corpus by every formal measure taken
+here. All seven of its references are real, all seven resolve exactly as
+printed, all seven are attached to a sentence, none is a self-citation, there
+is no AI co-author and no unfilled ORCID placeholder — the first deposit of the
+eighteen with all of those at once. Six of its seven carry part of what they
+are cited for. Its problems are of a different kind from the rest of the
+corpus: not invented references, but the wrong row of a table in a real one.
 
 Tesla's patent does **not** presuppose an iron core — it is explicitly agnostic
 ("any conductor") — so it can be cited neither for nor against coreless
@@ -294,20 +374,26 @@ the fourth edition in 2017, ISBN 9781108420419, so the error hypothesised here
 does not exist.
 
 A third correction belongs to an earlier repository in this series rather than
-to a preprint. Running the vocabulary census in `keywords.py` over all sixteen
+to a preprint. Running the vocabulary census in `keywords.py` over all eighteen
 records, instead of the ten available when `cymatic-eval` was written,
 disproved a priority claim made there: "causal" first reaches zero in openQL
 v1.0 of 3 October, and all seven tracked terms are absent from COBAR of
 23 September and the Topological Momentum Drive of 24 September, both of which
-make engineering claims. Six of the sixteen records carry none of the
-vocabulary and ten carry it heavily, and the two groups alternate rather than
-succeed one another, so there is no trend to read. The counts themselves were
+make engineering claims. Seven of the eighteen records carry none of the
+hypercomplex vocabulary and eleven carry it heavily, and the two groups
+alternate rather than succeed one another, so there is no trend to read. The counts themselves were
 right; the claim to priority built on them was an artefact of comparing against
 part of the corpus. It is now corrected in `cymatic-eval` §1.
 
 ## 8. Limitations
 
-Twenty-one of 59 verdict rows do not rest on a full text, and each says which
+The audit was first run on 9 October 2026 over sixteen records. openOmega was
+deposited that same day and HOS-PV 2.0 five days later; both were added on
+15 October by the same procedure, and `keywords.py` re-derived the
+citation-marker counts of all eighteen from the deposits themselves with no
+mismatch against the values recorded in October.
+
+Twenty-six of 69 verdict rows do not rest on a full text, and each says which
 substitute was used. Two books were unreachable: Adler's, replaced by his own
 published summary plus two primary reviews, and Dixon's, replaced by his own
 arXiv lecture referring back to it. Beranek & Mellow's interior could not be
@@ -315,7 +401,13 @@ opened, so that verdict rests on a verified chapter list; the efficiency
 relation attributed to it was read in a secondary source and is flagged as such
 in `refdata.py`. Sheoran et al. and Wright & Upadhyaya are confirmed closed
 access. Keyword searching for Griffiths was done on the third edition with the
-fourth edition's structure verified from a catalogue record.
+fourth edition's structure verified from a catalogue record. Of the seven rows
+added for HOS-PV 2.0, three rest on an abstract: Shockley & Queisser, of which
+only pp. 510–512 could be obtained, as an OCR'd court exhibit; Dediu et al.,
+paywalled with no repository copy; and Naaman & Waldeck, supplemented by the
+same authors' open-access perspective, which is where the 85 % figure is. Smith
+& Michl's 2010 review is paywalled and was replaced by the same two authors'
+2013 Annual Review, so no keyword counts are recorded for that row.
 
 One reference, Putland (1993), could not be located; the AES e-library is
 behind Cloudflare and not archived. The indirect evidence against it is strong
@@ -338,14 +430,14 @@ this series rather than cited from memory.
 
 `refdata.py` holds every verdict with its verbatim evidence, its source, and
 how far the cited work could be read. `carrier.py`, `audit.py` and `hidden.py`
-tabulate it; `fetch.sh` reproduces the sixteen deposits from Zenodo and
+tabulate it; `fetch.sh` reproduces the eighteen deposits from Zenodo and
 `keywords.py` recomputes the citation-marker counts from them. `run_all.sh`
 runs everything offline in about a second; `results.log` is the output of one
 run.
 
 ## References
 
-The sixteen audited deposits are listed with their DOIs in `README.md`. Every
+The eighteen audited deposits are listed with their DOIs in `README.md`. Every
 work quoted in this write-up is cited in full in `refdata.py`, with a DOI or a
 URL and a note on how it was obtained. Quotations are short excerpts used for
 criticism and review.

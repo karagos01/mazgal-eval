@@ -8,15 +8,19 @@ means looking for support, not only for errors.  A reference that genuinely
 carries a claim is a more valuable finding here than one that does not.
 
 The list below is what the search found, ranked by strength.  Each entry gives
-the quotation, where it is, and the rider that limits it, because in three of
-the five cases the rider comes from the same pages as the support.
+the quotation, where it is, and the rider that limits it, because in most cases
+the rider comes from the same pages as the support.
+
+Entries are ranked by their position in the list; nothing here hard-codes a
+number that the list itself does not determine.
 """
+
+from refdata import DEPOSITS, NO_REFERENCES, REFS
 
 P = print
 
 FOUND = [
     dict(
-        rank=1,
         where="Furey (2016), arXiv:1611.09182, ch. 2  "
               "[cited in SOTP, Zenodo 22962557, as [3]]",
         supports="the conceptual core of the whole 'Causal' trilogy: that "
@@ -46,7 +50,36 @@ FOUND = [
                 "thesis",
     ),
     dict(
-        rank=2,
+        where="Shockley & Queisser (1961), J. Appl. Phys. 32, 510, footnote 22  "
+              "[cited in HOS-PV 2.0, Zenodo 23364732, as [1]]",
+        supports="the premise the whole deposit rests on: that the 33.7% "
+                 "limit is a one-pair-per-photon limit and carrier "
+                 "multiplication lies outside it, which is the defence of "
+                 "'exceeding the Shockley-Queisser limit' in the title",
+        quote=[
+          "Once a photon exceeds about three times the energy gap [E_g], the "
+          "probability of producing two or more hole-electron pairs becomes "
+          "appreciable",
+          "the data can be well fitted up to quantum yields greater than two "
+          "by assuming a threshold of only slightly more than [E_g] and "
+          "assuming the energy divides equally between the photohole and the "
+          "photoelectron. This effect would slightly increase the possible "
+          "quantum efficiency; however, we shall not consider it further in "
+          "this article.",
+        ],
+        rider="The authors of the limit excluded multiplication by choice, "
+              "so exceeding it this way is legitimate and the deposit is "
+              "right about that. The rider is the size of the gap: the same "
+              "deposit's reference [5] puts a single junction with "
+              "multiplication at 44.4%, not the 45.9% claimed, and 45.9% is "
+              "inside that work's two-gap TANDEM range of 45.7-47.7%. The "
+              "model rebuilt in hospv-eval reproduces 33.77%, 44.62% and "
+              "42.09% for multiplication capped at two carriers per photon, "
+              "which is what singlet fission does.",
+        verdict="the best-hidden genuine defence in the corpus, in a footnote "
+                "of a 1961 paper, for a claim that then overshoots it",
+    ),
+    dict(
         where="Baez (2002), arXiv:math/0105155, sec. 2.3 and 3.3  "
               "[cited in openQL v1.0, Zenodo 23112560, as [5]]",
         supports="a real-matrix encoding of octonion multiplication, and a "
@@ -77,7 +110,30 @@ FOUND = [
                 "derivation than its own",
     ),
     dict(
-        rank=3,
+        where="Moreno (1998), arXiv:q-alg/9710013, introduction  "
+              "[cited in openOmega, Zenodo 23263528, as [3]]",
+        supports="that non-zero elements whose product is exactly zero really "
+                 "do exist in the sedenions, which is the mechanism the "
+                 "deposit executes annihilation with",
+        quote=[
+          "for n >= 4 this norm-preserving formula is not true in general and "
+          "this opens the possibility of the existence of zero divisors in "
+          "A_n for n >= 4 i.e. x and y non-zero elements in A_n such that "
+          "xy = 0 e.g. let x = e1 + e10 and y = e15 - e4 in R^16 = A_4",
+        ],
+        rider="Two riders out of the same two pages. The zero divisors exist "
+              "BECAUSE ||xy|| = ||x|| ||y|| fails above dimension 8, so the "
+              "norm is destroyed in exactly the operation the deposit "
+              "performs 'with absolute energy conservation'. And Moreno's own "
+              "item 2) disposes of the need for sedenions at all in the "
+              "deposit's own matrix formulation: 'in an associative "
+              "(alternative) context as in M_n(R) ... 0 != A is a zero "
+              "divisor if and only if det A = 0'.",
+        verdict="the example the openomega-eval repository found by brute "
+                "search, up to the sign of y, was printed in the reference "
+                "all along",
+    ),
+    dict(
         where="Adler (1995), via his own summary arXiv:hep-th/9607008, with "
               "Horwitz arXiv:quant-ph/9602001 and Baez & Huerta "
               "arXiv:1101.5690  [cited in PCTP, Zenodo 22962188, as [1]]",
@@ -103,7 +159,54 @@ FOUND = [
         verdict="supports the premise, refutes the device, from the same book",
     ),
     dict(
-        rank=4,
+        where="Smejkal, Sinova & Jungwirth (2022), PRX 12, 040501, Table III  "
+              "[cited in HOS-PV 2.0, Zenodo 23364732, as [7]]",
+        supports="the altermagnetic collector, in the one place in this "
+                 "corpus where a reference is stronger than the claim it "
+                 "carries",
+        quote=[
+          "RuO2 ... TN 400 K ... Splitting 1400 meV ... dxy, P-2",
+          "MnTe ... TN 310 K ... Splitting 1100 meV ... g-wave, B-4",
+          "The electrical current then becomes spin-polarized when the bias "
+          "is applied along the x or y-direction",
+        ],
+        rider="The deposit asks for 0.5-1.0 eV of spin splitting and the "
+              "table gives 1.1-1.4 eV for the two materials it names. The "
+              "riders are in the same row: MnTe is listed as g-wave, not the "
+              "d-wave the sentence claims, its Neel temperature of 310 K is "
+              "twelve kelvin above standard test conditions and below the "
+              "318-332 K a module runs at, and the 'organic-inorganic "
+              "altermagnetic perovskites' of the same sentence are not in the "
+              "table, which has an inorganic perovskite oxide at 20 meV and "
+              "an organic insulator below 50 meV.",
+        verdict="supported, and the temperature that defeats it is in the "
+                "same table",
+    ),
+    dict(
+        where="Rao et al. (2013), arXiv:1303.2821  "
+              "[cited in HOS-PV 2.0, Zenodo 23364732, as [3]]",
+        supports="the triplet drain the architecture is built to close, and "
+                 "the 25%/75% spin statistics of the sentences before the "
+                 "marker, word for word",
+        quote=[
+          "recombination of spin-uncorrelated charges should lead to the "
+          "formation of 1CT and 3CT states in a 1:3 ratio based on spin "
+          "statistics",
+          "We show that triplet exciton formation can be the major loss "
+          "mechanism in OPVs.",
+        ],
+        rider="The cure is in the same paper and it is not chirality: "
+              "'even when energetically favoured, the relaxation of 3CT to "
+              "T1 can be strongly suppressed, via control over wavefunction "
+              "delocalisation', and in the efficient blend 'no triplet "
+              "formation is observed at room temperature'. The word 'chiral' "
+              "occurs zero times in it. The claim's other half fares worse: "
+              "'fill factor' occurs zero times, and the level ordering the "
+              "deposit calls a V_oc degrader is 'required to maximise open "
+              "circuit voltage' here.",
+        verdict="supports the disease, reports an achiral cure for it",
+    ),
+    dict(
         where="Bi et al. (2011), DOI 10.1038/nphoton.2011.270  "
               "[cited in PCTP, Zenodo 22962188, as [4]]",
         supports="on-chip non-reciprocity, which is the element the preprint "
@@ -123,7 +226,6 @@ FOUND = [
         verdict="real hardware support for one element, not for the logic",
     ),
     dict(
-        rank=5,
         where="Lehmann et al. (2011), DOI 10.1016/j.soilbio.2011.04.022, "
               "abstract  [cited in Phytomining, Zenodo 23174932, as 3]",
         supports="biochar as a carrier for a bacterial inoculant, which is "
@@ -141,7 +243,6 @@ FOUND = [
         verdict="real precedent for the delivery vehicle, not for its cargo",
     ),
     dict(
-        rank=6,
         where="Tesla (1894), US 512,340  "
               "[cited in COBAR, Zenodo 22923154, as [1]]",
         supports="the preprint's sentence on distributed capacitance in a "
@@ -201,6 +302,28 @@ NO_CARRIER = [
      "openQL; '112' does not occur in Baez or Kuipers. The only '112' in the "
      "six works is Markidis's '112.7 Tflops/s theoretical peak' -- a "
      "throughput"),
+    ("45.9% as a single-junction thermodynamic limit",
+     "HOS-PV 2.0; the reference it is attached to gives 44.4% for a single "
+     "gap with carrier multiplication and 45.7-47.7% for an ideal two-gap "
+     "tandem, and the model rebuilt in hospv-eval caps doubling at 42.09%"),
+    ("23.8 mA/cm2 collected above 2.25 eV",
+     "HOS-PV 2.0; attached to no reference. The AM1.5G spectrum carries "
+     "9.76 mA/cm2 above that energy at one electron per photon, so the "
+     "figure needs 2.44 electrons per absorbed photon and fission gives two"),
+    ("a carbon matrix that is spin-orbit weak and spin-selective at once",
+     "HOS-PV 2.0; Naaman & Waldeck, cited for the CISS magnitudes, say the "
+     "models 'all presume an unusually large spin-orbit coupling in chiral "
+     "molecules for the effect to display the magnitudes seen in experiments'"),
+    ("xi_SOC proportional to Z^4",
+     "HOS-PV 2.0; attached to no reference, and a fit to the NIST ground-term "
+     "splittings of F, Cl, Br and I gives an exponent of 1.69"),
+    ("annihilation with absolute energy conservation",
+     "openOmega; the zero divisors it runs on exist only because the norm is "
+     "not multiplicative above dimension 8, which is what Moreno's cited "
+     "paper is about"),
+    ("the positron as a hole in the Dirac sea",
+     "openOmega; the 1930 paper it cites identifies the holes as protons, and "
+     "says a uniform sea is 'completely unobservable'"),
     ("coreless acoustic transduction efficiency",
      "COBAR; the cited Beranek & Mellow contains the relation by which a "
      "coreless design loses four to six decades of efficiency"),
@@ -213,8 +336,8 @@ NO_CARRIER = [
 def main():
     P("1. Support found, ranked")
     P()
-    for f in FOUND:
-        P(f"  [{f['rank']}] {f['where']}")
+    for i, f in enumerate(FOUND, 1):
+        P(f"  [{i}] {f['where']}")
         P(f"      supports: {f['supports']}")
         for q in f["quote"]:
             P(f'        "{q}"')
@@ -222,7 +345,7 @@ def main():
         P(f"      -> {f['verdict']}")
         P()
 
-    P("2. The pattern in the three strongest findings")
+    P("2. The pattern in the algebra deposits")
     P()
     P("  Furey, Dixon and Baez all resolve the non-associativity problem the")
     P("  same way, by moving to the associative algebra of left-multiplication")
@@ -241,7 +364,8 @@ def main():
     P("  papers and is refuted for their mechanism, out of the same pages.")
 
     P()
-    P("3. Claims with no carrier anywhere in the 69 references")
+    n_ext = sum(d[3] for d in DEPOSITS)
+    P(f"3. Claims with no carrier anywhere in the {n_ext} references")
     P()
     for claim, why in NO_CARRIER:
         P(f"  - {claim}")
@@ -253,13 +377,29 @@ def main():
     P(f"  support found and substantial          {len(FOUND)} places")
     P(f"  claims with no carrier in any reference {len(NO_CARRIER)}")
     P()
+    orphan = n_ext - sum(d[5] + d[6] for d in DEPOSITS)
     P("  The claim is partly vindicated.  In openQL and SOTP the cited")
     P("  literature does carry support the preprints never spell out, and in")
     P("  one case a better derivation than the preprint's own.  That is the")
-    P("  author's point and it stands.  It does not extend to the 46")
-    P("  references attached to nothing, to the 3 deposits with no references,")
-    P("  or to the claims above, which the cited works contradict in their own")
-    P("  words.")
+    P(f"  author's point and it stands.  It does not extend to the {orphan} "
+      f"references attached to")
+    P(f"  nothing, to the {len(NO_REFERENCES)} deposits with no references, "
+      f"or to the claims above, which the")
+    P("  cited works contradict in their own words.")
+    P()
+    hospv = [r for r in REFS if r["dep"] == "23364732"]
+    part = sum(1 for r in hospv if r["verdict"] == "PARTIAL")
+    P("  HOS-PV 2.0 of 14 October is where the claim comes closest to being")
+    P("  simply true.  It is the first deposit in which every external "
+      "reference is")
+    P(f"  attached to a sentence, all {len(hospv)} of them, and {part} of the "
+      f"{len(hospv)} carry part of what")
+    P("  they are cited for rather than none of it.  Three of the entries "
+      "above come")
+    P("  from it.  Its two largest problems are in its references too: 45.9% "
+      "is the")
+    P("  tandem row of the paper it is taken from, and the altermagnet's Neel")
+    P("  temperature is in the table it is cited from.")
 
 
 if __name__ == "__main__":

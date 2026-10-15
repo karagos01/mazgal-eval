@@ -1,6 +1,6 @@
 # Audit referencí — říkají citace to, pro co jsou citované?
 
-Audit všech **69 externích referencí** ve všech **16 záznamech na Zenodu** od
+Audit všech **81 externích referencí** ve všech **18 záznamech na Zenodu** od
 M. Mazgala, který u každé citace čte, co ta práce o daném tvrzení skutečně říká.
 
 Text je v [`PAPER.cs.md`](PAPER.cs.md), anglicky v [`PAPER.md`](PAPER.md).
@@ -22,24 +22,40 @@ v [`hidden.py`](hidden.py).
 
 ## Výsledek
 
-**Tvrzení se ve dvou depositech potvrdilo.** Disertace Fureyové, citovaná
+**Tvrzení se ve čtyřech depositech potvrdilo.** Disertace Fureyové, citovaná
 v SOTP, argumentuje, že kauzalita a nevratný čas vyplývají ze závorkování
 algebraického výrazu — to je konceptuální jádro celé „Causal" série, je to
-recenzované a v samotných preprintech to nikde není. A Baez, citovaný v openQL,
+recenzované a v samotných preprintech to nikde není. Baez, citovaný v openQL,
 dodává jak reálně-maticové zakódování oktonionového násobení přes operátory
 levého násobení, tak cestu k číslu 12 přes sl(3,ℍ) působící na ℝ¹², se so(12)
 v jeho magickém čtverci a s jeho vlastní poznámkou „this is no coincidence!" —
-tedy lepší odvození dvanáctky než obě, která openQL nabízí. To je autorův bod
-a platí.
+tedy lepší odvození dvanáctky než obě, která openQL nabízí. Poznámka pod čarou
+č. 22 u Shockleyho a Queissera (1961), citovaných v HOS-PV 2.0, pojmenovává
+multiplikaci nosičů a vědomě ji z výpočtu vyjímá — to je přesně to povolení,
+které název toho depositu potřebuje a nikde se na ně neodvolává. A Moreno
+(1998), citovaný v openOmeze, má přímo vytištěnou dvojici sedenionových
+dělitelů nuly, na které stojí tamní anihilace — tutéž, kterou `openomega-eval`
+našel hrubou silou. To je autorův bod a platí.
 
-**Dál to nejde, a to ze tří změřených důvodů.** 47 z 69 referencí není připnutých
+**Dál to nejde, a to ze tří změřených důvodů.** 52 z 81 referencí není připnutých
 k žádnému tvrzení a tři deposity nemají seznam literatury vůbec, takže u dvou
 třetin korpusu neexistuje nosič, který by skrytá obhajoba mohla použít. Tam, kde
 se podpora našla, tytéž stránky vyvracejí mechanismus, pro který je nabízena:
 Fureyová, Dixon i Baez řeší neasociativitu přechodem do **asociativní** algebry
 operátorů levého násobení, což je přesně ten krok, na jehož odmítnutí navrhovaná
-architektura stojí. A čtrnáct tvrzení vyvracejí jejich vlastní citované zdroje
-vlastními slovy.
+architektura stojí; selhání normy, které Morenovy dělitele nuly vůbec umožňuje,
+je totéž, co openOmeze bere její „absolutní zachování energie"; a 45,9 %
+v HOS-PV 2.0 je řádek dvoupřechodového tandemu z práce, ze které je to číslo
+vzaté a jejíž jednopřechodová odpověď je 44,4 %. A patnáct tvrzení vyvracejí
+jejich vlastní citované zdroje vlastními slovy.
+
+**HOS-PV 2.0 ze 14. října je místo, kde má autorovo tvrzení nejblíž k tomu být
+prostě pravdivé.** Je to první deposit, ve kterém je každá externí reference
+připnutá k větě, všech sedm; všech sedm se dohledá přesně tak, jak jsou
+vytištěné; žádná sebecitace, žádná AI jako spoluautor, žádný nevyplněný ORCID.
+Šest ze sedmi nese část toho, pro co jsou citované. Jeho problémy jsou jiného
+druhu než ve zbytku korpusu: ne vymyšlené reference, ale špatný řádek tabulky
+v reálné.
 
 ## Co je potřeba
 
@@ -55,7 +71,7 @@ značek.
 
 ```
 ./run_all.sh                        # všechno, offline, asi sekunda
-./fetch.sh corpus                   # volitelně: stáhnout znovu 16 depositů
+./fetch.sh corpus                   # volitelně: stáhnout znovu 18 depositů
 python3 keywords.py corpus          #   a přepočítat z nich počty značek
 ```
 
@@ -66,7 +82,7 @@ python3 keywords.py corpus          #   a přepočítat z nich počty značek
 | [`audit.py`](audit.py) | součty verdiktů, rozpad podle dostupnosti, počty klíčových slov, citace, které se v uvedené podobě nedohledají |
 | [`hidden.py`](hidden.py) | nalezená podpora, seřazená, s výhradou, která každou omezuje |
 | [`keywords.py`](keywords.py) | přepočítá počty citačních značek z depositů; offline vypíše zaznamenané hodnoty |
-| [`fetch.sh`](fetch.sh) | stáhne 16 depositů ze Zenoda a převede je na text |
+| [`fetch.sh`](fetch.sh) | stáhne 18 depositů ze Zenoda a převede je na text |
 
 Celý výstup jednoho běhu je v [`results.log`](results.log).
 
@@ -74,22 +90,23 @@ Celý výstup jednoho běhu je v [`results.log`](results.log).
 
 | co | naměřeno |
 |---|---|
-| auditovaných záznamů na Zenodu | 16 (14 různých prací; openQL a MPPT mají dvě verze) |
-| externích referencí | **69** |
-| připnutých k větě značkou v textu | **7 (10,1 %)** — jen *Acoustic Projector* a SOTP |
-| nesoucích jen glosu v seznamu literatury | 15 (21,7 %) — openQL v1.0, fytomining, hemocyanin |
-| **bez vysloveného vztahu k čemukoli** | **47 (68,1 %)** |
+| auditovaných záznamů na Zenodu | 18 (16 různých prací; openQL a MPPT mají dvě verze) |
+| externích referencí | **81** |
+| připnutých k větě značkou v textu | **14 (17,3 %)** — jen *Acoustic Projector*, SOTP a HOS-PV 2.0 |
+| nesoucích jen glosu v seznamu literatury | 15 (18,5 %) — openQL v1.0, fytomining, hemocyanin |
+| **bez vysloveného vztahu k čemukoli** | **52 (64,2 %)** |
 | deposity bez seznamu literatury vůbec | **3** — MPPT v1.0, MPPT v1.1, CQFT |
+| deposity, kde je připnutá každá reference | **1** — HOS-PV 2.0, 7 ze 7 |
 | sebecitace | 4, dvě z nich uvedené jako „Mazgal, M., & Gemini AI" |
-| verdikt SUPPORTS | 3 |
-| verdikt PARTIAL | 18 |
-| verdikt NO SUPPORT | 23 |
-| verdikt REFUTES (zdroj tvrdí opak) | **14** |
+| verdikt SUPPORTS | 4 |
+| verdikt PARTIAL | 25 |
+| verdikt NO SUPPORT | 24 |
+| verdikt REFUTES (zdroj tvrdí opak) | **15** |
 | verdikt UNRESOLVED (reference nedohledána) | 1 |
-| verdiktových řádků stojících na plném textu | **38 z 59 (64 %)** |
+| verdiktových řádků stojících na plném textu | **43 z 69 (62 %)** |
 | citací, které se v uvedené podobě nedohledají | **7**, jedna z nich chiméra ze tří zdrojů |
-| míst, kde se našla reálná podpora | **6**, seřazeno v `hidden.py` |
-| tvrzení bez nosiče kdekoli v těch 69 referencích | 13 |
+| míst, kde se našla reálná podpora | **10**, seřazeno v `hidden.py` |
+| tvrzení bez nosiče kdekoli v těch 81 referencích | 19 |
 
 ## Auditované deposity
 
@@ -111,6 +128,13 @@ Celý výstup jednoho běhu je v [`results.log`](results.log).
 | 23209266 | [10.5281/zenodo.23209266](https://doi.org/10.5281/zenodo.23209266) | hemocyaninová fyziologie |
 | 23241148 | [10.5281/zenodo.23241148](https://doi.org/10.5281/zenodo.23241148) | openQL / openOL v1.1 |
 | 23241777 | [10.5281/zenodo.23241777](https://doi.org/10.5281/zenodo.23241777) | Intensional Physics Computing |
+| 23263528 | [10.5281/zenodo.23263528](https://doi.org/10.5281/zenodo.23263528) | openOmega |
+| 23364732 | [10.5281/zenodo.23364732](https://doi.org/10.5281/zenodo.23364732) | HOS-PV 2.0 |
+
+Poslední dva přibyly 15. října 2026. openOmega vyšel 9. října, tedy přesně
+v den, kdy tenhle audit běžel poprvé, a HOS-PV 2.0 14. října; `keywords.py`
+přepočítal počty citačních značek všech osmnácti přímo z depositů a proti
+hodnotám zaznamenaným v říjnu nevznikl žádný rozpor.
 
 ## Rozsah
 
@@ -118,7 +142,7 @@ Není to audit toho, zda jsou tvrzení pravdivá — tvrzení může být správ
 špatnou citací. Kde je aritmetika spočítaná, je v doprovodných repozitářích níž
 a nic zde ji nemění.
 
-Hranice jsou v §8 textu. 21 z 59 verdiktových řádků nestojí na plném textu
+Hranice jsou v §8 textu. 26 z 69 verdiktových řádků nestojí na plném textu
 a každý říká, jaká substituce se použila; dvě knihy byly nedostupné a nahradily
 je vlastní práce a publikované souhrny jejich autorů; jednu referenci se
 nepodařilo dohledat vůbec, což je negativní evidence, ne důkaz neexistence.
@@ -130,7 +154,7 @@ Tři opravy, které tento audit dluží jinam, jsou v něm zaznamenané. Teslův
 a citace Griffithse je správná — chyba, kterou jsem tu předpokládal, neexistuje.
 `openql-eval` už Baezovu konstrukci levého násobení měřilo, aniž by Baezovi
 připsalo, že ji dodal. A census slovníku v `keywords.py`, spuštěný nad všemi
-šestnácti záznamy místo deseti, vyvrátil nárok na prvenství v `cymatic-eval`:
+osmnácti záznamy místo deseti, vyvrátil nárok na prvenství v `cymatic-eval`:
 „causal" bylo nulové poprvé už v openQL v1.0 z 3. října a všech sedm sledovaných
 termínů chybí v COBARu z 23. září a v Momentum Drive z 24. září, takže ten
 slovník přichází ve dvou proložených skupinách, nemizí v čase. Ta oprava je teď

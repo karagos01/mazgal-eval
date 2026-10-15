@@ -1,5 +1,5 @@
 #!/bin/sh
-# Download all 16 Zenodo records by this author and convert them to text.
+# Download all 18 Zenodo records by this author and convert them to text.
 #
 # This is the one script here that needs the network.  Nothing is cached in the
 # repository: the deposits are the author's work, CC BY 4.0, and are left where
@@ -16,7 +16,10 @@ mkdir -p "$OUT"
 echo "corpus directory: $OUT"
 
 # record id : short name                 (oldest first; openQL and MPPT have
-#                                          two versions each)
+#                                          two versions each.  openomega was
+#                                          deposited on the day this audit was
+#                                          first run and hospv five days later;
+#                                          both were added afterwards.)
 RECORDS="
 22876757:acoustic-projector
 22877345:x-ternary
@@ -34,6 +37,8 @@ RECORDS="
 23209266:hemocyanin
 23241148:openql-v1.1
 23241777:intensional-physics
+23263528:openomega
+23364732:hospv
 "
 
 for rec in $RECORDS; do

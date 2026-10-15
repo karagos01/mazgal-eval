@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-"""Every external reference in all 16 Zenodo records by M. Mazgal, with what the
+"""Every external reference in all 18 Zenodo records by M. Mazgal, with what the
 cited work actually says about the claim it is attached to.
+
+The last two rows of DEPOSITS were added on 15 October 2026.  openOmega was
+deposited on 9 October, the day this audit was first run, and HOS-PV 2.0 on
+14 October.
 
 This file is DATA, not computation.  Each row records:
 
@@ -50,6 +54,8 @@ DEPOSITS = [
     ("23209266", "Hemocyanin",           "2026-10-07",   4,    1,     0,      4),
     ("23241148", "openQL v1.1",          "2026-10-08",   5,    0,     0,      0),
     ("23241777", "Intensional Physics",  "2026-10-08",   5,    0,     0,      0),
+    ("23263528", "openOmega",            "2026-10-09",   5,    0,     0,      0),
+    ("23364732", "HOS-PV 2.0",           "2026-10-14",   7,    0,     7,      0),
 ]
 
 # Deposits whose reference list is empty.  A defence cannot be hidden in a
@@ -68,8 +74,9 @@ def R(dep, key, cite, link, verdict, access, claim=None, resolves=None,
 REFS = [
 
     # =====================================================================
-    # 22876757  Acoustic Projector -- the only deposit that attaches external
-    # references to specific sentences with [n] markers.
+    # 22876757  Acoustic Projector -- the first deposit that attaches external
+    # references to specific sentences with [n] markers; only SOTP and
+    # HOS-PV 2.0 do so as well.
     # =====================================================================
     R("22876757", "[1]",
       cite="Klippel, W. (2006). Tutorial: Loudspeaker Nonlinearities - Causes, "
@@ -1610,4 +1617,380 @@ REFS = [
            "the harmonic oscillator drifts to 2e-5 x E(0) over 1e5 steps and a "
            "fitted pendulum reaches 10.2 x E(0), while leapfrog holds "
            "1.0000 x E(0) untrained."),
+
+    # =====================================================================
+    # 23263528  openOmega -- deposited on 9 October, the day this audit was
+    # first run, and added to it afterwards.  Five references, no [n] markers
+    # and no glosses, so nothing is attached to anything.  Three of the five
+    # are carried over from openQL.
+    # =====================================================================
+    R("23263528", "[1]",
+      cite="Dirac, P. A. M. (1930). A Theory of Electrons and Protons. "
+           "Proceedings of the Royal Society of London. Series A.",
+      link="none", verdict="PARTIAL", access="full-text",
+      evidence=[
+        "all the states of negative energy are occupied except perhaps a few "
+        "of small velocity",
+        "We shall have an infinite number of electrons in negative-energy "
+        "states, and indeed an infinite number per unit volume all over the "
+        "world, but if their distribution is exactly uniform we should expect "
+        "them to be completely unobservable. Only the small departures from "
+        "exact uniformity, brought about by some of the negative-energy states "
+        "being unoccupied, can we hope to observe.",
+        "We are therefore led to the assumption that the holes in the "
+        "distribution of negative-energy electrons are the protons. When an "
+        "electron of positive energy drops into a hole and fills it up, we "
+        "have an electron and proton disappearing together with emission of "
+        "radiation.",
+      ],
+      source="scan of Proc. R. Soc. Lond. A 126, 360-365, "
+             "DOI 10.1098/rspa.1930.0013, pp. 361-363 read as images; the "
+             "PDF carries no text layer, so no keyword counts are possible",
+      note="The filled sea of negative-energy states is Dirac's and the "
+           "preprint has the right paper for it. Two things in it are not. "
+           "The holes are identified here as PROTONS, not positrons -- the "
+           "anti-electron is Dirac's next paper, of 1931 -- so the "
+           "electron-positron annihilation the architecture executes is not "
+           "in the work cited for it. And Dirac's own argument cuts against "
+           "simulating the negative half-plane at all: a uniform sea is "
+           "'completely unobservable' and only its vacancies can be "
+           "observed, which is an argument for computing holes rather than "
+           "for doubling the state space to hold the sea itself."),
+
+    R("23263528", "[3]",
+      cite="Moreno, G. (1998). The Zero Divisors of the Cayley-Dickson "
+           "Algebras over the Real Numbers. Sociedad Matematica Mexicana.",
+      link="none", verdict="SUPPORTS", access="full-text",
+      evidence=[
+        "k xy k=k x kk y k for all x and y in A_n if and only if n = 0, 1, 2, "
+        "3",
+        "for n >= 4 this norm-preserving formula is not true in general and "
+        "this opens the possibility of the existence of zero divisors in A_n "
+        "for n >= 4 i.e. x and y non-zero elements in A_n such that xy = 0 "
+        "e.g. let x = e1 + e10 and y = e15 - e4 in R^16 = A_4",
+        "2) In an associative (alternative) context as in M_n(R) the n x n "
+        "matrices over R where a god-given invariant called determinant says "
+        "that 0 != A in M_n(R) is a zero divisor if and only if det A = 0.",
+      ],
+      counts={"antimatter": 0, "positron": 0, "electron": 0, "vacuum": 0,
+              "Dirac": 0, "energy": 0, "physics": 0, "sedenion": 0,
+              "tensor": 0, "GPU": 0},
+      source="arXiv:q-alg/9710013, full text; Bol. Soc. Mat. Mexicana (3) "
+             "4(1), 13-28 (1998)",
+      note="The best-chosen reference in the corpus after Furey's thesis. It "
+           "is about exactly the sedenion zero divisors the deposit is built "
+           "on, and it prints the example the openomega-eval repository "
+           "re-derived by brute-force search: Moreno gives x = e1 + e10 and "
+           "y = e15 - e4, that search reports (e1 + e10) x (e4 - e15) = 0, "
+           "the same pair with the sign of y flipped. "
+           "Three riders, all from the same four pages. The zero divisors "
+           "exist BECAUSE ||xy|| = ||x|| ||y|| fails above dimension 8, so "
+           "the norm is not conserved in the one operation the architecture "
+           "uses for annihilation 'with absolute energy conservation'. "
+           "Moreno's item 2) says that in matrices -- which is how the "
+           "deposit states the mechanism, 'non-zero matrices A and B' -- a "
+           "zero divisor is just a singular matrix, with no sedenions "
+           "needed. And the word 'annihilator' occurs once in the paper, as "
+           "Ker L_a, an algebraic kernel and not a physical process."),
+
+    R("23263528", "[2,4,5]",
+      cite="Baez 2002; Markidis et al. 2018; Raissi et al. 2019",
+      link="none", verdict="NO SUPPORT", access="full-text",
+      source="see the 23112560 rows for the per-reference verdicts",
+      note="Three of the five references are the openQL set, carried over "
+           "without the glosses that openQL v1.0 gave them. Baez is the one "
+           "that carries real support the deposit does not claim (see "
+           "hidden.py), but for the Cayley-Dickson construction up to the "
+           "octonions, not for the sedenions or for the Dirac sea. 'Sedenion' "
+           "occurs in none of the three, and the only '112' in the set is "
+           "Markidis's 112.7 Tflops/s. No reference in the list is attached "
+           "to the +/-224D claim, the 224 = 14 x 16 alignment claim or the "
+           "single-clock-cycle annihilation claim, which are the deposit's "
+           "three load-bearing assertions."),
+
+    # =====================================================================
+    # 23364732  HOS-PV 2.0 -- the first deposit of the eighteen in which
+    # every external reference is attached to a sentence by an [n] marker,
+    # and the first with no self-citation, no AI co-author and no unfilled
+    # ORCID placeholder.  It is also the only one outside the author's
+    # computing-and-algebra series.  The measurements behind these notes are
+    # in the hospv-eval repository.
+    # =====================================================================
+    R("23364732", "[1]",
+      cite="Shockley, W. & Queisser, H. J. (1961). Detailed Balance Limit of "
+           "Efficiency of p-n Junction Solar Cells. J. Appl. Phys. 32(3), "
+           "510-519.",
+      link="in-text", verdict="PARTIAL", access="abstract",
+      claim="'The thermodynamic efficiency of conventional single-junction "
+            "solar cells is bounded by the Shockley-Queisser (SQ) limit of "
+            "33.7% at an optimal bandgap of E_g ~ 1.34 eV under "
+            "unconcentrated AM1.5G illumination [1]'",
+      evidence=[
+        "the sun and cell being assumed to be blackbodies with temperatures "
+        "of 6000 K and 300 K, respectively. The maximum efficiency is found "
+        "to be 30% for an energy gap of 1.1 ev",
+        "a planar solar cell, without concentrators of radiation, cannot "
+        "approach this limit",
+        "the data can be well fitted up to quantum yields greater than two by "
+        "assuming a threshold of only slightly more than [E_g] ... This "
+        "effect would slightly increase the possible quantum efficiency; "
+        "however, we shall not consider it further in this article.",
+      ],
+      source="OCR of pp. 510-512 as exhibit 1027 in PTAB IPR2024-01199; the "
+             "quoted degree signs are transcribed from the OCR and the "
+             "bracketed [E_g] stands for the symbol the OCR lost",
+      note="The method and the single-junction ceiling are Shockley and "
+           "Queisser's and the citation is the right one for the bound. "
+           "Neither number in the sentence is theirs: the paper gives 30% at "
+           "1.1 eV for a 6000 K blackbody sun, and the AM1.5G spectrum "
+           "(ASTM G173) postdates it by four decades. 33.7% at 1.34 eV comes "
+           "from reference [5] of this same list, whose abstract gives "
+           "exactly 33.7% under 1 sun AM1.5G. Footnote 22 is the find: "
+           "Shockley and Queisser name carrier multiplication, note that it "
+           "would raise the quantum efficiency, and set it aside by choice. "
+           "That is the strongest support anywhere in this corpus for the "
+           "premise the deposit is built on -- that the 33.7% limit is a "
+           "one-pair-per-photon limit and multiplication is outside it."),
+
+    R("23364732", "[2]",
+      cite="Dediu, V. A., Hueso, L. E., Bergenti, I. & Taliani, C. (2009). "
+           "Spin routes in organic semiconductors. Nature Materials 8(9), "
+           "707-716.",
+      link="in-text", verdict="PARTIAL", access="abstract",
+      claim="'Because relativistic spin-orbit coupling (SOC) scales steeply "
+            "with atomic number (xi_SOC ~ Z^4), organic semiconductors "
+            "exhibit exceptionally weak SOC, resulting in long spin-lattice "
+            "relaxation times (tau_s ~ 10^-6 to 10^-5 s) even in structurally "
+            "disordered films at room temperature [2]'",
+      evidence=[
+        "Organic semiconductors are characterized by a very low spin-orbit "
+        "interaction, which, together with their chemical flexibility and "
+        "relatively low production costs, makes them an ideal materials "
+        "system for spintronics applications.",
+      ],
+      source="PubMed 19701216, abstract; the full text is paywalled and no "
+             "repository copy was reachable",
+      note="The premise is supported in the abstract's own first sentence. "
+           "The numbers are not in it: neither the 10^-6 to 10^-5 s window "
+           "nor the qualifier 'even in structurally disordered films at room "
+           "temperature' could be checked, so the verdict is scoped to the "
+           "premise. The Z^4 scaling attached to the same sentence belongs "
+           "to no reference at all; measured against the NIST ground-term "
+           "splittings of F, Cl, Br and I the exponent is 1.69 "
+           "(hospv-eval/spin.py). Note the tension with reference [6] of the "
+           "same list, whose review says the CISS magnitudes require an "
+           "unusually LARGE spin-orbit coupling in the same kind of "
+           "molecule."),
+
+    R("23364732", "[3]",
+      cite="Rao, A., Chow, P. C. Y., Gelinas, S., et al. (2013). The role of "
+           "spin in the kinetic control of recombination in organic "
+           "photovoltaics. Nature 500, 435-439.",
+      link="in-text", verdict="PARTIAL", access="full-text",
+      claim="'When the local triplet exciton state (T1) lies below the 3CT "
+            "state, spin-allowed relaxation from 3CT -> T1 acts as an "
+            "irreversible recombination sink (the triplet drain), severely "
+            "degrading both V_oc and the fill factor (FF) [3]'",
+      evidence=[
+        "recombination of spin-uncorrelated charges should lead to the "
+        "formation of 1CT and 3CT states in a 1:3 ratio based on spin "
+        "statistics",
+        "if the energy of the lowest-lying molecular triplet exciton (T1) "
+        "lies below the 3CT energy (as is required to maximise open circuit "
+        "voltage, VOC), then 3CT can relax to T1",
+        "We show that triplet exciton formation can be the major loss "
+        "mechanism in OPVs. However, we find that even when energetically "
+        "favoured, the relaxation of 3CT to T1 can be strongly suppressed, "
+        "via control over wavefunction delocalisation, allowing for the "
+        "dissociation of 3CT back to free changes",
+        "for the more efficient 1:3 PIDT-PhanQ:PCBM blend no triplet "
+        "formation is observed at room temperature",
+      ],
+      counts={"fill factor": 0, "chiral": 0, "CISS": 0, "Pauli": 0,
+              "spin blockade": 0, "singlet fission": 0, "delocalis": 10},
+      source="arXiv:1303.2821, the authors' full preprint of the Nature "
+             "paper; DOI 10.1038/nature12339",
+      note="The triplet drain and the 25%/75% spin statistics quoted in the "
+           "sentences before the marker are supported word for word. Two "
+           "halves of the claim are not. 'Fill factor' does not occur "
+           "anywhere in the cited work, and the level ordering the preprint "
+           "calls a V_oc degrader is described there as the ordering "
+           "'required to maximise open circuit voltage'. The larger point is "
+           "that the suppression the architecture needs CISS for is reported "
+           "in this same paper in ACHIRAL blends at room temperature, by "
+           "delocalisation: 'chiral' occurs zero times in it. The preprint "
+           "cites the paper for the disease and not for the cure it "
+           "reports."),
+
+    R("23364732", "[4]",
+      cite="Smith, M. B. & Michl, J. (2010). Singlet Fission. Chemical "
+           "Reviews 110(11), 6891-6936.",
+      link="in-text", verdict="PARTIAL", access="author-summary",
+      claim="'a photogenerated singlet exciton (S1) ... interacts with a "
+            "neighboring ground-state chromophore (S0) to form a correlated "
+            "triplet-pair state 1(TT), which subsequently dissociates into "
+            "two independent triplet excitons (2 x T1) [4]', and the "
+            "condition E(S1) >= 2 E(T1) for fission 'at ultrafast timescales "
+            "(1 / k_SF below 100 fs)'",
+      evidence=[
+        "a spin-allowed process in which a singlet excited molecule shares "
+        "its energy with a ground-state neighbor to produce two triplet "
+        "excited molecules",
+        "exoergic or at least isoergic, E(S1) >= 2E(T1). Excessive "
+        "exoergicity would cause a loss of efficiency",
+        "we therefore also impose the condition E(T2) >= 2E(T1)",
+        "It has been observed to occur in single-crystal, polycrystalline, "
+        "and amorphous solids, on timescales from 80 fs to 25 ps, producing "
+        "triplet yields as high as 200%.",
+        "In tetracene it is only 0.18 eV, as E(S1) = 2.32 eV and 2E(T1) = "
+        "2.5 eV",
+      ],
+      source="the 2010 Chemical Reviews article is paywalled; quotations are "
+             "from the same two authors' own later review, Smith & Michl, "
+             "Annu. Rev. Phys. Chem. 64, 361-386 (2013), "
+             "DOI 10.1146/annurev-physchem-040412-110130",
+      note="Mechanism and energy condition are supported in the authors' own "
+           "words, and this is the best-used reference in the deposit. Three "
+           "riders. The sub-100-fs requirement is not theirs: they report "
+           "fission from 80 fs to 25 ps with yields up to 200%, so "
+           "picosecond fission is not the failure the preprint treats it as. "
+           "They impose a second condition, E(T2) >= 2E(T1), which the "
+           "preprint drops. And the preprint's own donor energies, E(S1) = "
+           "2.25 eV with E(T1) = 1.15 eV, fail the condition it quotes from "
+           "them by 50 meV -- endothermic by 1.9 kT at 300 K "
+           "(hospv-eval/materials.py), which is tetracene's situation, "
+           "whose 0.18 eV deficit these authors spell out. No keyword counts "
+           "are recorded for this row, because the text in hand is the 2013 "
+           "review and not the 2010 article the deposit cites."),
+
+    R("23364732", "[5]",
+      cite="Hanna, M. C. & Nozik, A. J. (2006). Solar conversion efficiency "
+           "of photovoltaic and photoelectrolysis cells with carrier "
+           "multiplication absorbers. J. Appl. Phys. 100(7), 074510.",
+      link="in-text", verdict="REFUTES", access="abstract",
+      claim="(a) 'HOS-PV 2.0 overcomes this thermodynamic bottleneck by "
+            "embedding a two-component sensitized energy cascade within the "
+            "active layer [5]'  (b) 'By harvesting low-energy photons "
+            "directly in Component B while multiplying high-energy photons by "
+            "a factor of ~2 in Component A at the same extraction potential "
+            "(E_g(IR) ~ 1.12 eV), the thermodynamic efficiency limit rises "
+            "from 33.7% (SQ limit) to 45.9% [5]'",
+      evidence=[
+        "Using a detailed balance model with 1 sun AM1.5G illumination, we "
+        "find that for single gap photovoltaic (PV) devices the maximum "
+        "efficiency increases from 33.7% for cells with no carrier "
+        "multiplication to 44.4% for cells with carrier multiplication.",
+        "We also find that the maximum efficiency of an ideal two gap tandem "
+        "PV device increases from 45.7% to 47.7% when carrier multiplication "
+        "absorbers are used in the top and bottom cells.",
+        "We consider several types of ideal absorbers where absorption of one "
+        "photon can produce more than one electron-hole pair that are based "
+        "on semiconductor quantum dots with efficient multiple exciton "
+        "generation (MEG) or molecules that undergo efficient singlet fission "
+        "(SF).",
+      ],
+      source="Crossref abstract for DOI 10.1063/1.2356795; the full text is "
+             "paywalled and nrel.gov was unreachable from this machine",
+      note="The right paper, cited for the wrong row of its own table. It "
+           "models exactly this physics -- detailed balance, 1 sun AM1.5G, "
+           "singlet fission as a multiplication absorber -- and its "
+           "single-junction answer is 44.4%, not 45.9%. 45.9% falls in its "
+           "two-gap TANDEM range of 45.7% to 47.7%, and being a single "
+           "junction is the architecture's entire selling point. The "
+           "hospv-eval repository rebuilds the model from the ASTM G173 "
+           "spectrum and reproduces 33.77%, 44.62% and, for multiplication "
+           "capped at two carriers per photon as singlet fission is, 42.09% "
+           "at 0.94 eV against the same group's published 42.0% at 0.95 eV. "
+           "45.9% is above that ceiling at any pair of energies. Claim (a) "
+           "is separate and simply unsupported: the cited work models single "
+           "absorbers and tandems, not a Dexter-sensitized two-component "
+           "cascade."),
+
+    R("23364732", "[6]",
+      cite="Naaman, R. & Waldeck, D. H. (2015). Spintronics and Chirality: "
+           "Spin Selectivity in Electron Transport Through Chiral Molecules. "
+           "Annu. Rev. Phys. Chem. 66, 263-281.",
+      link="in-text", verdict="PARTIAL", access="abstract",
+      claim="(a) 'HOS-PV 2.0 achieves this via the Chiral-Induced Spin "
+            "Selectivity (CISS) effect [6]'  (b) 'In state-of-the-art "
+            "homochiral conjugated oligomers and helicene-based systems at "
+            "T = 300 K, experimental spin polarizations routinely reach "
+            "P_CISS = 0.75 to 0.90 (75-90%) without any external magnetic "
+            "field [6]'",
+      evidence=[
+        "Recent experiments have demonstrated that the electron transmission "
+        "yield through chiral molecules depends on the electron spin "
+        "orientation. This phenomenon has been termed the chiral-induced spin "
+        "selectivity (CISS) effect",
+        "Different theoretical models have been used to describe the effect; "
+        "however, they all presume an unusually large spin-orbit coupling in "
+        "chiral molecules for the effect to display the magnitudes seen in "
+        "experiments.",
+        "experiments with chiral molecules have revealed spin polarizations "
+        "as large as 85%, a ratio of about 1:12 between the two spins, at "
+        "room temperature",
+        "While spin polarization exceeding 80% is known experimentally, most "
+        "models and calculations produce polarizations of only a few percent",
+      ],
+      source="PubMed 25622190, abstract of the 2015 review; the last two "
+             "quotations are from the same authors' open-access perspective "
+             "Naaman, Paltiel & Waldeck, Chiral Molecules and the Spin "
+             "Selectivity Effect, PMC7304900",
+      note="CISS is real, the review is the standard citation for it, and "
+           "85% at room temperature is on the record -- so the top of the "
+           "quoted range is reachable and 'routinely' is the word that "
+           "overstates it. The rider is in the abstract's own third "
+           "sentence: the models need an unusually large spin-orbit coupling "
+           "to produce these magnitudes, while section 1 of the preprint "
+           "rests on organic semiconductors having exceptionally weak "
+           "spin-orbit coupling at Z = 6. The same quantity is asked to be "
+           "small for the spin lifetime and the Pauli blockade and large for "
+           "the spin filtering. Neither the tanh(dE/2kT) form nor the "
+           "helicene figure is in the source; hospv-eval/spin.py measures "
+           "what that form commits to, 64.5 meV for P = 0.85 at 300 K and a "
+           "fall to 57.3% suppression at 85 C."),
+
+    R("23364732", "[7]",
+      cite="Smejkal, L., Sinova, J. & Jungwirth, T. (2022). Emerging "
+           "Research Landscape of Altermagnetism. Physical Review X 12(4), "
+           "040501.",
+      link="in-text", verdict="PARTIAL", access="full-text",
+      claim="(a) 'altermagnetic electrodes -- specifically oriented thin "
+            "films of ruthenium dioxide (RuO2), manganese telluride (MnTe), "
+            "or organic-inorganic altermagnetic perovskites [7]'  (b) 'a "
+            "third fundamental magnetic phase discovered and formalized by "
+            "Smejkal, Sinova, and Jungwirth [7]', with zero net "
+            "magnetization and 'giant, non-relativistic d-wave spin splitting "
+            "(dE_spin(k) ~ 0.5-1.0 eV) along specific crystallographic "
+            "transport axes'",
+      evidence=[
+        "third distinct and comparably abundant phase. This third phase, "
+        "dubbed altermagnetism, is characterized by ... zero net "
+        "magnetization",
+        "RuO2 ... TN 400 K ... Splitting 1400 meV ... dxy, P-2;  MnTe ... "
+        "TN 310 K ... Splitting 1100 meV ... g-wave, B-4  [Table III, "
+        "altermagnetic candidates from ab initio calculations]",
+        "perovskite oxide insulators LaMnO3",
+        "organic insulator kappa-Cl",
+        "The electrical current then becomes spin-polarized when the bias is "
+        "applied along the x or y-direction",
+      ],
+      counts={"organic-inorganic": 0, "hybrid perovskite": 0, "perovskite": 3,
+              "photovoltaic": 0, "solar": 0, "chiral": 0, "CISS": 0},
+      source="arXiv:2204.10844, full text; PRX 12, 040501, open access",
+      note="The best-supported claim in the deposit, and in one respect "
+           "understated: the preprint asks for 0.5-1.0 eV of spin splitting "
+           "and its reference's own table gives 1.4 eV for RuO2 and 1.1 eV "
+           "for MnTe. Three riders from the same table. There is no "
+           "organic-inorganic perovskite in it -- there is an inorganic "
+           "perovskite oxide, LaMnO3 at 20 meV, and separately an organic "
+           "insulator, kappa-Cl below 50 meV, two orders of magnitude under "
+           "the oxides the preprint actually proposes. MnTe is listed as "
+           "g-wave, not the d-wave the sentence claims. And the table gives "
+           "MnTe a Neel temperature of 310 K, twelve kelvin above the 298 K "
+           "of standard test conditions: the experimental literature puts it "
+           "at 267-307 K and a module runs at 318-332 K, so the collector is "
+           "paramagnetic in the field (hospv-eval/materials.py). The "
+           "reference says nothing about photovoltaics; 'solar' occurs zero "
+           "times in it."),
 ]

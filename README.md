@@ -1,6 +1,6 @@
 # Reference audit — do the citations say what they are cited for?
 
-An audit of all **69 external references** in all **16 Zenodo records** by
+An audit of all **81 external references** in all **18 Zenodo records** by
 M. Mazgal, reading what each cited work actually says about the claim it is
 cited for.
 
@@ -22,24 +22,40 @@ of what was found is in [`hidden.py`](hidden.py).
 
 ## The result
 
-**The claim is partly vindicated, in two deposits.** Furey's thesis, cited in
+**The claim is partly vindicated, in four deposits.** Furey's thesis, cited in
 SOTP, argues that causality and irreversible time emerge from the bracketing of
 an algebraic expression — the conceptual core of the whole "Causal" series,
-peer-reviewed, and nowhere stated in the preprints themselves. And Baez, cited
+peer-reviewed, and nowhere stated in the preprints themselves. Baez, cited
 in openQL, supplies both a real-matrix encoding of octonion multiplication via
 left-multiplication operators and a route to the number 12 through sl(3,ℍ)
 acting on ℝ¹², with so(12) in his magic square and his own remark that "this is
 no coincidence!" — a better derivation of 12 than either of the two openQL
-gives. That is the author's point and it stands.
+gives. Footnote 22 of Shockley & Queisser (1961), cited in HOS-PV 2.0, names
+carrier multiplication and sets it aside by choice, which is the permission
+that deposit's title needs and never claims. And Moreno (1998), cited in
+openOmega, prints the sedenion zero-divisor pair that deposit's annihilation
+step runs on — the same pair `openomega-eval` found by brute-force search.
+That is the author's point and it stands.
 
-**It does not extend further, for three measured reasons.** 47 of the 69
+**It does not extend further, for three measured reasons.** 52 of the 81
 references are attached to no claim at all and three deposits have no reference
 list, so for two thirds of the corpus there is no carrier a defence could use.
 Where support was found, the same pages refute the mechanism it is offered for:
 Furey, Dixon and Baez each resolve non-associativity by passing to the
 *associative* algebra of left-multiplication operators, which is exactly the
-step the proposed architecture is premised on refusing. And fourteen claims are
-contradicted by their own cited sources in those sources' own words.
+step the proposed architecture is premised on refusing; the norm failure that
+creates Moreno's zero divisors is what denies openOmega its "absolute energy
+conservation"; and HOS-PV 2.0's 45.9 % is the two-gap tandem row of the paper
+it is cited from, whose single-junction answer is 44.4 %. And fifteen claims
+are contradicted by their own cited sources in those sources' own words.
+
+**HOS-PV 2.0 of 14 October is where the claim comes closest to being simply
+true.** It is the first deposit in which every external reference is attached
+to a sentence, all seven of them; all seven resolve exactly as printed; there
+is no self-citation, no AI co-author and no unfilled ORCID placeholder. Six of
+the seven carry part of what they are cited for. Its problems are of a
+different kind from the rest of the corpus: not invented references, but the
+wrong row of a table in a real one.
 
 ## Requirements
 
@@ -55,7 +71,7 @@ can be recomputed from them.
 
 ```
 ./run_all.sh                        # everything, offline, about 1 second
-./fetch.sh corpus                   # optional: re-download the 16 deposits
+./fetch.sh corpus                   # optional: re-download the 18 deposits
 python3 keywords.py corpus          #   then recompute the marker counts
 ```
 
@@ -66,7 +82,7 @@ python3 keywords.py corpus          #   then recompute the marker counts
 | [`audit.py`](audit.py) | verdict totals, access breakdown, keyword counts, citations that do not resolve as printed |
 | [`hidden.py`](hidden.py) | the support that was found, ranked, with the rider that limits each |
 | [`keywords.py`](keywords.py) | recomputes the citation-marker counts from the deposits; prints recorded values offline |
-| [`fetch.sh`](fetch.sh) | downloads the 16 deposits from Zenodo and converts them to text |
+| [`fetch.sh`](fetch.sh) | downloads the 18 deposits from Zenodo and converts them to text |
 
 Full output of one run: [`results.log`](results.log).
 
@@ -74,22 +90,23 @@ Full output of one run: [`results.log`](results.log).
 
 | what | measured |
 |---|---|
-| Zenodo records audited | 16 (14 distinct works; openQL and MPPT have two versions each) |
-| external reference entries | **69** |
-| attached to a sentence by an in-text marker | **7 (10.1 %)** — only *Acoustic Projector* and SOTP |
-| carrying only a parenthetical gloss | 15 (21.7 %) — openQL v1.0, Phytomining, Hemocyanin |
-| **with no stated relation to any claim** | **47 (68.1 %)** |
+| Zenodo records audited | 18 (16 distinct works; openQL and MPPT have two versions each) |
+| external reference entries | **81** |
+| attached to a sentence by an in-text marker | **14 (17.3 %)** — only *Acoustic Projector*, SOTP and HOS-PV 2.0 |
+| carrying only a parenthetical gloss | 15 (18.5 %) — openQL v1.0, Phytomining, Hemocyanin |
+| **with no stated relation to any claim** | **52 (64.2 %)** |
 | deposits with no reference list at all | **3** — MPPT v1.0, MPPT v1.1, CQFT |
+| deposits where every reference is attached | **1** — HOS-PV 2.0, 7 of 7 |
 | self-citations | 4, two of them listing "Mazgal, M., & Gemini AI" |
-| verdict SUPPORTS | 3 |
-| verdict PARTIAL | 18 |
-| verdict NO SUPPORT | 23 |
-| verdict REFUTES (the source states the opposite) | **14** |
+| verdict SUPPORTS | 4 |
+| verdict PARTIAL | 25 |
+| verdict NO SUPPORT | 24 |
+| verdict REFUTES (the source states the opposite) | **15** |
 | verdict UNRESOLVED (reference not located) | 1 |
-| verdict rows resting on a full text | **38 of 59 (64 %)** |
+| verdict rows resting on a full text | **43 of 69 (62 %)** |
 | citations that do not resolve as printed | **7**, one of them a chimera of three sources |
-| places where real support was found | **6**, ranked in `hidden.py` |
-| claims with no carrier anywhere in the 69 | 13 |
+| places where real support was found | **10**, ranked in `hidden.py` |
+| claims with no carrier anywhere in the 81 | 19 |
 
 ## Audited deposits
 
@@ -111,6 +128,13 @@ Full output of one run: [`results.log`](results.log).
 | 23209266 | [10.5281/zenodo.23209266](https://doi.org/10.5281/zenodo.23209266) | Hemocyanin physiology |
 | 23241148 | [10.5281/zenodo.23241148](https://doi.org/10.5281/zenodo.23241148) | openQL / openOL v1.1 |
 | 23241777 | [10.5281/zenodo.23241777](https://doi.org/10.5281/zenodo.23241777) | Intensional Physics Computing |
+| 23263528 | [10.5281/zenodo.23263528](https://doi.org/10.5281/zenodo.23263528) | openOmega |
+| 23364732 | [10.5281/zenodo.23364732](https://doi.org/10.5281/zenodo.23364732) | HOS-PV 2.0 |
+
+The last two were added on 15 October 2026. openOmega was deposited on
+9 October, the day this audit was first run, and HOS-PV 2.0 on 14 October;
+`keywords.py` re-derived the citation-marker counts of all eighteen from the
+deposits themselves, with no mismatch against the values recorded in October.
 
 ## Scope
 
@@ -118,7 +142,7 @@ This is not an audit of whether the claims are true — a claim can be right wit
 a bad citation. Where the arithmetic has been done it is in the companion
 repositories below, and nothing here changes it.
 
-Section 8 of `PAPER.md` sets out the limits. 21 of 59 verdict rows do not rest
+Section 8 of `PAPER.md` sets out the limits. 26 of 69 verdict rows do not rest
 on a full text and each says which substitute was used; two books were
 unreachable and were replaced by their own authors' papers and published
 summaries; one reference could not be located at all, which is negative
@@ -130,7 +154,7 @@ does *not* presuppose an iron core, contrary to this audit's own starting
 assumption, and the Griffiths citation is correct — the error hypothesised here
 does not exist. `openql-eval` already measured Baez's left-multiplication
 construction without crediting him with supplying it. And the vocabulary census
-in `keywords.py`, run over all sixteen records rather than ten, disproved a
+in `keywords.py`, run over all eighteen records rather than ten, disproved a
 priority claim in `cymatic-eval`: "causal" first reached zero in openQL v1.0 of
 3 October, and all seven tracked terms are absent from COBAR of 23 September and
 the Momentum Drive of 24 September, so the vocabulary comes in two interleaved

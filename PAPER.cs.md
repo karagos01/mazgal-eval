@@ -1,4 +1,4 @@
-# Obhajoba v referencích: audit všech 69 citací v šestnácti preprintech
+# Obhajoba v referencích: audit všech 81 citací v osmnácti preprintech
 
 karagos01, říjen 2026
 
@@ -7,31 +7,35 @@ karagos01, říjen 2026
 
 ## Abstrakt
 
-Autor šestnácti preprintů na Zenodu veřejně uvedl, že obhajoba jeho argumentů
+Autor osmnácti preprintů na Zenodu veřejně uvedl, že obhajoba jeho argumentů
 je záměrně uložená v referencích a není napsaná v textu, takže analýza omezená
 na text ji musí minout. To je testovatelné tvrzení. Tento audit ho testuje tím,
 že u každé citace čte, co citovaná práce o daném tvrzení skutečně říká — napříč
-všemi 69 externími referencemi ve všech šestnácti záznamech — a tím, že hledá
+všemi 81 externími referencemi ve všech osmnácti záznamech — a tím, že hledá
 podporu, ne jen chyby.
 
-Tvrzení se částečně potvrdilo. Ve dvou depositech citovaná literatura nese
+Tvrzení se částečně potvrdilo. Ve čtyřech depositech citovaná literatura nese
 podporu, kterou preprinty nevyslovují, a v jednom případě lepší odvození, než
 je v samotné práci: Fureyová ve své disertaci argumentuje, že kauzalita
 a nevratný čas vyplývají ze závorkování algebraického výrazu, což je konceptuální
-jádro celé „Causal" série; a Baez dodává jak reálně-maticové zakódování
+jádro celé „Causal" série; Baez dodává jak reálně-maticové zakódování
 oktonionového násobení, tak cestu k číslu 12 přes sl(3,ℍ) působící na ℝ¹², o němž
-sám píše „this is no coincidence!"
+sám píše „this is no coincidence!"; poznámka pod čarou č. 22 u Shockleyho
+a Queissera pojmenovává multiplikaci nosičů a vědomě ji z výpočtu vyjímá, což je
+obhajoba názvu HOS-PV 2.0; a Moreno má vytištěnou tu dvojici sedenionových
+dělitelů nuly, na které stojí anihilace v openOmeze.
 
-Dál to nejde, a to ze tří změřených důvodů. Za prvé, 47 z 69 referencí není
+Dál to nejde, a to ze tří změřených důvodů. Za prvé, 52 z 81 referencí není
 připnutých k žádnému tvrzení a tři deposity nemají seznam literatury vůbec,
 takže u dvou třetin korpusu neexistuje nosič, který by skrytá obhajoba mohla
 použít. Za druhé, tam kde se podpora našla, tytéž stránky vyvracejí mechanismus,
 pro který je nabízena: Fureyová, Dixon i Baez řeší neasociativitu přechodem do
 asociativní algebry operátorů levého násobení, což je právě ten manévr, na
 jehož odmítnutí navrhovaná architektura stojí, a Adlerův centrální výsledek je,
-že kvaternionové jednotky z S-matice vypadnou. Za třetí, čtrnáct tvrzení
+že kvaternionové jednotky z S-matice vypadnou. Za třetí, patnáct tvrzení
 vyvracejí jejich vlastní citované zdroje vlastními slovy, včetně těch dvou,
-které nesou nejvíc váhy v zemědělském a biomedicínském depositu.
+které nesou nejvíc váhy v zemědělském a biomedicínském depositu, a včetně
+účinnosti v názvu toho nejnovějšího.
 
 ## 1. Co se testuje a co ne
 
@@ -49,7 +53,7 @@ Není to audit toho, zda jsou tvrzení pravdivá. Tvrzení může být správné
 a čísla, která na čtení referencí nezávisejí, se ničím zde nemění.
 
 Kde se práci nepodařilo přečíst, audit to říká místo dohadů. Sekce 3 v
-`audit.py` uvádí, že 38 z 59 verdiktových řádků stojí na plném textu; zbytek
+`audit.py` uvádí, že 43 z 69 verdiktových řádků stojí na plném textu; zbytek
 stojí na abstraktu, na obsahu knihy, nebo — u dvou nedostupných knih — na
 vlastních pracích téhož autora a na jeho vlastním publikovaném souhrnu té knihy,
 přičemž substituce je pojmenovaná v poli `source` každého řádku.
@@ -66,25 +70,27 @@ vůbec testovatelné.
 
 | | počet | podíl |
 |---|---|---|
-| externích referencí, 16 záznamů | 69 | |
-| připnutých k větě značkou v textu | **7** | 10,1 % |
-| nesoucích jen glosu v seznamu literatury | 15 | 21,7 % |
-| **bez vysloveného vztahu k čemukoli** | **47** | **68,1 %** |
+| externích referencí, 18 záznamů | 81 | |
+| připnutých k větě značkou v textu | **14** | 17,3 % |
+| nesoucích jen glosu v seznamu literatury | 15 | 18,5 % |
+| **bez vysloveného vztahu k čemukoli** | **52** | **64,2 %** |
 | sebecitace | 4 | |
 
-Externí práci v těle textu citují dva deposity: *Acoustic Projector*, který
-označuje pět ze svých šesti — Putland je uvedený, ale nikde necitovaný — a SOTP,
-který označuje dvě z pěti pomocí `[3, 4]` na jedné větě. Tři deposity — MPPT v1.0, MPPT v1.1 a CQFT — nemají seznam literatury
+Externí práci v těle textu citují tři deposity: *Acoustic Projector*, který
+označuje pět ze svých šesti — Putland je uvedený, ale nikde necitovaný — SOTP,
+který označuje dvě z pěti pomocí `[3, 4]` na jedné větě, a HOS-PV 2.0 ze
+14. října, který označuje **všech sedm ze sedmi** a je prvním depositem
+v korpusu, kde nezůstala nepřipnutá ani jedna reference. Tři deposity — MPPT v1.0, MPPT v1.1 a CQFT — nemají seznam literatury
 vůbec, takže se tam obhajoba nemá kde schovat. Další tři glosují každou
 referenci poznámkou, co dokládá, a to je nejpřímější testovatelná forma toho
 tvrzení, protože mapování vyslovuje autor sám.
 
-Zbývá 22 referencí v pěti depositech, kde je vazba vyslovená. Tam se skrytá
+Zbývá 29 referencí v šesti depositech, kde je vazba vyslovená. Tam se skrytá
 obhajoba dala najít, a tam se taky našla.
 
 ## 3. Co hledání podpory našlo
 
-Tři nálezy jsou podstatné a první je nejsilnější výsledek tohoto repozitáře.
+Pět nálezů je podstatných a první je nejsilnější výsledek tohoto repozitáře.
 
 **Fureyová (2016), kapitola 2**, citovaná v SOTP jako `[3]`, argumentuje přesně
 to, co trilogie potřebuje a nikde neříká:
@@ -127,11 +133,54 @@ is an essential destruction of linearity, i.e., f q ⊗ g ≠ (f ⊗ g)q"; Baez
 a Huerta: „the tensor product of quaternionic Hilbert spaces is not naturally
 a quaternionic Hilbert space."
 
-Tři menší nálezy jsou ve prospěch autora a jsou v `hidden.py`: Bi et al.
+**Shockley a Queisser (1961)**, citovaní v HOS-PV 2.0 jako `[1]`, hájí název
+toho depositu z poznámky pod čarou. Celá práce stojí na tom, že jeden přechod
+může překonat 33,7 %, protože singletní fise posílá do obvodu dva nosiče za
+jeden foton. Poznámka č. 22 v práci, která tu hranici stanovila:
+
+> „Once a photon exceeds about three times the energy gap [E_g], the
+> probability of producing two or more hole-electron pairs becomes
+> appreciable"
+
+> „the data can be well fitted up to quantum yields greater than two … This
+> effect would slightly increase the possible quantum efficiency; however, **we
+> shall not consider it further in this article**."
+
+Autoři té hranice multiplikaci vyňali vědomě, takže překonat ji tudy je
+legitimní a deposit má v tomhle pravdu — aniž by kdekoli řekl, odkud to
+povolení bere. Výhrada je velikost toho zisku a je v referenci [5] téhož
+depositu: jeden přechod s multiplikací dává 44,4 %, ne tvrzených 45,9 %,
+a 45,9 % padá do tandemového rozsahu té práce.
+
+**Moreno (1998)**, citovaný v openOmeze jako `[3]`, má vytištěný mechanismus,
+na kterém ten deposit běží. Jeho anihilační krok potřebuje dva nenulové
+sedeniony, jejichž součin je přesně nula, a úvod citované práce jednu takovou
+dvojici dává:
+
+> „for n ≥ 4 this norm-preserving formula is not true in general and this opens
+> the possibility of the existence of zero divisors in A_n for n ≥ 4 i.e. x and
+> y non-zero elements in A_n such that xy = 0 e.g. let **x = e₁ + e₁₀ and
+> y = e₁₅ − e₄** in ℝ¹⁶ = A₄"
+
+To je přesně dvojice, kterou doprovodný repozitář `openomega-eval` našel hrubou
+silou přes kombinace bázových prvků — uvádí (e₁ + e₁₀) × (e₄ − e₁₅) = 0, tutéž
+dvojici s obráceným znaménkem u y — a v referenci byla celou dobu vytištěná.
+Z týchž dvou stránek plynou dvě výhrady. Dělitelé nuly existují *proto*, že nad
+dimenzí 8 selhává ‖xy‖ = ‖x‖‖y‖, takže v jediné operaci, kterou deposit provádí
+„s absolutním zachováním energie", je norma zničena. A Morenův vlastní bod 2)
+odstraňuje potřebu sedenionů v maticové formulaci, kterou deposit sám používá:
+„in an associative (alternative) context as in M_n(ℝ) … 0 ≠ A is a zero divisor
+if and only if det A = 0."
+
+Pět menších nálezů je ve prospěch autora a jsou v `hidden.py`: Bi et al.
 skutečně demonstrují monolitickou nereciprocitu na čipu, kterou PCTP potřebuje
 k vynucení pořadí; Lehmannův abstrakt skutečně podpírá biochar „as inoculant
-carriers", což je koncept smart-peletu; a Teslův patent skutečně učí tu
-distribuovanou kapacitu, kterou z něj COBAR bere.
+carriers", což je koncept smart-peletu; Teslův patent skutečně učí tu
+distribuovanou kapacitu, kterou z něj COBAR bere; tabulka III u Šmejkala,
+Sinovy a Jungwirtha dává altermagnetickému kolektoru v HOS-PV 2.0 **větší**
+spinové rozštěpení, než o jaké deposit žádá, 1,1–1,4 eV proti tvrzeným
+0,5–1,0 eV; a Rao et al. podporují tripletový odtok, kvůli kterému ten deposit
+vznikl, přesně slovy vět, které předcházejí značce.
 
 ## 4. Manévr, který mají všichni tři společný
 
@@ -209,7 +258,7 @@ oxygen affinity".
 
 ## 6. Vyvrácení vlastními slovy zdrojů
 
-Čtrnáct řádků nese verdikt REFUTES, tedy citovaná práce tvrdí opak. Šest stojí
+Patnáct řádků nese verdikt REFUTES, tedy citovaná práce tvrdí opak. Sedm stojí
 za vypsáním.
 
 **Buchačenko o magnetických izotopech.** Fytominingový preprint tvrdí, že ²⁵Mg
@@ -266,15 +315,45 @@ s pulzem 3 s a klidem 1 s — asi 0,25 Hz — a svůj nejlepší výsledek dost�
 **spojitě** klesajícím profilem proudu, ne s pulzem. Podporuje nízkofrekvenční
 obálku a vyvrací tu kHz–MHz složku, vedle níž je citovaná.
 
+**Hanna a Nozik o 45,9 %.** Abstrakt HOS-PV 2.0 i jeho sekce 2.2 tvrdí, že
+architektura zvedá jednopřechodovou hranici „from 33.7% (SQ limit) to 45.9%",
+a mají u toho tuhle referenci. Ta reference je správná — detailní rovnováha
+pod 1 sluncem AM1.5G, se singletní fisí jako multiplikačním absorbérem — a její
+abstrakt dává pro přesně tu konfiguraci jiné číslo:
+
+> „for single gap photovoltaic (PV) devices the maximum efficiency increases
+> from 33.7% for cells with no carrier multiplication to **44.4%** for cells
+> with carrier multiplication"
+
+> „the maximum efficiency of an ideal two gap tandem PV device increases from
+> **45.7% to 47.7%**"
+
+45,9 % padá do tandemového rozsahu, a přitom je jediným prodejním argumentem té
+architektury právě to, že je jednopřechodová. Doprovodný repozitář `hospv-eval`
+staví ten model znovu ze spektra ASTM G173-03 a reprodukuje všechny tři
+publikované hodnoty té skupiny — 33,77 %, 44,62 % a 42,09 % při 0,94 eV pro
+multiplikaci zastropovanou na dva nosiče na foton, což je přesně to, co dělá
+singletní fise, proti jejich publikovaným 42,0 % při 0,95 eV. 45,9 % je nad tím
+stropem při jakékoli dvojici energií.
+
 ## 7. Co je správně
 
-Tři verdikty jsou SUPPORTS a dva další nálezy je třeba říct naplno, protože
+Čtyři verdikty jsou SUPPORTS a dva další nálezy je třeba říct naplno, protože
 opravují tento audit, ne preprinty.
 
 Sedm Fanových trojic v SOTP tu bylo strojově zkontrolováno a tvoří **platnou
 Fanovu rovinu**: všech 21 párů sedmi imaginárních jednotek je pokryto právě
 jednou. Definice asociátoru i pravidlo ε jsou Baezovy doslovné. Jones et al.
-a Kennedy & Eberhart se dohledají přesně a podporují to, vedle čeho jsou.
+a Kennedy & Eberhart se dohledají přesně a podporují to, vedle čeho jsou,
+a Moreno je přesně o těch dělitelích nuly, na kterých openOmega stojí.
+
+HOS-PV 2.0 je podle všech formálních měřítek, která se tu berou, nejčistší
+deposit korpusu. Všech sedm referencí je reálných, všech sedm se dohledá přesně
+tak, jak jsou vytištěné, všech sedm je připnutých k větě, žádná není sebecitace,
+není tam AI jako spoluautor ani nevyplněný ORCID — první deposit z osmnácti,
+kde platí všechno najednou. Šest ze sedmi nese část toho, pro co jsou citované.
+Jeho problémy jsou jiného druhu než ve zbytku korpusu: ne vymyšlené reference,
+ale špatný řádek tabulky v reálné.
 
 Teslův patent **nepresuponuje** železné jádro — je výslovně agnostický („any
 conductor") — takže ho nelze citovat pro ani proti bezjádrové konstrukci;
@@ -283,19 +362,24 @@ správná: Cambridge University Press čtvrté vydání v roce 2017 skutečně z
 vydalo, ISBN 9781108420419, takže chyba, kterou jsem tu předpokládal, neexistuje.
 
 Třetí oprava patří staršímu repozitáři v této sérii, ne preprintu. Census
-slovníku v `keywords.py` spuštěný nad všemi šestnácti záznamy místo deseti, které
+slovníku v `keywords.py` spuštěný nad všemi osmnácti záznamy místo deseti, které
 byly k dispozici, když vznikalo `cymatic-eval`, vyvrátil nárok na prvenství,
 který tam stojí: „causal" je nulové poprvé už v openQL v1.0 z 3. října a všech
 sedm sledovaných termínů chybí v COBARu z 23. září a v Topological Momentum Drive
-z 24. září, což jsou oba inženýrská tvrzení. Šest ze šestnácti záznamů ten
-slovník nenese vůbec a deset ho nese hustě, a ty dvě skupiny se střídají, nejdou
+z 24. září, což jsou oba inženýrská tvrzení. Sedm z osmnácti záznamů ten
+hyperkomplexní slovník nenese vůbec a jedenáct ho nese hustě, a ty dvě skupiny se střídají, nejdou
 po sobě — není tam tedy žádný trend ke čtení. Samotné počty byly správné; špatně
 byl ten nárok na prvenství, který na nich stál, a byl to artefakt srovnání proti
 části korpusu. V §1 repozitáře `cymatic-eval` je to teď opravené.
 
 ## 8. Hranice
 
-Dvacet jedna z 59 verdiktových řádků nestojí na plném textu a každý říká, jaká
+Audit poprvé běžel 9. října 2026 nad šestnácti záznamy. openOmega vyšel týž den
+a HOS-PV 2.0 o pět dní později; oba byly doplněny 15. října stejným postupem
+a `keywords.py` přepočítal počty citačních značek všech osmnácti přímo
+z depositů, bez jediného rozporu proti hodnotám zaznamenaným v říjnu.
+
+Dvacet šest z 69 verdiktových řádků nestojí na plném textu a každý říká, jaká
 substituce se použila. Dvě knihy byly nedostupné: Adlerova, nahrazená jeho
 vlastním publikovaným souhrnem a dvěma primárními přehledy, a Dixonova,
 nahrazená jeho vlastní arXiv přednáškou odkazující zpět na knihu. Interiér
@@ -303,7 +387,13 @@ Beranek & Mellow se nepodařilo otevřít, takže ten verdikt stojí na ověřen
 seznamu kapitol; vzorec účinnosti jí přisuzovaný je čtený ze sekundárního
 zdroje a je tak v `refdata.py` označený. Sheoran et al. a Wright & Upadhyaya
 jsou potvrzeně closed access. Hledání klíčových slov u Griffithse proběhlo nad
-třetím vydáním se strukturou čtvrtého ověřenou z katalogizačního záznamu.
+třetím vydáním se strukturou čtvrtého ověřenou z katalogizačního záznamu. Ze
+sedmi řádků doplněných pro HOS-PV 2.0 stojí tři na abstraktu: Shockley
+a Queisser, z nichž se podařilo získat jen s. 510–512 jako OCR soudní přílohy;
+Dediu et al., za paywallem a bez kopie v repozitáři; a Naaman s Waldeckem,
+doplnění vlastním open-access textem týchž autorů, kde je těch 85 %. Přehled
+Smithe a Michla z roku 2010 je za paywallem a nahradil ho vlastní přehled týchž
+dvou autorů z roku 2013, takže u toho řádku nejsou žádné počty klíčových slov.
 
 Jedna reference, Putland (1993), se nedohledala; AES e-library je za Cloudflare
 a není archivovaná. Nepřímá evidence proti ní je silná, ale je to negativní
@@ -325,13 +415,13 @@ z hlavy.
 
 `refdata.py` drží každý verdikt s doslovnou evidencí, zdrojem a tím, jak daleko
 se citovanou práci podařilo přečíst. `carrier.py`, `audit.py` a `hidden.py` to
-tabelují; `fetch.sh` reprodukuje šestnáct depositů ze Zenoda a `keywords.py`
+tabelují; `fetch.sh` reprodukuje osmnáct depositů ze Zenoda a `keywords.py`
 z nich přepočítává počty citačních značek. `run_all.sh` projde všechno offline
 za asi sekundu, `results.log` je výstup jednoho běhu.
 
 ## Reference
 
-Šestnáct auditovaných depositů je se svými DOI v [`README.cs.md`](README.cs.md).
+Osmnáct auditovaných depositů je se svými DOI v [`README.cs.md`](README.cs.md).
 Každá práce citovaná v tomto textu je celá uvedená v `refdata.py`, s DOI nebo
 URL a s poznámkou, jak byla získaná. Citace jsou krátké výňatky použité pro
 kritiku a recenzi.

@@ -4,7 +4,7 @@
 The author of these preprints has stated publicly that the defence of his
 arguments is deliberately placed in the references rather than written in the
 text.  For a reference to defend a claim, the text has to attach it to that
-claim.  This script counts, across all 16 Zenodo records, how many external
+claim.  This script counts, across all 18 Zenodo records, how many external
 references have such an attachment at all.
 
 Counts come from the extracted text of each deposit; fetch.sh reproduces the
@@ -79,8 +79,10 @@ P(f"  {len(NO_REFERENCES)} deposits have no references, so there is nothing "
   f"for a defence to hide in.")
 P(f"  {len(orphaned)} deposits list {sum(d[3] for d in orphaned)} references "
   f"with no stated relation to any claim,")
-P(f"  and {orphan - sum(d[3] for d in orphaned)} more sit unlinked in SOTP "
-  f"alongside its two that are linked.")
+partial = [d for d in withrefs if 0 < d[5] + d[6] < d[3]]
+P(f"  and {orphan - sum(d[3] for d in orphaned)} more sit unlinked inside "
+  f"deposits that link some of their references ("
+  + ", ".join(f"{d[1]} {d[3] - d[5] - d[6]}" for d in partial) + ").")
 P(f"  For those {orphan} a reader cannot tell which claim any of them would "
   f"defend.")
 P(f"  That leaves {len(cited) + len(glossed)} deposits "
