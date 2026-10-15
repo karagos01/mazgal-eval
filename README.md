@@ -116,7 +116,7 @@ reference verdicts in
 
 - [`openql-eval`](https://github.com/karagos01/openql-eval) — the openQL / openOL original this deposit extends
 - [`intensional-physics-eval`](https://github.com/karagos01/intensional-physics-eval) — Intensional Physics Computing and openQL v1.1 of October 2026
-- [`reference-audit`](https://github.com/karagos01/reference-audit) — whether all 69 citations in all 16 deposits say what they are cited for
+- [`reference-audit`](https://github.com/karagos01/reference-audit) — whether all 81 citations in all 18 deposits say what they are cited for
 - [`phytomining-eval`](https://github.com/karagos01/phytomining-eval) — the quantum biofortification and in-situ phytomining matrix of October 2026
 - [`naion-hfrs-eval`](https://github.com/karagos01/naion-hfrs-eval) — the dual-scale waveform and HFRS charging proposal of October 2026
 - [`hemocyanin-eval`](https://github.com/karagos01/hemocyanin-eval) — the copper-based hemocyanin physiology proposal of October 2026
