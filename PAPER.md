@@ -364,7 +364,71 @@ This is the most conventionally constructed deposit of the eighteen. Its central
 error is of a different kind from the series' usual: not a claim with no source,
 but a correctly cited source read off the wrong row.
 
-## 7. What is not measured here
+## 7. The same quantity, twice
+
+The findings in §§2–6 are of two kinds.  Some compare a claim with the outside
+world: a spectrum, a measured chromophore, a Néel temperature, a column of the
+periodic table.  Others never leave the document — a quantity is given one value
+in one place and a different value in another, or a value is stated in a
+sentence whose own other numbers imply a different one.
+[`consistency.py`](consistency.py) collects the second kind, because it needs no
+model to adjudicate and no source to trust: both values are the preprint's, and
+so is the arithmetic between them.
+
+| quantity | stated | implied by its own numbers | gap |
+|---|---|---|---|
+| absorption edge of the fission donor | 2.25 eV (551 nm), §2.2 | **1.96 eV (634 nm)**, from its own 23.8 mA/cm² at its own EQE_high, §6.2 | **294 meV** |
+| E(S₁) of the donor | 2.25 eV, §2.2 | **at least 2.30 eV**, from E(S₁) ≥ 2E(T₁), §2.1 | 50 meV, 1.9 kT |
+| electrons per absorbed photon | 1.53, written "153 %", §6.2 | **2.44**, from its own 23.8 mA/cm² over the 9.76 the spectrum carries above 2.25 eV | 59 %, and **22 % over fission's own ceiling of two** |
+| τ_ext | 20–80 ns, §4.1 | **256 ns**, from its own η_PB = 0.95 through its own η_PB = exp(−τ_ext/τ_s) | ×3.2 to ×12.8 |
+| η_PB | 0.95, §4.1 | **0.984–0.996**, from the two times in the same sentence | 2.5 points of suppression |
+| carrier mobility | "low carrier mobilities", no number, §1 of the preprint | **3.8 × 10⁻³ to 1.5 × 10⁻² cm²/Vs**, from its own 20–80 ns through τ_ext = d²/(2μV) and table 1's 220 nm | one to two orders of magnitude |
+| spin splitting the mechanism runs on | ~0.8 eV, table 1; 0.5–1.0 eV, §5.1 | **64.5 meV**, from its own P_CISS = 0.85 through its own P_CISS = tanh(ΔE/2kT) | **×12.4** |
+| specific power | at least 10,000 W/kg, table 2 | **2944 W/kg**, from its own seven thicknesses at its own PCE | ×3.4 |
+
+Two of the eight are in the preprint's favour, and are recorded for that reason
+as §4 records them: either reading of the η_PB / τ_ext pair raises the
+suppression the mechanism achieves.
+
+Applying the same test to every other quantity the preprint states twice gives
+the complement, which is worth as much as the table above:
+
+| quantity | recomputed | as published |
+|---|---|---|
+| EQE_high = 1.85 × 0.92 × 0.90 | 1.5318 | 153 % (§6.2) |
+| 1 − η_PB P_CISS² | 0.3136 | 0.314 (§4.1) |
+| the suppression that follows | 68.6 % | 68.6 % (§4.1) |
+| P_CISS of the worked example | 0.85 | inside 0.75–0.90 (§3.2) |
+| splitting of table 1 | 0.8 eV | inside 0.5–1.0 eV (§5.1) |
+| V_oc = 0.90 V − 0.09 V | 0.81 V | 0.81 V (§6.2) |
+| PCE = J_sc V_oc FF / P_in | 35.58 % | 35.58 % (§6.2) |
+| 2E(T₁) ≥ 2E_g(IR), the second link of the chain | 2.30 ≥ 2.24 eV | required by §2.2 |
+
+Eight of eight. **Every arithmetic step the preprint performs, it performs
+correctly.** Every formula is standard and correctly manipulated, every unit is
+right, and the one product worked out in full — the PCE of §6.2 — is exact to
+four digits.  What disagrees is never the algebra; it is always the numbers put
+into it, and in six of the eight rows above the two numbers are in different
+sections.  The document is locally sound and globally inconsistent.
+
+**One row is an exclusion rather than an inconsistency.** The other seven could
+each be repaired by choosing one of the two values and correcting the other.
+The first cannot, because §2.2's own thermodynamic ordering
+
+    E(S₁_D) ≥ 2E(T₁_D) ≥ 2E_CT ≥ 2E_g(IR)
+
+fixes which of its two values is allowed.  2E_g(IR) = 2.24 eV, so the chain
+forbids any donor whose S₁ lies below that, and the 1.96 eV edge its own
+photocurrent needs is **284 meV below that floor**.  Read the other way, a donor
+with E(S₁) = 1.96 eV may have E(T₁) at most 0.98 eV, which is 142 meV *below*
+the 1.12 eV gap of the acceptor it is supposed to feed, so the Dexter step of
+§2.2 would run uphill and the cascade would not exist.
+
+Either the high-energy channel carries 14.95 mA/cm² and not 23.8, or the energy
+cascade the whole architecture is built from is thermodynamically forbidden.
+Nothing outside the preprint is needed to reach that.
+
+## 8. What is not measured here
 
 * The Dexter transfer rate. The expression in section 2.2 is the standard Dexter
   form; whether η_DET ≥ 0.90 is achievable at the required R_DA < 1 nm while
@@ -387,7 +451,7 @@ but a correctly cited source read off the wrong row.
 * The sonoluminescence-style applications are absent from this deposit; unlike
   earlier ones it stays inside its field throughout.
 
-## 8. Limits of this evaluation, and three errors found in it
+## 9. Limits of this evaluation, and three errors found in it
 
 The detailed-balance model is the standard one: radiative recombination only,
 unity absorptivity above threshold, no series or shunt resistance, front-surface

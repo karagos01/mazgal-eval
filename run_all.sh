@@ -27,3 +27,6 @@ $PY materials.py
 echo
 echo "### the vocabulary of the series, in this deposit"
 $PY census.py
+echo
+echo "### the preprint against itself: the same quantity twice"
+$PY consistency.py

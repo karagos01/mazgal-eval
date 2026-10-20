@@ -64,6 +64,7 @@ dotáže na ty čtyři atomové hladiny v NIST a vytáhne text preprintu pro
 | [`spin.py`](spin.py) | vzorec potlačení, η_PB proti jeho vlastním časům, proměření pohyblivosti, spinově statistickou základní linii, k čemu zavazuje tanh(ΔE/2kT), a exponent Z⁴ měřený proti datům NIST | §§3, 4 |
 | [`materials.py`](materials.py) | energetické okénko fise proti proměřeným chromoforům, Néelovu teplotu altermagnetu proti provozní teplotě modulu, specifický výkon stohu z tabulky 1 a rozpočet na sériový odpor | §§2.2, 5, tabulka 1 |
 | [`census.py`](census.py) | slovník série v tomhle depositu | forma |
+| [`consistency.py`](consistency.py) | veličiny, kterým preprint přiřazuje dvě různé hodnoty, každou přepočtenou z jeho vlastních čísel, a aritmetické kroky, které vychází | §§2, 4, 6.2, tabulky 1 a 2 |
 
 Každá hodnota je v [`constants.py`](constants.py) s **příznakem provenience** —
 `[P]` z preprintu, `[V]` ověřeno proti pojmenovanému zdroji, `[A]` předpokládané
@@ -107,17 +108,19 @@ běhu je v [`results.log`](results.log).
 | rozpočet R_s na jeden bod FF při 52,3 mA/cm² | — | **0,155 Ω·cm²**, o 22 % utaženější než u křemíku |
 | slovník ostatních sedmnácti depositů | — | **nulový výskyt**: žádný tensor, hyperkomplex, causal ani GPU |
 | ORCID placeholder, autocitace, spoluautor AI | — | **nic z toho** — první deposit z osmnácti se všemi třemi |
+| veličiny, kterým preprint sám přiřazuje dvě hodnoty | — | **8**, nejvíc o faktor **12,4**, dvě z nich v jeho prospěch |
+| aritmetické kroky, které provede správně | — | **8 z 8** — algebra neselhává nikdy, jen čísla, která se do ní vloží |
 
 ## Rozsah
 
 Deposit je krátký preprint pod CC BY 4.0 bez kódu, bez měření a bez obrázků.
-§7 textu vypisuje, co se tady neměří — morfologii Dexterova přenosu, jestli se
+§8 textu vypisuje, co se tady neměří — morfologii Dexterova přenosu, jestli se
 chirální rozhraní v objemu vyhne námitce, kterou §3.1 vznáší proti elektrodovým
 spinovým filtrům, zachování spinu v infračerveném kanálu, chybějící Thomasův
 faktor dvě v hamiltoniánu z §3.2 a tunelovou bariéru nad rámec jejího odporového
 rozpočtu — a říká proč, místo aby je vydával za vady.
 
-§8 vypisuje hranice. Model detailní rovnováhy dává stropy, což zesiluje nález,
+§9 vypisuje hranice. Model detailní rovnováhy dává stropy, což zesiluje nález,
 že jedno tvrzení leží nad jedním z nich, a neoslabuje nic na reprodukci tří
 publikovaných hodnot. Zaznamenává taky tři chyby nalezené v tomhle vyhodnocení:
 divergující Boseho faktor, který vracel 7 × 10¹² %, dokud ho nezachytila tabulka

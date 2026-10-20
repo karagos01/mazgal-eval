@@ -13,6 +13,27 @@ from photocurrent import recomputed
 KT_STC = C.BOLTZMANN * C.TEMPERATURE_STC / C.ELEMENTARY_CHARGE     # eV
 
 
+def stack(org, enc, ref):
+    """Areal mass of table 1's seven layers, in g/m^2."""
+    layers = (
+        ("1 substrate, PEN", C.THICKNESS_SUBSTRATE, C.DENSITY_PEN),
+        ("2 ITO anode", C.THICKNESS_ITO, C.DENSITY_ITO),
+        ("3 c-SAM hole layer", C.THICKNESS_CSAM, org),
+        ("4 active layer", C.THICKNESS_ACTIVE, org),
+        ("5 MgO tunnel barrier", C.THICKNESS_MGO, C.DENSITY_MGO),
+        ("6 altermagnet, RuO2", C.THICKNESS_ALTERMAGNET, C.DENSITY_RUO2),
+        ("6 back reflector, Ag", ref, C.DENSITY_AG),
+        ("7 encapsulation", C.THICKNESS_ENCAPSULATION, enc),
+    )
+    # thickness in m, density in g/cm^3; 1 m x 1 g/cm^3 = 1e6 g/m^2.
+    # An earlier draft of this script used 1e3 here, and printed a
+    # 10,588 um substrate and a shortfall "factor 0.0" before the unit was
+    # found - which is why the layer-by-layer table below is printed at all
+    # rather than only the total.
+    return [(name, 1.0e6 * thickness * density) for name, thickness, density
+            in layers]
+
+
 def main():
     print("=" * 78)
     print("The energy ordering of section 2.2, with the preprint's own numbers")
@@ -126,26 +147,6 @@ def main():
     lo_org, hi_org = C.DENSITY_ORGANIC_RANGE
     lo_enc, hi_enc = C.DENSITY_ENCAPSULATION_RANGE
     lo_ref, hi_ref = C.THICKNESS_REFLECTOR_RANGE
-
-    def stack(org, enc, ref):
-        """Areal mass of table 1's seven layers, in g/m^2."""
-        layers = (
-            ("1 substrate, PEN", C.THICKNESS_SUBSTRATE, C.DENSITY_PEN),
-            ("2 ITO anode", C.THICKNESS_ITO, C.DENSITY_ITO),
-            ("3 c-SAM hole layer", C.THICKNESS_CSAM, org),
-            ("4 active layer", C.THICKNESS_ACTIVE, org),
-            ("5 MgO tunnel barrier", C.THICKNESS_MGO, C.DENSITY_MGO),
-            ("6 altermagnet, RuO2", C.THICKNESS_ALTERMAGNET, C.DENSITY_RUO2),
-            ("6 back reflector, Ag", ref, C.DENSITY_AG),
-            ("7 encapsulation", C.THICKNESS_ENCAPSULATION, enc),
-        )
-        # thickness in m, density in g/cm^3; 1 m x 1 g/cm^3 = 1e6 g/m^2.
-        # An earlier draft of this script used 1e3 here, and printed a
-        # 10,588 um substrate and a shortfall "factor 0.0" before the unit was
-        # found - which is why the layer-by-layer table below is printed at all
-        # rather than only the total.
-        return [(name, 1.0e6 * thickness * density) for name, thickness, density
-                in layers]
 
     rows = stack(1.2, 2.0, 150e-9)
     total = sum(mass for _name, mass in rows)

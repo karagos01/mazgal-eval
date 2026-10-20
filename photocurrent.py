@@ -11,7 +11,7 @@ import constants as C
 from spectrum import current_density, load_spectrum
 
 
-def _threshold_for(energy, flux, target_ma):
+def threshold_for(energy, flux, target_ma):
     """The photon energy above which the one-electron current equals target_ma.
     Returns (eV, nm)."""
     grid = np.arange(1.0, 3.0, 0.002)
@@ -80,11 +80,11 @@ def main():
     print()
     print("  Where the number could come from: 23.8 mA/cm^2 at EQE_high = 1.53")
     print("  is the current of all photons above %.2f eV, that is above %.0f nm,"
-          % _threshold_for(energy, flux, C.JSC_SF_CLAIMED / eqe_high))
+          % threshold_for(energy, flux, C.JSC_SF_CLAIMED / eqe_high))
     print("  rather than above the 2.25 eV / 551 nm the same sentence")
     print("  specifies - a shift of %.0f meV."
           % (1000 * (C.E_S1_DONOR
-                     - _threshold_for(energy, flux,
+                     - threshold_for(energy, flux,
                                       C.JSC_SF_CLAIMED / eqe_high)[0])))
     print()
 

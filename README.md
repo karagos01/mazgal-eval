@@ -62,6 +62,7 @@ the preprint's text for `census.py`.
 | [`spin.py`](spin.py) | the suppression formula, η_PB against its own times, the mobility sweep, the spin-statistical baseline, what tanh(ΔE/2kT) commits to, and the Z⁴ exponent measured against NIST data | §§3, 4 |
 | [`materials.py`](materials.py) | the fission energy window against measured chromophores, the altermagnet's Néel temperature against the module's operating temperature, the specific power of table 1's stack, and the series-resistance budget | §§2.2, 5, table 1 |
 | [`census.py`](census.py) | the vocabulary of the series, in this deposit | form |
+| [`consistency.py`](consistency.py) | the quantities the preprint gives two values for, each recomputed from its own numbers, and the arithmetic steps that come out right | §§2, 4, 6.2, tables 1 and 2 |
 
 Every value is in [`constants.py`](constants.py) with a **provenance tag** —
 `[P]` from the preprint, `[V]` verified against a named source, `[A]` assumed and
@@ -105,18 +106,20 @@ swept — and no other script defines one. Full output of one run:
 | R_s budget for one FF point at 52.3 mA/cm² | — | **0.155 Ω·cm²**, 22 % tighter than silicon's |
 | the vocabulary of the other seventeen deposits | — | **zero occurrences**: no tensor, no hypercomplex, no causal, no GPU |
 | ORCID placeholder, self-citations, AI co-author | — | **none** — the first deposit of the eighteen with all three |
+| quantities given two values by the preprint itself | — | **8**, the widest a factor **12.4**, two of them in its favour |
+| arithmetic steps it performs correctly | — | **8 of 8** — the algebra never fails, only the numbers put into it |
 
 ## Scope
 
 The deposit is a short preprint under CC BY 4.0 with no code, no measurements and
-no figures. §7 of the write-up sets out what is not measured here — the Dexter
+no figures. §8 of the write-up sets out what is not measured here — the Dexter
 morphology, whether a bulk chiral interface escapes the objection §3.1 raises
 against electrode spin filters, spin conservation in the infrared channel, the
 missing Thomas factor of two in §3.2's Hamiltonian, and the tunnel barrier
 beyond its resistance budget — and says why, rather than treating them as
 defects.
 
-§8 sets out the limits. The detailed-balance model gives ceilings, which
+§9 sets out the limits. The detailed-balance model gives ceilings, which
 strengthens the finding that a claim sits above one and weakens nothing in the
 reproduction of three published values. It also records three errors found in
 this evaluation: a divergent Bose factor that returned 7 × 10¹² % until the

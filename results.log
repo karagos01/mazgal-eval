@@ -551,3 +551,105 @@ Form
   The reference that carries the central number, [5], is the one
   that does not support it, and that is a misreading of a row in a
   table rather than an invented citation.
+
+### the preprint against itself: the same quantity twice
+==============================================================================
+Quantities the preprint gives two values for
+==============================================================================
+  Both values in every row are the preprint's own, and so is the
+  arithmetic between them.
+
+  1. The absorption edge of the fission donor
+       section 2.2        2.25 eV (551 nm), stated
+       section 6.2        1.96 eV (634 nm), the edge its own 23.8 mA/cm^2
+                          needs at its own EQE_high = 1.53
+       disagreement       294 meV
+
+  2. E(S1) of the donor
+       section 2.2        2.25 eV, stated
+       section 2.1        at least 2.30 eV, required by E(S1) >= 2 E(T1)
+       disagreement       50 meV, so the fission is endothermic by 1.9 kT
+
+  3. Electrons per absorbed photon above the edge
+       section 6.2        1.53, stated as EQE_high = 153%
+       section 6.2        2.44, required by its own 23.8 mA/cm^2 over the
+                          9.76 mA/cm^2 the spectrum carries above 2.25 eV
+       disagreement       59%, and 22% over fission's own ceiling of two
+
+  4. tau_ext, the extraction transit time
+       section 4.1        20 to 80 ns, stated
+       section 4.1        256 ns, required by its own eta_PB = 0.95 through
+                          its own eta_PB = exp(-tau_ext / tau_s), tau_s = 5 us
+       disagreement       a factor 3.2 to 12.8, in the preprint's favour
+
+  5. eta_PB, the same inconsistency read the other way
+       section 4.1        0.95, stated
+       section 4.1        0.9841 to 0.9960, from the two times in the same
+                          sentence; the suppression is then 71.1%, not 68.6%
+       disagreement       2.5 points of suppression, in the preprint's favour
+
+  6. Carrier mobility of the active layer
+       section 1          "low carrier mobilities", no number, used to
+                          introduce the recombination problem
+       section 4.1        3.8e-03 to 1.5e-02 cm^2/Vs, required by the 20 to
+                          80 ns above through tau_ext = d^2/(2 mu V) and
+                          table 1's 220 nm
+       disagreement       one to two orders of magnitude, against itself
+
+  7. Spin splitting the mechanism runs on
+       table 1, layer 6   ~0.8 eV, and 0.5 to 1.0 eV in section 5.1
+       section 4.1        64.5 meV, required by its own P_CISS = 0.85 through
+                          its own P_CISS = tanh(dE / 2kT) at 298.15 K
+       disagreement       a factor 12.4
+
+  8. Specific power of the cell
+       table 2            at least 10000 W/kg, stated
+       table 1            2944 W/kg, from its own seven thicknesses at its own
+                          PCE of 35.58%, 120.8 g/m^2 of stack
+       disagreement       a factor 3.4
+
+==============================================================================
+What holds
+==============================================================================
+  The same test applied to every other quantity that appears twice.
+  Each of these is a single expression evaluated inside one
+  sentence, and each comes out right:
+
+  quantity                                recomputed  as published     check
+  --------------------------------------------------------------------------
+  EQE_high = 1.85 x 0.92 x 0.90               1.5318  153% (6.2)       ok
+  1 - eta_PB P_CISS^2                         0.3136  0.314 (4.1)      ok
+  the suppression that follows                 68.6%  68.6% (4.1)      ok
+  P_CISS of the worked example                  0.85  0.75-0.90 (3.2)  ok
+  splitting of table 1                        0.8 eV  0.5-1.0 eV (5.1) ok
+  V_oc = 0.90 V - 0.09 V                      0.81 V  0.81 V (6.2)     ok
+  PCE = J_sc V_oc FF / P_in                   35.58%  35.58% (6.2)     ok
+  2 E(T1) >= 2 E_g(IR), the second link 2.30 >= 2.24 eV  required by 2.2  ok
+
+  8 of 8 hold.  Every arithmetic step the preprint performs it
+  performs correctly.  What disagrees is never the algebra; it is
+  always the numbers put into it.
+
+==============================================================================
+Row 1 is not an inconsistency but an exclusion
+==============================================================================
+  The other seven rows could each be repaired by choosing one of
+  the two values.  Row 1 cannot, because section 2.2's own
+  thermodynamic ordering fixes which value is allowed:
+
+      E(S1_D) >= 2 E(T1_D) >= 2 E_CT >= 2 E_g(IR)
+
+  2 E_g(IR) = 2.24 eV, so the chain forbids any donor whose S1 lies
+  below that.  The edge its photocurrent needs is 1.96 eV, which is
+  284 meV below the floor.
+
+  Read the other way, a donor with E(S1) = 1.96 eV may have at most
+  E(T1) = 0.98 eV, and that is 142 meV *below* the 1.12 eV gap of
+  the acceptor it is supposed to feed, so the Dexter step of
+  section 2.2 would run uphill and the cascade would not exist.
+
+  So the two values are mutually exclusive rather than merely
+  different: either the high-energy channel carries 14.95 mA/cm^2
+  and not 23.8, or the energy cascade the architecture is built
+  from is thermodynamically forbidden.  Nothing outside the
+  preprint is needed to reach that.

@@ -363,7 +363,69 @@ Tohle je nejkonvenčněji postavený deposit z osmnácti. Jeho centrální chyba
 jiného druhu než obvyklá chyba série: ne tvrzení bez zdroje, ale správně
 citovaný zdroj odečtený ze špatného řádku.
 
-## 7. Co se tady neměří
+## 7. Táž veličina dvakrát
+
+Nálezy v §§2–6 jsou dvojího druhu. Některé porovnávají tvrzení s vnějším světem:
+se spektrem, s proměřeným chromoforem, s Néelovou teplotou, se sloupcem
+periodické tabulky. Jiné ten dokument vůbec neopustí — veličina má na jednom
+místě jednu hodnotu a na druhém jinou, nebo je hodnota uvedená ve větě, jejíž
+vlastní ostatní čísla dávají jinou. [`consistency.py`](consistency.py) sbírá ten
+druhý druh, protože k rozhodnutí nepotřebuje žádný model ani důvěru v žádný
+zdroj: obě hodnoty jsou preprintu vlastní a aritmetika mezi nimi taky.
+
+| veličina | uvedeno | co dávají jeho vlastní čísla | rozdíl |
+|---|---|---|---|
+| absorpční hrana fisního donoru | 2,25 eV (551 nm), §2.2 | **1,96 eV (634 nm)**, z jeho vlastních 23,8 mA/cm² při jeho vlastní EQE_high, §6.2 | **294 meV** |
+| E(S₁) donoru | 2,25 eV, §2.2 | **aspoň 2,30 eV**, z E(S₁) ≥ 2E(T₁), §2.1 | 50 meV, 1,9 kT |
+| elektronů na pohlcený foton | 1,53, napsáno „153 %“, §6.2 | **2,44**, z jeho vlastních 23,8 mA/cm² proti 9,76, které spektrum nad 2,25 eV nese | 59 % a **22 % nad stropem, který má fise sama — dva** |
+| τ_ext | 20–80 ns, §4.1 | **256 ns**, z jeho vlastního η_PB = 0,95 přes jeho vlastní η_PB = exp(−τ_ext/τ_s) | ×3,2 až ×12,8 |
+| η_PB | 0,95, §4.1 | **0,984–0,996**, ze dvou časů v té samé větě | 2,5 bodu potlačení |
+| pohyblivost nosičů | „low carrier mobilities“, bez čísla, §1 preprintu | **3,8 × 10⁻³ až 1,5 × 10⁻² cm²/Vs**, z jeho vlastních 20–80 ns přes τ_ext = d²/(2μV) a 220 nm z tabulky 1 | jeden až dva řády |
+| spinové rozštěpení, na němž mechanismus stojí | ~0,8 eV, tabulka 1; 0,5–1,0 eV, §5.1 | **64,5 meV**, z jeho vlastního P_CISS = 0,85 přes jeho vlastní P_CISS = tanh(ΔE/2kT) | **×12,4** |
+| specifický výkon | aspoň 10 000 W/kg, tabulka 2 | **2944 W/kg**, z jeho vlastních sedmi tlouštěk při jeho vlastní PCE | ×3,4 |
+
+Dva z těch osmi jsou v prospěch preprintu a zaznamenávají se proto, stejně jako
+je zaznamenává §4: obě možná čtení páru η_PB / τ_ext potlačení zvyšují.
+
+Když se ten samý test použije na každou další veličinu, kterou preprint uvádí
+dvakrát, vyjde komplement — a má stejnou cenu jako tabulka výš:
+
+| veličina | přepočteno | jak publikováno |
+|---|---|---|
+| EQE_high = 1,85 × 0,92 × 0,90 | 1,5318 | 153 % (§6.2) |
+| 1 − η_PB P_CISS² | 0,3136 | 0,314 (§4.1) |
+| potlačení, které z toho plyne | 68,6 % | 68,6 % (§4.1) |
+| P_CISS dopočítaného příkladu | 0,85 | uvnitř 0,75–0,90 (§3.2) |
+| rozštěpení z tabulky 1 | 0,8 eV | uvnitř 0,5–1,0 eV (§5.1) |
+| V_oc = 0,90 V − 0,09 V | 0,81 V | 0,81 V (§6.2) |
+| PCE = J_sc V_oc FF / P_in | 35,58 % | 35,58 % (§6.2) |
+| 2E(T₁) ≥ 2E_g(IR), druhý článek řetězu | 2,30 ≥ 2,24 eV | požaduje §2.2 |
+
+Osm z osmi. **Každý aritmetický krok, který ten preprint provede, provede
+správně.** Všechny vzorce jsou standardní a správně upravené, jednotky souhlasí
+a jediný součin provedený do konce — PCE v §6.2 — je přesný na čtyři cifry. Co
+nesouhlasí, není nikdy algebra; jsou to vždycky čísla, která se do ní vloží, a
+v šesti z osmi řádků výš leží ty dvě hodnoty v různých sekcích. Ten dokument
+je lokálně v pořádku a globálně nekonzistentní.
+
+**Jeden řádek není nekonzistence, ale vyloučení.** Ostatních sedm by se dalo
+spravit tím, že se jedna z dvojice hodnot zvolí a druhá opraví. První ne,
+protože termodynamické řazení, které si §2.2 sama stanoví,
+
+    E(S₁_D) ≥ 2E(T₁_D) ≥ 2E_CT ≥ 2E_g(IR)
+
+určuje, která z těch dvou hodnot je přípustná. 2E_g(IR) = 2,24 eV, takže ten
+řetěz zakazuje jakýkoli donor, jehož S₁ leží níž — a hrana 1,96 eV, kterou
+jeho vlastní fotoproud potřebuje, je **284 meV pod tím dnem**. Obráceně:
+donor s E(S₁) = 1,96 eV smí mít E(T₁) nejvýš 0,98 eV, což je 142 meV *pod*
+zakázaným pásem 1,12 eV toho akceptoru, který má krmit, takový Dexterův krok
+z §2.2 by běžel do kopce a ta kaskáda by neexistovala.
+
+Buď ten vysokoenergetický kanál nese 14,95 mA/cm² a ne 23,8, nebo je
+energetická kaskáda, na které celá ta architektura stojí, termodynamicky
+zakázaná. K tomuhle závěru není potřeba nic zvenčí toho preprintu.
+
+## 8. Co se tady neměří
 
 * Rychlost Dexterova přenosu. Výraz v §2.2 je standardní Dexterova forma; jestli
   je η_DET ≥ 0,90 dosažitelné při požadovaném R_DA < 1 nm a přitom s donorovými
@@ -385,7 +447,7 @@ citovaný zdroj odečtený ze špatného řádku.
 * Aplikace typu sonoluminiscence v tomhle depositu chybí; na rozdíl od
   starších zůstává celou dobu ve svém oboru.
 
-## 8. Hranice tohoto vyhodnocení a tři chyby, které se v něm našly
+## 9. Hranice tohoto vyhodnocení a tři chyby, které se v něm našly
 
 Model detailní rovnováhy je standardní: jen radiační rekombinace, jednotková
 absorptivita nad hranicí, bez sériového a zkratového odporu, emise z přední
