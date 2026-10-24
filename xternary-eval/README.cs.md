@@ -9,7 +9,7 @@ neimplementuje: bitové účetnictví, číslo 70B při 60 tok/s a ternární KV
 Text je v [`PAPER.cs.md`](PAPER.cs.md), anglicky v [`PAPER.md`](PAPER.md). Krátce:
 po vynucení 2:4 řídkosti nese schéma 1,26 bitu na váhu a ukládá to ve 2,25, takže
 drží o 20 % méně informace než BitNet b1.58 ve 42 % více bitů; tvrzených 60 tok/s
-je nad pamětovým stropem karty, kterou článek jmenuje; sčítání v pohyblivé řádové
+je nad paměťovým stropem karty, kterou článek jmenuje; sčítání v pohyblivé řádové
 čárce na GPU už asociativní není u 31,9 % náhodných trojic, a právě to je
 příčinou nedeterminismu, který článek chce léčit přidáním nonasociativity; a
 ternární KV cache stojí faktor 5 001 na perplexitě tam, kde správná 4bitová cache

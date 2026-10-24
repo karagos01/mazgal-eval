@@ -61,7 +61,7 @@ mají na každé vrstvě totožnou aritmetickou intenzitu — 6,0, 56,0 a 112,0
 FLOP/bajt pro obojí — zatímco matice stojí **d×** provozu. Zakódovat d čísel jako
 matici d×d nekoupí žádnou aritmetickou intenzitu při žádném d, a to je ten
 naměřený smysl, v němž je „100 % saturated" pravda a není k ničemu: dlaždice jsou
-plné a karta čeká na pamět.
+plné a karta čeká na paměť.
 
 ## 1. Co je správně
 
@@ -235,7 +235,7 @@ Takže jedna anihilace je 269 taktů celé karty a osmkrát horší než ten př
 Uzel 224D je navíc 196 WMMA instrukcí, každá s latencí několika taktů, ještě
 než se natáhnou operandy.
 
-**Nároky na pamět.** Uzel 224×224 fp16 má 98,0 KiB, se zrcadlem 196,0 KiB.
+**Nároky na paměť.** Uzel 224×224 fp16 má 98,0 KiB, se zrcadlem 196,0 KiB.
 Dvacet čtyři gibibajtů udrží **128 397** párů uzlů, jen stav — tedy krychli
 50 uzlů na hranu, bez čehokoli pro pravidlové matice, stav paprsku nebo výstupní
 obrázek. Proti tokamakové aplikaci z §5 při jednom uzlu na částici: kubický
@@ -269,10 +269,10 @@ intenzitu při žádném d.
 
 To je ten naměřený smysl, v němž je „100 % saturated quantum field simulator"
 z §4 pravda a není k ničemu. Dlaždice jsou plné — to je, co 224/16 = 14 přesně
-kupuje — a karta čeká na pamět tak jako tak.
+kupuje — a karta čeká na paměť tak jako tak.
 
-**Cena kroku od openQL:** 4× pamět na uzel, 8× aritmetika, 4× dlaždice, a to
-ještě než zrcadlo pamět zdvojí znovu. §4 to předkládá jako bezplatné, protože
+**Cena kroku od openQL:** 4× paměť na uzel, 8× aritmetika, 4× dlaždice, a to
+ještě než zrcadlo paměť zdvojí znovu. §4 to předkládá jako bezplatné, protože
 zarovnání zůstává; zarovnání je o plýtvání uvnitř dlaždice, ne o tom, kolik
 dlaždic je.
 

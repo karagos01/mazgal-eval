@@ -17,7 +17,7 @@ Za prvé, bitové účetnictví je obrácené. Po vynucení 2:4 řídkosti zbýv
 ternárních bloků po čtyřech dosažitelných jen 33, takže schéma nese 1,26 bitu na
 váhu — o 20,4 % méně než BitNet b1.58 — a ukládá to ve 2,25 bitu, tedy o 42 %
 více. Za druhé, tvrzení o 70 miliardách parametrů při 60 tokenech za sekundu na
-24GB kartě je nad pamětovým stropem té karty: formát, který článek specifikuje,
+24GB kartě je nad paměťovým stropem té karty: formát, který článek specifikuje,
 má strop 47,6 tok/s při 100% využití sběrnice, zatímco BitNet b1.58, který
 článek odmítá, dosahuje 66,9. Za třetí, sčítání v pohyblivé řádové čárce na GPU
 už asociativní není, a to u 31,9 % náhodných trojic; právě to je příčinou
@@ -113,7 +113,7 @@ nulovou režii dekvantizace; reálné enginy dosahují 60–80 % z něj. Formát
 K tomu dvě věci. 2:4 komprese neušetří žádnou paměť: dvě přeživší hodnoty po
 dvou bitech plus čtyři bity indexových metadat je stejných osm bitů na čtyři váhy
 jako denzní 2bitové uložení, takže se ty dvě myšlenky v paměťovém rozpočtu
-neskládají. A 2:4 kupuje aritmetickou propustnost, ne pamětovou, což je přesně
+neskládají. A 2:4 kupuje aritmetickou propustnost, ne paměťovou, což je přesně
 naopak, než čím je dekódování jednoho toku omezené. Sparse Tensor Cores navíc
 přijímají 2:4 vzor v fp16, bf16, int8 nebo tf32 na Ampere a fp8 na Hopper;
 2bitová řídká cesta neexistuje, takže se váhy musí před řídkým GEMM rozbalit do
@@ -225,7 +225,7 @@ ke složkám oktonionu e₀…e₇, což je stejná mezera jako v autorově náv
 Byla otestována tři tvrzení, která repozitář neimplementuje, a každé padá
 dřív, než se dojde k otázce kvality implementace. Bitové účetnictví je obrácené:
 schéma ukládá méně informace ve více bitech než schéma, které kritizuje. Hlavní
-číslo o propustnosti je nad pamětovým stropem karty, kterou článek jmenuje.
+číslo o propustnosti je nad paměťovým stropem karty, kterou článek jmenuje.
 Argument o determinismu zaměňuje příčinu za lék, protože nonasociativita
 pohyblivé řádové čárky tam už je a je to ona, kdo dělá výstup závislý na
 velikosti batche. Jediné tvrzení, které bylo skutečně otevřenou otázkou —

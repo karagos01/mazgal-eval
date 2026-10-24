@@ -52,7 +52,7 @@ specifikace RTX 3090, kterou jmenuje vlastní série preprintů.
 |---|---|---|
 | [`dimensions.py`](dimensions.py) | jestli je 224 v Cayley-Dicksonově věži; tvrzení o násobku šestnácti, dlaždice a obsazenost; „negativní dimenze" jako mohutnost; kritické dimenze, které citovaná fyzika používá | §4 |
 | [`zerodivisors.py`](zerodivisors.py) | Cayley-Dicksonova věž postavená z reálných čísel a zkontrolovaná proti učebnicové klasifikaci; sedenionový dělitel nuly nalezený hledáním; dělitelé nuly v maticových algebrách; jestli ten součin zachovává energii; asociativita, kterou architektura potřebuje | §§1–3, 6 |
-| [`hardware.py`](hardware.py) | tvrzení o „jednom taktu"; nároky na pamět a rezidentní uzly; kroková frekvence pro fixní mřížku; roofline; co to zdvojení stojí proti openQL | §5 |
+| [`hardware.py`](hardware.py) | tvrzení o „jednom taktu"; nároky na paměť a rezidentní uzly; kroková frekvence pro fixní mřížku; roofline; co to zdvojení stojí proti openQL | §5 |
 
 Každá hodnota je v [`constants.py`](constants.py) s **příznakem provenience** —
 `[P]` z preprintu, `[V]` ověřeno proti pojmenovanému zdroji, `[A]` předpokládaná
@@ -85,7 +85,7 @@ výstup jednoho běhu je v [`results.log`](results.log).
 | milionuzlová mřížka při ±224D | — | 186,9 GiB — **na kartu se nevejde** |
 | největší mřížka, která se vejde, kroková frekvence | — | **18,2 Hz**; real-time je 60 |
 | maticová forma proti kódovanému stavu | „natively processed by Tensor Cores" | totožný FLOP/bajt na každé vrstvě: 6,0, 56,0, **112,0** |
-| cena kroku od openQL | předložena jako bezplatná | **4×** pamět, **8×** aritmetika, **4×** dlaždice, a pak zrcadlo pamět zdvojí znovu |
+| cena kroku od openQL | předložena jako bezplatná | **4×** paměť, **8×** aritmetika, **4×** dlaždice, a pak zrcadlo paměť zdvojí znovu |
 | „negativní dimenze" | ±12D, ±112D, ±224D | dimenze je mohutnost; největší vrstva je **448**rozměrný stav |
 | 224 proti kritickým dimenzím | „contains complete string theory" | superstruny 10, bosonová 26, M-teorie 11 — **ani jedna není 224** |
 | co potřebuje architektura proti tomu, co potřebuje mechanismus | tvrzeno v po sobě jdoucích sekcích | WMMA je **asociativní**; sedeniony nejsou ani alternativní |
