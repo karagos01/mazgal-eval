@@ -1,0 +1,253 @@
+
+########## frequency.py ##########
+
+0. Where the constants in this script come from
+
+        7  [P] from the preprint
+       13  [V] verified against a named source
+        9  [A] assumed range, swept
+
+1. The band, and the lattice it is said to drive
+
+  [P] F_micro                                 1,000 -    1,000,000 Hz
+
+  [V] Raman-active modes measured in a layered oxide cathode (NMC111):
+        wavenumber      frequency      quantum
+            144 cm-1        4.32 THz     17.85 meV
+            189 cm-1        5.67 THz     23.43 meV
+            324 cm-1        9.71 THz     40.17 meV
+
+      the lowest measured mode is               4.32 THz  = 4,317,011 MHz
+      the top of the F_micro band is               1 MHz
+      ratio at the top of the band         4,317,011 x   (6.6 orders)
+      ratio at the bottom of the band   4,317,011,395 x   (9.6 orders)
+
+      So the band sits between six and ten orders of magnitude below the
+      slowest lattice vibration measured in this class of material.
+      'Phonon-assisted tunneling' at 1 MHz is not addressing a phonon;
+      there is no mode there to assist.
+
+2. The same point in energy, which is the form that matters for tunneling
+
+      h.f at 1 kHz                         4.136e-12 eV
+      h.f at 1 MHz                         4.136e-09 eV
+      k.T at 300 K                           0.02585 eV
+        ratio, kT / h.f(1 MHz)             6,250,986 x
+
+  [V] sodium migration barrier                  0.10 - 0.64 eV
+        E_a / h.f(1 MHz) at 0.10 eV         2.418e+07
+        E_a / h.f(1 MHz) at 0.64 eV         1.548e+08
+
+      The stimulation quantum is about six million times smaller than the
+      ambient thermal energy the ions already have, and seven to eight
+      orders below the barrier it is meant to lower.  Whatever a kHz-to-MHz
+      field does to a cell, it does not do it one quantum at a time.
+
+3. Where the cell has a faradaic response at all
+
+  [V] charge-transfer semicircle                   1 - 1,000 Hz
+  [P] F_micro band                             1,000 - 1,000,000 Hz
+      overlap                                      0 Hz
+
+      The two bands meet at a point and do not overlap.  Above the
+      charge-transfer region the measured response of a cell is ohmic and
+      inductive, which means current in the F_micro band flows through the
+      double-layer capacitance and the series inductance rather than across
+      the interface.  Capacitive current transfers no ions; it dissipates in
+      the series resistance.  That is Joule heating, which is the loss Sec. 1
+      sets out to avoid.
+
+4. The limitation Sec. 5 names, and the one it should have named
+
+  [P] Sec. 5: "MHz-range fractal signals injected into such geometries will
+      suffer from severe attenuation and skin-effect reflections."
+
+         frequency   skin depth, Cu   skin depth, Al
+          1,000 Hz        2062.9 um        2590.9 um
+         10,000 Hz         652.3 um         819.3 um
+        100,000 Hz         206.3 um         259.1 um
+      1,000,000 Hz          65.2 um          81.9 um
+      10,000,000 Hz          20.6 um          25.9 um
+
+      [A] current-collector foil is 6-20 um thick
+      at 1 MHz the aluminium skin depth is 82 um, i.e. 4.1-13.7x
+      the foil thickness, so the current still fills the foil and skin
+      effect within it is not the binding limit at the stated frequencies.
+
+      Sec. 5 reaches the right conclusion -- that MHz signals do not reach
+      the lattice in a wound cell -- from the wrong mechanism.  The binding
+      limit is the double-layer shunt measured in Sec. 3 above, and it
+      applies to a planar coin cell too, which is the geometry Sec. 5
+      prescribes as the fix.
+
+########## anomaly.py ##########
+
+0. Where the constants in this script come from
+
+        7  [P] from the preprint
+       13  [V] verified against a named source
+        9  [A] assumed range, swept
+
+1. The heading and the body describe different quantities
+
+      heading:  Negative Differential Resistance
+      body:     Z_diff = dV/dI, and an anomaly when dT per unit power falls
+
+      Negative differential resistance means dV/dI < 0.  For a cell under
+      charge at fixed state of charge, V = OCV(SoC) + I.R_i with R_i > 0,
+      so dV/dI = R_i > 0 always.  A cell cannot exhibit NDR in that sense;
+      the terminal voltage rises with current by construction.
+
+      'Sub-proportional heat per unit power delivered' is a statement about
+      energy efficiency -- more of the input ended up stored rather than
+      dissipated.  That is a real and measurable thing, and it is not a sign
+      change in dV/dI.  The two are not the same criterion, and the section
+      gives no way to decide which one the optimiser is to search for.
+
+      Also, dV/dI has units of ohms, so it is a differential RESISTANCE.
+      The text calls it a differential impedance, which is the complex
+      quantity measured against frequency, not against current.
+
+2. Can the body's criterion be told apart from the cell warming up?
+
+  [P] Sec. 5 identifies this confound itself:
+      "Differentiating between standard thermal agitation (which naturally
+       lowers R_i as the cell heats up) and genuine electro-kinetic field
+       enhancement requires highly precise isothermal calorimetry"
+
+      Arrhenius, R_i(T) = R0.exp(E_a/kT), relative to 25 C:
+      [A]    E_a      25 C      35 C      45 C      55 C
+        0.20     1.000     0.777     0.613     0.491
+        0.50     1.000     0.532     0.294     0.169
+
+      A 20 K rise alone multiplies I^2.R heating at fixed current by
+      0.29 to 0.61, i.e. it cuts it by 1.6 to 3.4 times.
+
+      That is exactly the signature Sec. 2.2 looks for: push more power in,
+      get less heat out per unit of it.  So the criterion as written is
+      satisfied by a cell that is merely warming, across the whole swept
+      range of activation energies, with no electro-kinetic effect at all.
+
+      Sec. 5 prescribes the right instrument -- isothermal calorimetry --
+      and that is to the paper's credit.  But Sec. 2.2 is the section that
+      defines the search objective, and as defined it is confounded.  The
+      optimiser would find warm cells.
+
+3. What the paper's own pulsed-charging citation says instead
+
+  [V] Purushothaman & Landau, J. Electrochem. Soc. 153(3) A533 (2006),
+      the preprint's only pulsed-charging reference:
+
+      "Modeling the lithium diffusion into a homogeneous intercalant layer
+       indicates that the lithium concentration reaches saturation at the
+       graphite/electrolyte interface after about 1 h under conventional
+       constant current charging"
+
+      the analysed protocol: 3 s on, 1 s off
+        duty cycle                                 75%
+        repetition rate                           0.25 Hz
+
+      "A nonlinearly decreasing current density profile which conforms to
+       the mass transfer coefficient variation was shown to provide complete
+       charging in less than 3/4 of an hour, faster than any other
+       pulse-charging profile studied."
+        best result is a continuous profile:  True
+
+      So the limiting mechanism in the cited work is solid-state diffusion,
+      the beneficial timescale is a quarter of a hertz, and the best result
+      is not a pulse at all.  It supports W_macro, the low-frequency
+      envelope, and contradicts F_micro, which sits six orders of magnitude
+      above the band it identifies.  The paper cites no source that
+      identifies a beneficial kHz or MHz band, and the audit of all six of
+      its references found none -- see the reference-audit repository.
+
+########## throughput.py ##########
+
+0. Where the constants in this script come from
+
+        7  [P] from the preprint
+       13  [V] verified against a named source
+        9  [A] assumed range, swept
+
+1. Evaluations per day
+
+  [P] cells, one per GPU                                  8
+
+      [A]   C-rate   charge+discharge      per day
+              0.5C             4.0 h           48
+              1.0C             2.0 h           96
+              2.0C             1.0 h          192
+
+      One evaluation of a candidate waveform is at minimum one charge, and
+      a comparable discharge to return the cell to a known state.  Nothing
+      about the GPU changes that number.
+
+2. The ceiling, which arrives before the search finishes
+
+      [A] coin-cell useful life           500 - 3,000 cycles
+      evaluations available from 8 cells, ever:
+             500 cycles ->    4,000 evaluations,     42 days of continuous 1C cycling
+           3,000 cycles ->   24,000 evaluations,    250 days of continuous 1C cycling
+
+      [A] particle swarm optimisation typically needs 10,000 - 100,000
+          evaluations on a 10-30 dimensional space, and Sec. 3 calls its own
+          parameter space 'hyperdimensional'.
+
+      So the whole lifetime budget of one set of samples, 24,000
+      evaluations, is at the bottom of the range a PSO run needs, and the
+      sample set is destroyed in reaching it.
+
+3. The confound this creates, which the preprint does not mention
+
+      The objective function is the cell's internal resistance, and internal
+      resistance rises with cycle count.  So the quantity being minimised
+      drifts upward over exactly the timescale of the search, in a direction
+      that depends on how many evaluations each cell has already served.
+
+      A swarm that shares its best parameter vector across nodes -- which is
+      what Sec. 3 proposes -- shares it between cells of different age.  Any
+      apparent improvement found early is confounded with the samples being
+      newer, and Sec. 5's isothermal calorimetry does not address this one.
+
+      Sec. 3's own answer, a 'Dynamic Key Trajectory parameterized by the
+      State of Charge', addresses drift within a cycle.  Ageing is drift
+      across cycles and is not parameterised by SoC.
+
+4. What the GPUs are actually for
+
+      [A] DDS stream per cell:
+              10 MSa/s x 16 bit =      20 MB/s   ->      160 MB/s for 8
+             100 MSa/s x 16 bit =     200 MB/s   ->     1600 MB/s for 8
+
+      That is a data-movement task. It needs bandwidth and determinism, not
+      floating-point throughput, and nothing in Sec. 3 describes a
+      computation that would occupy a GPU between evaluations that arrive
+      every two hours.
+
+      Sec. 4 then says the opposite of Sec. 3 about where generation
+      happens:
+  [P] "Microsecond-level current/voltage logging fed into a high-speed DSP
+      or FPGA (e.g. STM32/Zynq architectures) acting as the local generative
+      engine."
+
+      If the local FPGA is the generative engine then the GPU is not
+      streaming the waveform, and the 1:1 GPU-to-cell mapping has no work
+      left to do. The two sections describe two different machines.
+
+5. Sec. 6 against what the deposit contains
+
+  [P] Sec. 6, "Structure of Provided Data (Zenodo Repository)":
+          /Hardware: Gerber, BOM, 3D STEP
+          /Software: CUDA kernels, PSO synchronization scripts, DDS streaming code
+          /Datasets: high-speed DAQ logs, isothermal calorimetry, voltage curves
+
+      the deposit holds                      1 file, 97,786 bytes
+      which is the four-page PDF and nothing else.
+
+  [P] the PDF header proposes:   CC BY 4.0 for text and data, CERN-OHL-S for hardware
+      the Zenodo record carries: cc-by-4.0 only
+
+      The section is written in the present tense about data that is not
+      there. That is a stronger version of the same pattern as the cymatic
+      deposit's Sec. 6, which promises a GitHub repository in the future
+      tense and names none.
