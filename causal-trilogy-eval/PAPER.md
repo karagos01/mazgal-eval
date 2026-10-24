@@ -298,10 +298,10 @@ which holds for any local operation on any Hilbert space.
 ## 11. Data availability
 
 Scripts, full output (`results.log`) and this text:
-<https://github.com/karagos01/causal-trilogy-eval>. The three preprints are open
+<https://github.com/karagos01/mazgal-eval/tree/main/causal-trilogy-eval>. The three preprints are open
 access under CC BY 4.0 at the DOIs above. Companion evaluations of the same
-author's other work: <https://github.com/karagos01/octonion-mppt-eval> and
-<https://github.com/karagos01/xternary-eval>.
+author's other work: [`octonion-mppt-eval`](../octonion-mppt-eval) and
+[`xternary-eval`](../xternary-eval).
 
 ## References
 

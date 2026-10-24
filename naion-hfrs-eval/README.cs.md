@@ -89,23 +89,23 @@ hodnoty, které se tady nepodařilo ověřit proti primárnímu zdroji, a proto 
 proměřují.
 
 Všech šest referencí bylo obsahově přečteno v
-[`reference-audit`](https://github.com/karagos01/reference-audit), kde je
+[`reference-audit`](../reference-audit), kde je
 doslovná evidence; §7 shrnuje, co ta pulzní citace skutečně říká, a zbytek
 neduplikuje.
 
 ## Doprovodná vyhodnocení
 
-- [`reference-audit`](https://github.com/karagos01/reference-audit) — jestli všech 81 citací ve všech 18 depositech říká to, pro co je citovaných
-- [`phytomining-eval`](https://github.com/karagos01/phytomining-eval) — matrice kvantové biofortifikace a in-situ phytominingu z října 2026
-- [`octonion-mppt-eval`](https://github.com/karagos01/octonion-mppt-eval) — oktonionová dvouvrstvá šablona s asociátorem a census Maxwellovy atribuce
-- [`xternary-eval`](https://github.com/karagos01/xternary-eval) — 2bitový inferenční engine pro LLM
-- [`causal-trilogy-eval`](https://github.com/karagos01/causal-trilogy-eval) — trilogie CQFT / PCTP / SOTP ze září 2026
-- [`openql-eval`](https://github.com/karagos01/openql-eval) — tenzorová maticová architektura openQL / openOL z října 2026
-- [`cymatic-eval`](https://github.com/karagos01/cymatic-eval) — cymatická stimulace průduchů a pulzní osvětlení z října 2026
-- [`hemocyanin-eval`](https://github.com/karagos01/hemocyanin-eval) — hemocyaninová fyziologie na měďi z října 2026
-- [`intensional-physics-eval`](https://github.com/karagos01/intensional-physics-eval) — Intensional Physics Computing a openQL v1.1 z října 2026
-- [`openomega-eval`](https://github.com/karagos01/openomega-eval) — openOmega, antimaterie a sedeniony z října 2026
-- [`hospv-eval`](https://github.com/karagos01/hospv-eval) — HOS-PV 2.0, singletní fise a spintronická fotovoltaika z října 2026
+- [`reference-audit`](../reference-audit) — jestli všech 81 citací ve všech 18 depositech říká to, pro co je citovaných
+- [`phytomining-eval`](../phytomining-eval) — matrice kvantové biofortifikace a in-situ phytominingu z října 2026
+- [`octonion-mppt-eval`](../octonion-mppt-eval) — oktonionová dvouvrstvá šablona s asociátorem a census Maxwellovy atribuce
+- [`xternary-eval`](../xternary-eval) — 2bitový inferenční engine pro LLM
+- [`causal-trilogy-eval`](../causal-trilogy-eval) — trilogie CQFT / PCTP / SOTP ze září 2026
+- [`openql-eval`](../openql-eval) — tenzorová maticová architektura openQL / openOL z října 2026
+- [`cymatic-eval`](../cymatic-eval) — cymatická stimulace průduchů a pulzní osvětlení z října 2026
+- [`hemocyanin-eval`](../hemocyanin-eval) — hemocyaninová fyziologie na měďi z října 2026
+- [`intensional-physics-eval`](../intensional-physics-eval) — Intensional Physics Computing a openQL v1.1 z října 2026
+- [`openomega-eval`](../openomega-eval) — openOmega, antimaterie a sedeniony z října 2026
+- [`hospv-eval`](../hospv-eval) — HOS-PV 2.0, singletní fise a spintronická fotovoltaika z října 2026
 
 ## Licence
 

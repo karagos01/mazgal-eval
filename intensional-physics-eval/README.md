@@ -92,23 +92,23 @@ the "fits" one, though 14.6× of headroom survives any plausible efficiency
 factor.
 
 The openQL v1.0 measurements referred to throughout are not reproduced here;
-they live in [`openql-eval`](https://github.com/karagos01/openql-eval), and the
+they live in [`openql-eval`](../openql-eval), and the
 reference verdicts in
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## Companion evaluations
 
-- [`openql-eval`](https://github.com/karagos01/openql-eval) — the openQL / openOL v1.0 original that these two deposits restate and revise
-- [`reference-audit`](https://github.com/karagos01/reference-audit) — whether all 81 citations in all 18 deposits say what they are cited for
-- [`phytomining-eval`](https://github.com/karagos01/phytomining-eval) — the quantum biofortification and in-situ phytomining matrix of October 2026
-- [`naion-hfrs-eval`](https://github.com/karagos01/naion-hfrs-eval) — the dual-scale waveform and HFRS charging proposal of October 2026
-- [`hemocyanin-eval`](https://github.com/karagos01/hemocyanin-eval) — the copper-based hemocyanin physiology proposal of October 2026
-- [`octonion-mppt-eval`](https://github.com/karagos01/octonion-mppt-eval) — the octonion two-layer/associator template and the Maxwell attribution census
-- [`xternary-eval`](https://github.com/karagos01/xternary-eval) — the 2-bit LLM inference engine
-- [`causal-trilogy-eval`](https://github.com/karagos01/causal-trilogy-eval) — the CQFT / PCTP / SOTP trilogy of September 2026
-- [`cymatic-eval`](https://github.com/karagos01/cymatic-eval) — the cymatic stomatal stimulation and pulsed light proposal of October 2026
-- [`openomega-eval`](https://github.com/karagos01/openomega-eval) — the openOmega matter-antimatter and sedenion proposal of October 2026
-- [`hospv-eval`](https://github.com/karagos01/hospv-eval) — the HOS-PV 2.0 singlet-fission and spintronic photovoltaic proposal of October 2026
+- [`openql-eval`](../openql-eval) — the openQL / openOL v1.0 original that these two deposits restate and revise
+- [`reference-audit`](../reference-audit) — whether all 81 citations in all 18 deposits say what they are cited for
+- [`phytomining-eval`](../phytomining-eval) — the quantum biofortification and in-situ phytomining matrix of October 2026
+- [`naion-hfrs-eval`](../naion-hfrs-eval) — the dual-scale waveform and HFRS charging proposal of October 2026
+- [`hemocyanin-eval`](../hemocyanin-eval) — the copper-based hemocyanin physiology proposal of October 2026
+- [`octonion-mppt-eval`](../octonion-mppt-eval) — the octonion two-layer/associator template and the Maxwell attribution census
+- [`xternary-eval`](../xternary-eval) — the 2-bit LLM inference engine
+- [`causal-trilogy-eval`](../causal-trilogy-eval) — the CQFT / PCTP / SOTP trilogy of September 2026
+- [`cymatic-eval`](../cymatic-eval) — the cymatic stomatal stimulation and pulsed light proposal of October 2026
+- [`openomega-eval`](../openomega-eval) — the openOmega matter-antimatter and sedenion proposal of October 2026
+- [`hospv-eval`](../hospv-eval) — the HOS-PV 2.0 singlet-fission and spintronic photovoltaic proposal of October 2026
 
 ## Licence
 

@@ -352,9 +352,9 @@ other script defines one. `dimensions.py` reproduces §4, `zerodivisors.py` §§
 and §6, `hardware.py` §5. `run_all.sh` runs everything offline in about twenty
 seconds; `results.log` is the output of one run. The openQL measurements
 referred to throughout are not reproduced here — they live in
-[`openql-eval`](https://github.com/karagos01/openql-eval), and the reference
+[`openql-eval`](../openql-eval), and the reference
 verdicts in
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## References
 

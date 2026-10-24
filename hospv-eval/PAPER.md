@@ -357,7 +357,7 @@ singlet fission 10, Dexter 10, AM1.5G 9. The PDF header carries no unfilled
 ORCID placeholder, which every earlier deposit does; no co-author is credited to
 an AI; there are no self-citations; and all seven references are external, real,
 and attached to claims they support — which, measured across the series in
-[`reference-audit`](https://github.com/karagos01/reference-audit), is not the
+[`reference-audit`](../reference-audit), is not the
 usual case.
 
 This is the most conventionally constructed deposit of the eighteen. Its central
@@ -491,7 +491,7 @@ packaging densities, back-reflector thickness — are swept in
 [`constants.py`](constants.py) rather than asserted, and every conclusion above
 is stated across the whole of each range. The reference verdicts for the other
 seventeen deposits are not repeated here; they live in
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ---
 

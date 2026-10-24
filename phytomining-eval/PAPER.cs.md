@@ -33,7 +33,7 @@ cytostatikum; citovaná práce o zlatě má zlato oxidační stres **vyvolávaj�
 a buňkou vyváděné, kde práce má biogenní zlato, které ho „entirely blocking";
 a citovaná phytominingová recenze je o **odnímání** kovu z půdy a jeho tavení.
 Všechny tři jsou s doslovnou evidencí v doprovodném repozitáři
-[`reference-audit`](https://github.com/karagos01/reference-audit) a v §6 tady.
+[`reference-audit`](../reference-audit) a v §6 tady.
 
 Dva nálezy jdou naopak. Premisa §1 — 30–50 % dodaného dusíku využito první
 plodinou — je správná. A přidaný ¹³⁸La je radiologicky zanedbatelný, čtyři až
@@ -63,7 +63,7 @@ odvolává, je reálná fyzika s reálnou literaturou.
 „Maxwell", „octonion", „quaternion", „hypercomplex", „non-associative", „tensor"
 a „causal" mají nula výskytů. Tento deposit je jeden ze šesti z autorových
 šestnácti, který ten slovník nenese; census je v
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## 2. Jedna věta uvádí dvě hustoty, které jsou 24× vedle
 
@@ -173,7 +173,7 @@ ani jedno.
 ## 6. Reference obracejí tři nosná tvrzení
 
 Všech šest referencí tohoto depositu bylo obsahově přečteno v doprovodném
-repozitáři [`reference-audit`](https://github.com/karagos01/reference-audit),
+repozitáři [`reference-audit`](../reference-audit),
 kde je doslovná evidence i záznam, jak daleko se každou práci podařilo přečíst.
 Tři výsledky se týkají přímo tvrzení výše.
 
@@ -305,7 +305,7 @@ další skript žádnou nedefinuje. `density.py`, `isotopes.py` a `economics.py`
 reprodukují §§2–5 a §7. `run_all.sh` projde všechno offline za asi sekundu,
 `results.log` je výstup jednoho běhu. Verdikty u referencí tady nejsou
 duplikované — žijí se svou evidencí v
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## Reference
 

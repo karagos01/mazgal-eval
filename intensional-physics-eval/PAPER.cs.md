@@ -247,7 +247,7 @@ paprsku — a právě proto vlastní návrh v §4 předává mezi CUDA jádry a 
 cores, a to předání je podmínka.
 
 Pět referencí IPC bylo obsahově přečteno v
-[`reference-audit`](https://github.com/karagos01/reference-audit); čtyři jsou
+[`reference-audit`](../reference-audit); čtyři jsou
 společné s openQL a pátá je Fittingova položka ve Stanfordské encyklopedii
 o intenzionální logice, v níž mají „tensor", „GPU", „matrix" a „quantum" nula
 výskytů každé a jejíž §4.5 se jmenuje „Algorithms Need Not Be Effective".
@@ -284,9 +284,9 @@ výpočet, a je držený jako skript, aby se objevil v `results.log`. `run_all.s
 projde všechno offline za asi sekundu.
 
 Měření openQL v1.0, na která se tady odkazuje, se tu nereprodukují. Žijí
-v [`openql-eval`](https://github.com/karagos01/openql-eval) a verdikty
+v [`openql-eval`](../openql-eval) a verdikty
 u referencí v
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## Reference
 

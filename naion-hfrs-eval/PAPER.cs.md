@@ -216,7 +216,7 @@ pulse-charging profile studied."
 Takže jediný zdroj citovaný pro pulzování podporuje W_macro, při čtvrt hertzu,
 a dává přednost spojité rampě před jakýmkoli pulzem. Žádné výhodné kHz pásmo
 neidentifikuje a obsahový audit všech šesti referencí tohoto depositu
-v [`reference-audit`](https://github.com/karagos01/reference-audit) nenašel
+v [`reference-audit`](../reference-audit) nenašel
 žádnou, která by ho identifikovala. Dva další citační posuny jsou zaznamenané
 tam: Tarascon & Armand je Nature 414(**6861**) a „Macdonald (2005)" je Barsoukov
 & Macdonald jako editoři druhého vydání, přičemž Macdonald sám editoval jinak
@@ -258,7 +258,7 @@ další skript žádnou nedefinuje. `frequency.py`, `anomaly.py` a `throughput.p
 reprodukují §§2–6. `run_all.sh` projde všechno offline za asi sekundu,
 `results.log` je výstup jednoho běhu. Verdikty u referencí se tady neduplikují —
 žijí se svou evidencí v
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## Reference
 

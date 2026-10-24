@@ -246,7 +246,7 @@ the point of ray termination — which is why §4's own design hands off between
 CUDA cores and tensor cores, a handoff that is a branch.
 
 The five references of IPC were read for content in
-[`reference-audit`](https://github.com/karagos01/reference-audit); four are
+[`reference-audit`](../reference-audit); four are
 shared with openQL and the fifth is Fitting's Stanford Encyclopedia entry on
 intensional logic, in which "tensor", "GPU", "matrix" and "quantum" each occur
 zero times, and whose §4.5 is titled "Algorithms Need Not Be Effective".
@@ -285,9 +285,9 @@ computation, kept as a script so it appears in `results.log`. `run_all.sh` runs
 everything offline in about a second.
 
 The openQL v1.0 measurements referred to throughout are not reproduced here.
-They live in [`openql-eval`](https://github.com/karagos01/openql-eval), and the
+They live in [`openql-eval`](../openql-eval), and the
 reference verdicts live in
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## References
 

@@ -241,7 +241,7 @@ problému.
 ## Dostupnost dat
 
 Všechny skripty, vložený kvantizátor a celý výstupní log jsou na
-https://github.com/karagos01/xternary-eval. `./run_all.sh` reprodukuje každé
+https://github.com/karagos01/mazgal-eval/tree/main/xternary-eval. `./run_all.sh` reprodukuje každé
 číslo v tomto textu za asi pět minut na jedné RTX 3090.
 
 ## Reference

@@ -364,7 +364,7 @@ inconsistent.
 
 ## Data and code availability
 
-All code, models and experiment scripts are available at https://github.com/karagos01/octonion-mppt-eval and reproduce every
+All code, models and experiment scripts are available at https://github.com/karagos01/mazgal-eval/tree/main/octonion-mppt-eval and reproduce every
 number in this comment (`run_all.sh`; the 20 000-configuration search takes about 14 minutes on
 16 cores).  Sections 4 and 5 are the cheap ones: `labels.py` reproduces every count in Section 4 in
 about a second and needs nothing but numpy, and `census.sh` reproduces the table in Section 5 by

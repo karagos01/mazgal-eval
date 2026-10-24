@@ -62,17 +62,17 @@ Full output of one run: [`results.log`](results.log).
 
 ## Companion evaluations
 
-- [`octonion-mppt-eval`](https://github.com/karagos01/octonion-mppt-eval) — the octonion two-layer/associator template and the magnon claims
-- [`xternary-eval`](https://github.com/karagos01/xternary-eval) — the 2-bit LLM inference engine
-- [`openql-eval`](https://github.com/karagos01/openql-eval) — the openQL / openOL tensor matrix architecture of October 2026
-- [`cymatic-eval`](https://github.com/karagos01/cymatic-eval) — the cymatic stomatal stimulation and pulsed light proposal of October 2026
-- [`reference-audit`](https://github.com/karagos01/reference-audit) — whether all 81 citations in all 18 deposits say what they are cited for
-- [`phytomining-eval`](https://github.com/karagos01/phytomining-eval) — the quantum biofortification and in-situ phytomining matrix of October 2026
-- [`naion-hfrs-eval`](https://github.com/karagos01/naion-hfrs-eval) — the dual-scale waveform and HFRS charging proposal of October 2026
-- [`hemocyanin-eval`](https://github.com/karagos01/hemocyanin-eval) — the copper-based hemocyanin physiology proposal of October 2026
-- [`intensional-physics-eval`](https://github.com/karagos01/intensional-physics-eval) — Intensional Physics Computing and openQL v1.1 of October 2026
-- [`openomega-eval`](https://github.com/karagos01/openomega-eval) — the openOmega matter-antimatter and sedenion proposal of October 2026
-- [`hospv-eval`](https://github.com/karagos01/hospv-eval) — the HOS-PV 2.0 singlet-fission and spintronic photovoltaic proposal of October 2026
+- [`octonion-mppt-eval`](../octonion-mppt-eval) — the octonion two-layer/associator template and the magnon claims
+- [`xternary-eval`](../xternary-eval) — the 2-bit LLM inference engine
+- [`openql-eval`](../openql-eval) — the openQL / openOL tensor matrix architecture of October 2026
+- [`cymatic-eval`](../cymatic-eval) — the cymatic stomatal stimulation and pulsed light proposal of October 2026
+- [`reference-audit`](../reference-audit) — whether all 81 citations in all 18 deposits say what they are cited for
+- [`phytomining-eval`](../phytomining-eval) — the quantum biofortification and in-situ phytomining matrix of October 2026
+- [`naion-hfrs-eval`](../naion-hfrs-eval) — the dual-scale waveform and HFRS charging proposal of October 2026
+- [`hemocyanin-eval`](../hemocyanin-eval) — the copper-based hemocyanin physiology proposal of October 2026
+- [`intensional-physics-eval`](../intensional-physics-eval) — Intensional Physics Computing and openQL v1.1 of October 2026
+- [`openomega-eval`](../openomega-eval) — the openOmega matter-antimatter and sedenion proposal of October 2026
+- [`hospv-eval`](../hospv-eval) — the HOS-PV 2.0 singlet-fission and spintronic photovoltaic proposal of October 2026
 
 ## Licence
 

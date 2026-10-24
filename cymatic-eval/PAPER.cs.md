@@ -73,7 +73,7 @@ Co je tady špatně, je špatně normálním způsobem.
 > **Oprava, 9. 10. 2026.** Tato sekce původně tvrdila, že „causal" je tady na nule
 > „poprvé v jedenácti depositech". To bylo špatně dvakrát a odhalil to census nad
 > všemi šestnácti záznamy v doprovodném repozitáři
-> [`reference-audit`](https://github.com/karagos01/reference-audit).
+> [`reference-audit`](../reference-audit).
 >
 > „causal" bylo nulové už v openQL / openOL v1.0 z 3. října, dva dny před tímto
 > depositem. A všech sedm výše počítaných termínů je nulových v **COBARu**
@@ -533,7 +533,7 @@ a není tu reprodukovaný.
    Part 1: Calculation of the absorption of sound by the atmosphere*.
 10. IEC 61400-11, *Wind turbines — Part 11: Acoustic noise measurement techniques*.
 11. Doprovodná vyhodnocení ostatních depositů téhož autora:
-    [`octonion-mppt-eval`](https://github.com/karagos01/octonion-mppt-eval),
-    [`xternary-eval`](https://github.com/karagos01/xternary-eval),
-    [`causal-trilogy-eval`](https://github.com/karagos01/causal-trilogy-eval),
-    [`openql-eval`](https://github.com/karagos01/openql-eval).
+    [`octonion-mppt-eval`](../octonion-mppt-eval),
+    [`xternary-eval`](../xternary-eval),
+    [`causal-trilogy-eval`](../causal-trilogy-eval),
+    [`openql-eval`](../openql-eval).

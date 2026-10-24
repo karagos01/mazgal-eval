@@ -237,7 +237,7 @@ citovat, a stojí za zaznamenání, že to existuje a že to ta práce nepouží
 
 Celý obsahový audit všech pěti referencí, s doslovnou evidencí a se záznamem,
 jak daleko se každou práci podařilo přečíst, je v
-[`reference-audit`](https://github.com/karagos01/reference-audit). Dvě z pěti
+[`reference-audit`](../reference-audit). Dvě z pěti
 preprint aktivně vyvracejí, jedna se v uvedené podobě nedohledá vůbec a pátá je
 sebecitace, jejíž cíl ten mechanismus, pro který je citovaná, neobsahuje: slovo
 „copper" se ve fytominingovém preprintu vyskytuje jednou, v nadpisu odrážky,

@@ -72,7 +72,7 @@ wrong in a normal way.
 > **Correction, 9 October 2026.** This section first said that "causal" was at zero
 > here "for the first time in eleven deposits". That was wrong twice over, and a
 > census run over all sixteen records in the companion
-> [`reference-audit`](https://github.com/karagos01/reference-audit) repository is
+> [`reference-audit`](../reference-audit) repository is
 > what caught it.
 >
 > "causal" was already 0 in openQL / openOL v1.0 of 3 October, two days before
@@ -544,7 +544,7 @@ and is not reproduced here.
    Part 1: Calculation of the absorption of sound by the atmosphere*.
 10. IEC 61400-11, *Wind turbines — Part 11: Acoustic noise measurement techniques*.
 11. Companion evaluations of the same author's other deposits:
-    [`octonion-mppt-eval`](https://github.com/karagos01/octonion-mppt-eval),
-    [`xternary-eval`](https://github.com/karagos01/xternary-eval),
-    [`causal-trilogy-eval`](https://github.com/karagos01/causal-trilogy-eval),
-    [`openql-eval`](https://github.com/karagos01/openql-eval).
+    [`octonion-mppt-eval`](../octonion-mppt-eval),
+    [`xternary-eval`](../xternary-eval),
+    [`causal-trilogy-eval`](../causal-trilogy-eval),
+    [`openql-eval`](../openql-eval).

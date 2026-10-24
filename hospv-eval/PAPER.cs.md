@@ -356,7 +356,7 @@ ORCID placeholder, který nese každý starší deposit; žádný spoluautor nen
 přiznán umělé inteligenci; nejsou tu žádné autocitace; a všech sedm referencí
 je externích, skutečných a připnutých k tvrzením, která podpírají — což,
 měřeno přes celou sérii v repozitáři
-[`reference-audit`](https://github.com/karagos01/reference-audit), není
+[`reference-audit`](../reference-audit), není
 obvyklý stav.
 
 Tohle je nejkonvenčněji postavený deposit z osmnácti. Jeho centrální chyba je
@@ -484,7 +484,7 @@ absorbéru, hustoty obalu, tlouštka zadního reflektoru — se
 v [`constants.py`](constants.py) proměřují, ne tvrdí, a každý závěr výš je
 uvedený přes celý rozsah každé z nich. Verdikty u referencí ostatních
 sedmnácti depositů se tady neopakují; žijí
-v [`reference-audit`](https://github.com/karagos01/reference-audit).
+v [`reference-audit`](../reference-audit).
 
 ---
 

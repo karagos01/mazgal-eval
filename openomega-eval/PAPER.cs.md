@@ -340,8 +340,8 @@ další skript žádnou nedefinuje. `dimensions.py` reprodukuje §4,
 `zerodivisors.py` §§1–3 a §6, `hardware.py` §5. `run_all.sh` projde všechno
 offline za asi dvacet sekund, `results.log` je výstup jednoho běhu. Měření
 openQL, na která se tady odkazuje, se tu nereprodukují — žijí
-v [`openql-eval`](https://github.com/karagos01/openql-eval) a verdikty
-u referencí v [`reference-audit`](https://github.com/karagos01/reference-audit).
+v [`openql-eval`](../openql-eval) a verdikty
+u referencí v [`reference-audit`](../reference-audit).
 
 ## Reference
 

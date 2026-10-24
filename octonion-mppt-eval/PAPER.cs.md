@@ -350,7 +350,7 @@ modelem může být osmirozměrný, a přesto rozměrově nekonzistentní.
 
 ## Dostupnost dat a kódu
 
-Veškerý kód, modely a experimentální skripty jsou k dispozici na https://github.com/karagos01/octonion-mppt-eval a reprodukují
+Veškerý kód, modely a experimentální skripty jsou k dispozici na https://github.com/karagos01/mazgal-eval/tree/main/octonion-mppt-eval a reprodukují
 každé číslo z tohoto komentáře (`run_all.sh`; hledání přes 20 000 konfigurací trvá asi 14 minut na
 16 jádrech).  Sekce 4 a 5 jsou ty levné: `labels.py` reprodukuje všechny počty
 ze sekce 4 asi za sekundu a nepotřebuje nic než numpy a `census.sh` reprodukuje tabulku ze sekce 5

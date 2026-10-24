@@ -247,7 +247,7 @@ upstream in April 2026, still open, and still the smaller half of the problem.
 ## Data availability
 
 All scripts, the vendored quantizer and the full output log are at
-https://github.com/karagos01/xternary-eval. `./run_all.sh` reproduces every
+https://github.com/karagos01/mazgal-eval/tree/main/xternary-eval. `./run_all.sh` reproduces every
 number in this text in about five minutes on one RTX 3090.
 
 ## References

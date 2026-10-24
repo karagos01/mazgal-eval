@@ -243,7 +243,7 @@ does not use them.
 
 The full content audit of all five references, with verbatim evidence and a
 record of how far each work could be read, is in
-[`reference-audit`](https://github.com/karagos01/reference-audit). Two of the
+[`reference-audit`](../reference-audit). Two of the
 five actively contradict the preprint, one does not resolve as printed at all,
 and the fifth is a self-citation whose target does not contain the mechanism it
 is cited for: "copper" occurs once in the phytomining preprint, in a bullet

@@ -223,7 +223,7 @@ pulse-charging profile studied."
 So the one source cited for pulsing supports W_macro, at a quarter of a hertz,
 and prefers a continuous ramp to any pulse. It identifies no beneficial kHz
 band, and the content audit of all six of this deposit's references in
-[`reference-audit`](https://github.com/karagos01/reference-audit) found none that
+[`reference-audit`](../reference-audit) found none that
 does. Two further citation slips are recorded there: Tarascon & Armand is Nature
 414(**6861**), and "Macdonald (2005)" is Barsoukov & Macdonald as editors of the
 second edition, Macdonald alone having edited a differently titled first edition
@@ -266,7 +266,7 @@ other script defines one. `frequency.py`, `anomaly.py` and `throughput.py`
 reproduce §§2–6. `run_all.sh` runs everything offline in about a second;
 `results.log` is the output of one run. Reference verdicts are not duplicated
 here — they live with their evidence in
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## References
 

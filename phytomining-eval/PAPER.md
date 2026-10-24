@@ -33,7 +33,7 @@ oxidative stress and being exported by the cell, where the paper has biogenic
 gold "entirely blocking" it; and the cited phytomining review is about
 **removing** metal from soil and smelting it. Those three are set out with their
 verbatim evidence in the companion
-[`reference-audit`](https://github.com/karagos01/reference-audit) repository and
+[`reference-audit`](../reference-audit) repository and
 are summarised in §6 here.
 
 Two findings go the other way. The §1 premise — 30–50 % of applied nitrogen
@@ -65,7 +65,7 @@ effect it invokes is real physics with a real literature.
 "Maxwell", "octonion", "quaternion", "hypercomplex", "non-associative",
 "tensor" and "causal" all occur zero times. This deposit is one of six of the
 author's sixteen with none of it; the census is in
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## 2. One sentence states two densities 24 times apart
 
@@ -182,7 +182,7 @@ one of the two readings and has costed neither.
 ## 6. The references invert three of the load-bearing claims
 
 All six of this deposit's references were read for content in the companion
-[`reference-audit`](https://github.com/karagos01/reference-audit) repository,
+[`reference-audit`](../reference-audit) repository,
 which holds the verbatim evidence and records how far each work could be read.
 Three results bear directly on the claims above.
 
@@ -316,7 +316,7 @@ other script defines one. `density.py`, `isotopes.py` and `economics.py`
 reproduce §§2–5 and §7. `run_all.sh` runs everything offline in about a second;
 `results.log` is the output of one run. The reference verdicts are not duplicated
 here — they live with their evidence in
-[`reference-audit`](https://github.com/karagos01/reference-audit).
+[`reference-audit`](../reference-audit).
 
 ## References
 

@@ -291,10 +291,10 @@ libovolnou lokální operaci na libovolném Hilbertově prostoru.
 ## 11. Dostupnost dat
 
 Skripty, celý výstup (`results.log`) a tento text:
-<https://github.com/karagos01/causal-trilogy-eval>. Ty tři preprinty jsou volně
+<https://github.com/karagos01/mazgal-eval/tree/main/causal-trilogy-eval>. Ty tři preprinty jsou volně
 dostupné pod CC BY 4.0 na uvedených DOI. Doprovodná vyhodnocení dalších prací
-téhož autora: <https://github.com/karagos01/octonion-mppt-eval> a
-<https://github.com/karagos01/xternary-eval>.
+téhož autora: [`octonion-mppt-eval`](../octonion-mppt-eval) a
+[`xternary-eval`](../xternary-eval).
 
 ## Literatura
 
