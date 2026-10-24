@@ -1,0 +1,302 @@
+
+########## dimensions.py ##########
+
+0. Where the constants in this script come from
+
+       11  [P] from the preprint
+       15  [V] verified against a named source
+        6  [A] assumed range or choice
+
+1. Is 224 in the Cayley-Dickson tower?
+
+      the tower doubles at every step: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+      sedenions, the algebra the paper names: dimension 16   in the tower: True
+
+        12 in the tower: False
+       112 in the tower: False
+       224 in the tower: False
+       448 in the tower: False
+
+      224 = 2 x 112 = 224, and 112 is itself not in the tower.
+
+      So the doubling the paper invokes is not Cayley-Dickson doubling.
+      Cayley-Dickson doubling takes an algebra of dimension n to one of
+      dimension 2n starting from 1, which gives the powers of two and
+      nothing else; 112 and 224 are not among them.  Multiplying an
+      arbitrary number by two is a different operation that happens to
+      share the word.
+
+      And the sedenions are 16-dimensional, so "Sedenion architecture
+      (which is the mathematical foundation of the -224D space)" does not
+      connect: nothing in the sedenions has 224 of anything.  The algebra
+      is real, its zero divisors are real (zerodivisors.py Sec. 1-2), and
+      the dimension it lives in is 16.
+
+      Where 112 came from was already measured in openql-eval: the openQL
+      v1.0 sentence that derived it was deleted in v1.1 without being
+      replaced, so 224 is a doubling of a number the series no longer
+      offers a derivation for.
+
+2. The multiple-of-16 claim, which is correct
+
+      [V] WMMA tile granularity: 16 x 16
+
+        dim      /16   exact    tiles   MMA ops per node   occupancy
+         12    0.750   False    1x1                    1     56.25%
+        112    7.000    True    7x7                   49    100.00%
+        224   14.000    True   14x14                 196    100.00%
+
+      224 / 16 = 14 exactly, so Sec. 4 is right about
+      the alignment and right that it is not a hardware burden in the
+      sense of wasted lanes.  The 100 % saturation claim is also correct
+      as an occupancy statement.
+
+      Two things the section does not say.  112 / 16 = 7 is exact too, so
+      the alignment is inherited rather than gained -- doubling a multiple
+      of 16 stays a multiple of 16, for any such number.  And a 224D node
+      is 196 MMA operations, not one: the tiles are the unit the
+      hardware executes, and there are 196 of them per node.
+
+      The 12D layer is the one that never tiled: 12 / 16 = 0.75, so a
+      12x12 node fills 56.25 % of a single tile.  That layer is carried
+      unchanged from openQL and the alignment argument does not cover it.
+
+3. "Negative dimensions"
+
+      [P] Sec. 2 divides space into "positive (matter) and negative
+          (vacuum/antimatter) intensional nodes" at +/-12D, +/-112D, +/-224D
+
+      Dimension is a cardinality: the number of coordinates needed to
+      specify a point.  There is no vector space of dimension -224 over any
+      field, because there is no set with -224 elements in a basis.
+
+      What the paper describes -- a mirror copy of the state space holding
+      the antiparticle sector -- is a perfectly ordinary construction, and
+      it is MORE dimensions, not negative ones:
+
+           layer   positive   mirror   total state
+           +/-12         12       12            24
+          +/-112        112      112           224
+          +/-224        224      224           448
+       all three        348      348           696
+
+      So the engine's largest layer is a 448-dimensional state, which is
+      what the hardware has to hold and move.  Calling half of it negative
+      is a labelling of the two halves, not a property of the space, and
+      the costs in hardware.py are computed on the real figure.
+
+4. The dimensions the cited physics actually uses
+
+      [P] Sec. 2: "The positive 224D contains complete string theory and
+          supersymmetry (all possible vibrations of matter)."
+
+      [V] critical dimension, superstring theory        10
+      [V] critical dimension, bosonic string theory     26
+      [V] M-theory                                      11
+      [P] the layer said to contain it                 224
+
+          224 == 10:  False
+          224 == 26:  False
+          224 == 11:  False
+
+      The critical dimensions are not free parameters; they are fixed by
+      anomaly cancellation.  224 is not one of them, and the section gives
+      no embedding, compactification or other relation between the two
+      numbers.  This is recorded as an unsupported claim rather than a
+      measured defect: there is no construction here to check.
+
+########## zerodivisors.py ##########
+
+0. Where the constants in this script come from
+
+       11  [P] from the preprint
+       15  [V] verified against a named source
+        6  [A] assumed range or choice
+
+1. The Cayley-Dickson tower, built here and checked
+
+      dimensions in the tower: [1, 2, 4, 8, 16, 32, 64, 128, 256]
+
+        dim   commutative   associative   alternative   |xy| = |x||y|
+          1          True          True          True       0.00e+00
+          2          True          True          True       1.50e-16
+          4         False          True          True       0.00e+00
+          8         False         False          True       1.41e-16
+         16         False         False         False       1.10e-02
+
+      Norm multiplicativity holds up to dimension 8 and
+      fails at 16, which is exactly why zero divisors become possible there.
+      That is Moreno's result, and the preprint's reference [3] is the right
+      source for it: apt = True.
+
+2. A real sedenion zero divisor, found by search
+
+      Searching pairs e_i +/- e_j for a product of zero:
+      pairs found: 168
+      example:  (e1 + e10) x (e4 - e15) = 0
+        |a| = 1.4142,  |b| = 1.4142,  |a x b| = 0.00e+00
+
+      So the algebra claim of Sec. 3 is CORRECT.  Sedenions do have zero
+      divisors, they are constructible, and the paper's citation for them is
+      the right one.  This is the strongest part of the deposit and it is
+      confirmed here from first principles rather than taken on trust.
+
+3. But the engine does not need sedenions for this
+
+      The preprint's own equation is about MATRICES: "there exist non-zero
+      matrices A (positron) and B (electron)".  Zero divisors are ordinary
+      in any matrix algebra over a field.  The smallest example:
+        A = [[1.0, 0.0], [0.0, 0.0]]   non-zero: True
+        B = [[0.0, 0.0], [0.0, 1.0]]   non-zero: True
+        A @ B = [[0.0, 0.0], [0.0, 0.0]]   zero: True
+
+      non-zero 224x224 real pairs with A @ B = 0, out of 200 trials: 200
+
+      Any two singular matrices whose image and kernel line up multiply to
+      zero.  No exotic algebra is involved, and the property is available
+      at every dimension, not only at 224.  So the mechanism Sec. 3 reaches
+      for sedenions to obtain is one the hardware already has for free.
+
+4. The product cannot carry the energy away
+
+      ||A||_F     =      34.1038
+      ||B||_F     =     221.8755
+      ||A @ B||_F =   4.0555e-13
+
+      The product retains nothing of either operand's magnitude -- that is
+      what being zero means.  So "the release of an absolute tensor vector
+      into the energy register" cannot come from the product: there is no
+      quantity left in it to release.
+
+      To emit E = mc^2 the engine has to read ||A|| and ||B|| BEFORE the
+      multiply, keep them somewhere, and then notice that the matter
+      register went to zero in order to know to add them to the energy
+      register.  Noticing that is a comparison against zero, i.e. exactly
+      the "if (collision)" that Sec. 3 says is not needed.  The branch is
+      not removed; it is moved from before the multiply to after it.
+
+      And conservation runs the other way too: a zero product is reached by
+      any aligned singular pair, so an engine that emits energy whenever a
+      register hits zero emits it for every such pair, whether or not the
+      two operands were a particle and its antiparticle.
+
+5. The choice the architecture does not make
+
+      matrix multiplication is associative: True
+      sedenion multiplication is not (measured in Sec. 1 above)
+
+      The architecture needs WMMA, which is matrix multiplication, and
+      matrix multiplication is associative over any ring.  The mechanism
+      needs the sedenions, which are not.  Both cannot hold at once, and
+      the preprint asserts them in consecutive sections: Sec. 3 says the
+      zero divisors come from sedenion mathematics, Sec. 4 says the node is
+      an array of 14 x 14 WMMA blocks.
+
+      This is the same structural point openql-eval measured for the
+      octonions, where the span of the associators left 1 of 8 dimensions
+      surviving any matrix form.  The sedenions are a strictly larger
+      problem: they are not even alternative, as Sec. 1 shows.
+
+########## hardware.py ##########
+
+0. Where the constants in this script come from
+
+       11  [P] from the preprint
+       15  [V] verified against a named source
+        6  [A] assumed range or choice
+
+      hardware: RTX 3090, 142 TFLOP/s fp16 tensor, 936 GB/s, 1.70 GHz, 24 GiB
+
+1. "a single processor clock cycle"
+
+      whole-GPU fp16 throughput              83,529 FLOP/cycle
+
+            node   FLOP per product   cycles of the WHOLE GPU
+           12x12              3,456                     0.04
+         112x112          2,809,856                    33.64
+         224x224         22,478,848                   269.11
+
+      So one annihilation at 224D is 269 cycles of the entire card,
+      not one, and 8x worse than the 112D case openQL made the
+      same claim for -- which is what cubing the dimension does.
+
+      The claim is also of a kind the hardware cannot satisfy in principle:
+      a WMMA instruction has a latency of several cycles, a 224D node is
+      196 of them, and the operands have to be fetched first, which is the
+      next section.
+
+2. What a +/-224D node costs to hold
+
+           layer     one node    with mirror   pairs in VRAM
+           +/-12       0.3 KiB         0.6 KiB      44,739,243
+          +/-112      24.5 KiB        49.0 KiB         513,588
+          +/-224      98.0 KiB       196.0 KiB         128,397
+
+      At the +/-224D layer the card holds 128,397 node pairs, a cube
+      50 nodes on a side, state only -- nothing left for the rule
+      matrices, the ray state or an output image.
+
+      Against Sec. 5's tokamak application, at one node per particle:
+        nodes the card holds                          128,397
+        [A] particles in 1 mm^3 at 1e20 m^-3   100,000,000,000
+        shortfall                                     778,834x   (5.9 orders)
+
+      So the grid is about six orders of magnitude short of a single cubic
+      millimetre of plasma.  The density is an order-of-magnitude figure and
+      carries nothing here beyond the order of the shortfall.
+
+3. The step rate the bandwidth allows, for a fixed grid
+
+      A table over a card filled to capacity would be degenerate: filling
+      the card and sweeping it once is about two VRAM passes whatever the
+      node size, so every layer would return the same number by
+      construction.  The grid is therefore held fixed and the layer varied,
+      which is what makes the cost of the doubling visible.
+
+      [A] grid 1,000,000 node pairs
+
+           layer          state    bytes per sweep   sweeps/s  fits in VRAM
+           +/-12        0.54 GiB            1.07 GiB     812.50          True
+          +/-112       46.73 GiB           93.46 GiB       9.33         False
+          +/-224      186.92 GiB          373.84 GiB       2.33         False
+
+      112D -> 224D multiplies the traffic per sweep by 4x.
+
+      A million-node grid does not fit on the card at either of the two
+      upper layers.  For the largest grid that does fit at +/-224D:
+        node pairs                                    128,397
+        bytes per sweep                              48.00 GiB
+        sweeps/s                                        18.16
+      i.e. about 18 Hz for a 50-node cube.  Real time is 60.
+
+4. The roofline, which the doubling does not move
+
+           layer     state      matrix  overhead   W@s FLOP/B   W@S FLOP/B
+           +/-12     24 B      288 B       12x          6.0          6.0
+          +/-112    224 B   25,088 B      112x         56.0         56.0
+          +/-224    448 B  100,352 B      224x        112.0        112.0
+
+      The last two columns are equal at every layer, which is the result
+      openql-eval measured for 112 and which survives the doubling: the
+      matrix form sits at exactly the same point on the roofline as the
+      state it encodes, while costing d times the traffic and d times the
+      arithmetic.  Encoding d numbers as a d x d matrix buys no arithmetic
+      intensity at any d.
+
+      Which is the measured sense in which Sec. 4's "100% saturated" is
+      true and not useful.  The tiles are full -- that is what 224/16 = 14
+      exactly buys -- and the card is waiting on memory regardless.
+
+5. What the doubling costs, relative to openQL
+
+                      quantity           112D           224D    ratio
+         node footprint, bytes         25,088        100,352       4x
+        with the mirror, bytes         50,176        200,704       4x
+              FLOP per product      2,809,856     22,478,848       8x
+           WMMA tiles per node             49            196       4x
+
+      So the step from openQL to openOmega is 4x the memory per node, 8x
+      the arithmetic and 4x the tiles, before the mirror doubles the memory
+      again.  Sec. 4 presents it as costless because the alignment is
+      preserved; alignment is about waste inside a tile, not about how many
+      tiles there are.
