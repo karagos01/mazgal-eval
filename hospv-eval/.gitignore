@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+data/hospv.pdf
+data/record.json
+data/ASTMG173.csv.new
+data/hospv.txt

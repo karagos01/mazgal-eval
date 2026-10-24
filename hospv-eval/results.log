@@ -1,0 +1,655 @@
+### provenance of the constants
+provenance tags in constants.py
+  [P] from the preprint                   50
+  [V] verified against a named source     29
+  [A] assumed, and swept                   8
+
+### the reference spectrum, and the loss census of section 1
+==============================================================================
+ASTM G173-03 global tilt (AM1.5G)
+==============================================================================
+  data file                      data/ASTMG173.csv
+  sha256 matches constants.py    yes
+  samples                        2002
+  wavelength range               280 - 4000 nm
+  integrated irradiance          1000.371 W/m^2   (ASTM value 1000.4)
+
+  The preprint's two photon thresholds, from its own energies:
+    E(S1) donor    2.25 eV  ->    551.0 nm
+    E_g(IR)        1.12 eV  ->   1107.0 nm
+    the preprint writes 551 nm and 1107 nm: both correct
+
+  Photon-flux ceilings, one electron per photon, EQE = 1:
+    all photons above 1.12 eV           43.81 mA/cm^2
+    1.12 - 2.25 eV (the IR channel)     33.98 mA/cm^2
+    above 2.25 eV (the SF channel)       9.76 mA/cm^2
+
+==============================================================================
+The loss census of section 1
+==============================================================================
+  Section 1 attaches 'thermalisation about 30% of incident power' and
+  'sub-bandgap transmission about 20%' to the SQ optimum E_g = 1.34 eV.
+
+  E_g (eV)      sub-bandgap   thermalisation    left over
+  1.34                29.9%            23.2%        46.9%
+  1.12                19.2%            31.7%        49.1%
+  2.25                73.6%             4.4%        22.0%
+
+  The quoted pair, 30% thermalisation and 20% sub-bandgap, is the pair
+  for E_g = 1.12 eV (31.7% and 19.2%), that is, for silicon.  At the
+  1.34 eV the sentence names, the two are close to the other way
+  round: 23.2% thermalisation against 29.9% sub-bandgap.  The
+  conclusion the paragraph draws - that both losses are large and that
+  a single gap cannot avoid either - is unaffected.
+
+### section 6.2: the photocurrent integral
+==============================================================================
+The multiplication factor of the high-energy channel
+==============================================================================
+  eta_SF x eta_DET x EQE_BHJ = 1.85 x 0.92 x 0.90 = 1.5318
+  section 6.2 calls this EQE_high = 153% in the blue-green: correct
+
+==============================================================================
+The two channels of section 6.2
+==============================================================================
+                                                  measured   claimed
+  IR channel, 1.12-2.25 eV, at EQE = 0.85           28.89     28.50
+  SF channel, above 2.25 eV, at EQE = 1.53          14.95     23.80
+  total J_sc, mA/cm^2                               43.83     52.30
+
+  The infrared channel is right: 28.5 claimed against 28.89 measured,
+  an error of 1.3%, which is within the accuracy of reading a
+  spectrum off a chart.
+
+  The high-energy channel is not.  Photons above 2.25 eV carry
+  9.76 mA/cm^2 of charge if every one of them makes exactly one
+  electron.  The claimed 23.8 mA/cm^2 therefore needs
+    EQE_high = 23.8 / 9.76 = 244%
+  that is, 2.44 electrons per absorbed photon.
+  Singlet fission gives at most two.  The claim exceeds the ceiling of
+  its own mechanism by 22%, and exceeds the 153% it states by 59%.
+
+  Where the number could come from: 23.8 mA/cm^2 at EQE_high = 1.53
+  is the current of all photons above 1.96 eV, that is above 634 nm,
+  rather than above the 2.25 eV / 551 nm the same sentence
+  specifies - a shift of 294 meV.
+
+==============================================================================
+What the architecture's current can be
+==============================================================================
+  the preprint's own efficiencies                   43.83 mA/cm^2
+  perfect transfer and collection, eta_SF = 1.85    52.04 mA/cm^2
+  perfect everything, two triplets per singlet      53.50 mA/cm^2
+
+  For comparison, a plain 1.12 eV absorber with EQE = 1 and no fission
+  at all collects 43.81 mA/cm^2.
+  With the preprint's own quantum efficiencies the whole
+  fission-plus-Dexter cascade returns 43.83 mA/cm^2, which is the same
+  number to within 0.1%: the multiplication pays for the 0.85, 0.92
+  and 0.90 and nothing more.  The gain over silicon in this
+  architecture is not in the current; it is in collecting that current
+  at a voltage set by the 1.12 eV gap while the 0.85 and 0.90 losses
+  are absorbed by the doubling.
+
+==============================================================================
+Section 6.2's efficiency, recomputed
+==============================================================================
+                                                         J_sc      PCE
+  as published                                          52.30   35.58%
+  with J_sc from the preprint's own efficiencies        43.83   29.82%
+  with perfect fission, transfer and collection         53.50   36.40%
+
+  The published arithmetic is internally consistent:
+    52.3 x 0.81 x 0.840 / 100 = 0.3558, printed as 35.58%
+  It is the current entering it that the spectrum does not support.
+
+==============================================================================
+Can 220 nm of active layer absorb both bands?
+==============================================================================
+  Section 1 gives alpha ~ 1e5 /cm for organic absorbers; table 1 gives
+  a single 220 nm active layer holding both the fission donor and the
+  infrared acceptor, with a back reflector behind it.  Each absorber
+  therefore sees only its own share of the thickness.
+
+  acceptor       its path    single pass   with reflector
+  30        %         66 nm          48.3%            73.3%
+  40        %         88 nm          58.5%            82.8%
+  50        %        110 nm          66.7%            88.9%
+  60        %        132 nm          73.3%            92.9%
+  70        %        154 nm          78.6%            95.4%
+
+  To reach the 0.85 the infrared channel assumes at an even 50:50 split,
+  double pass, needs alpha >= 8.62e+04 /cm over the whole band.
+  To reach the 0.90 the fission channel assumes at an even 50:50 split,
+  double pass, needs alpha >= 1.05e+05 /cm over the whole band.
+
+  At the peak of an organic absorption band 1e5 /cm is ordinary, so
+  both numbers are reachable there.  The requirement is that alpha
+  stay near its peak across 1.12-2.25 eV for the acceptor, a 556 nm
+  wide window ending at its own absorption edge, where alpha of any
+  real absorber falls away.  This is not quantified here; it is
+  flagged as the assumption the 0.85 rests on.
+
+### the 45.9% limit, against the model it is cited from
+==============================================================================
+Three self-checks before anything is concluded
+==============================================================================
+  Shockley-Queisser, one carrier per photon
+    optimum at E_g = 1.335 eV, efficiency 33.77%
+    published value: 33.7% at 1.34 eV
+    at 1.34 eV exactly: 33.76%, J_sc 35.02 mA/cm^2, V_oc 1.084 V, FF 0.890
+
+  Carrier multiplication, unlimited: QY = floor(E / E_g)
+    optimum at E_g = 0.70 eV, efficiency 44.62%
+    reference [5]: 44.4% at 0.70 eV
+
+  Carrier multiplication capped at two per photon, which is what
+  singlet fission does, with a free doubling threshold
+    optimum at E_g = 0.94 eV, threshold 1.88 eV, efficiency 42.09%
+    same group, NREL/CP-590-38992: 42.0% at 0.95 eV
+
+  Three independent published values reproduced to better than
+  0.3 percentage points.  The model below is the same code.
+
+==============================================================================
+The limit of the HOS-PV 2.0 architecture
+==============================================================================
+  A single junction extracting at E_g(IR) = 1.12 eV, one electron per
+  photon between 1.12 and 2.25 eV, two above 2.25 eV.
+
+                                                             limit
+  plain single gap at 1.12 eV                               33.48%
+  Shockley-Queisser optimum, 1.34 eV                        33.76%
+  this architecture, at its own two energies                41.24%
+  best possible with a cap of two per photon                42.09%
+  published claim                                           45.90%
+
+  So the central idea works.  A single junction at 1.12 eV that
+  doubles above 2.25 eV does beat Shockley-Queisser, by 7.5 points,
+  and its J_sc of 53.6 mA/cm^2 and V_oc of 0.883 V are where the gain
+  comes from.  Exceeding the limit is not the problem.
+
+  The claimed figure is the problem.  45.9% is above the best that
+  doubling can do at any pair of energies whatsoever (42.09%), so no
+  choice of donor or acceptor reaches it, and it is 4.7 points above
+  the limit at the energies the preprint actually specifies.
+
+  Where 45.9% comes from is visible in the source it cites.
+  Reference [5] reports, in its abstract:
+    single gap, no multiplication                  33.7%
+    single gap, with multiplication                44.4%
+    ideal TWO-gap tandem, without and with CM      45.7% to 47.7%
+  45.9% is not the single-junction row.  It falls inside the two-gap
+  tandem range, in a paper whose single-junction answer is 44.4% for
+  unlimited multiplication and 42.0% for the doubling that singlet
+  fission actually performs.  The architecture's one selling point is
+  that it is a single junction.
+
+==============================================================================
+V_oc, FF and the non-radiative loss
+==============================================================================
+  radiative-limit V_oc at E_g = 1.12 eV
+    plain single gap                     0.8782 V
+    with the doubling above 2.25 eV      0.8834 V
+    section 6.2 states                   0.9000 V
+    difference                           17 mV, in the claim's favour
+
+  V_oc = V_oc,rad - dV_nr, with the preprint's dV_nr = 0.09 V:
+    from its own 0.90 V      0.90 - 0.09 = 0.810 V, printed as 0.81
+    from the measured limit  0.8834 - 0.09 = 0.793 V
+
+  What dV_nr = 0.09 V requires.  By the reciprocity relation
+  dV_nr = -(kT/q) ln EQE_EL:
+    dV_nr = 0.22 V  ->  EQE_EL = 1.91e-04   (achiral NFA blends, per section 6.2)
+    dV_nr = 0.09 V  ->  EQE_EL = 3.01e-02   (claimed for HOS-PV 2.0)
+  The step from 0.22 V to 0.09 V is a factor 158 in
+  electroluminescence quantum efficiency, from 0.02% to 3%.
+
+  Fill factor: the ideal-diode ceiling at V_oc = 0.81 V and n = 1 is
+  86.2% (Green's expression).  The claimed 84.0% is below it, so the
+  fill factor is the one headline number in section 6.2 that is
+  reachable as stated, though no organic cell has reached it.
+
+  Finally, how hard the claimed operating point is relative to its
+  own limit:
+    HOS-PV 2.0 against the measured limit         86.3% of limit
+    HOS-PV 2.0 against its claimed limit          77.5% of limit
+    c-Si record against Auger limit               92.9% of limit
+    best OPV today against SQ                     59.3% of limit
+  The projection asks an organic blend to reach a larger fraction of
+  its radiative limit than silicon has managed after fifty years.
+
+### sections 3 and 4: CISS and the Pauli spin blockade
+==============================================================================
+The published arithmetic of section 4.1
+==============================================================================
+  1 - eta_PB P^2 = 1 - 0.95 x 0.85^2 = 0.3136
+  section 4.1 states beta_eff = 0.314 beta_L and 68.6% suppression
+  measured: beta_eff = 0.3136 beta_L, suppression 68.64%
+  correct as written.
+
+==============================================================================
+eta_PB against the two times the same section gives for it
+==============================================================================
+  eta_PB = exp(-tau_ext / tau_s), with tau_s = 5 us and
+  tau_ext = 20 to 80 ns, both from section 4.1 itself.
+
+  tau_ext          eta_PB  beta_eff/beta_L    suppression
+       20 ns      0.9960           0.2804          72.0%
+       80 ns      0.9841           0.2890          71.1%
+
+  The stated eta_PB = 0.95 corresponds to tau_ext = 256 ns, not to
+  the 20-80 ns the same sentence gives.  The error is in the
+  preprint's own disfavour: its own times give eta_PB = 0.984 to
+  0.996 and a suppression of 72.0% rather than 68.6%, so the
+  conclusion of section 4.1 survives this correction and improves.
+
+==============================================================================
+But tau_ext follows from the mobility, which is the weak point
+==============================================================================
+  Section 4.1 defines tau_ext = d^2 / (2 mu V_int).  With the 220 nm
+  active layer of table 1 and V_int = 0.8 V, the transit time is set
+  by the mobility - and section 1 introduces organic blends as having
+  'low carrier mobilities' without giving a value.
+
+  mu (cm^2/Vs)       tau_ext     eta_PB  beta_eff/beta_L    suppression
+  1.0e-04            3025 ns     0.5461           0.6055          39.5%
+  3.2e-04             957 ns     0.8259           0.4033          59.7%
+  1.0e-03             302 ns     0.9413           0.3199          68.0%
+  3.2e-03              96 ns     0.9811           0.2912          70.9%
+  1.0e-02              30 ns     0.9940           0.2819          71.8%
+
+  At the bottom of the range, where a disordered blend actually sits,
+  the transit time is 3.0 us, comparable with the 5 us spin
+  lifetime rather than negligible against it, and the suppression
+  falls to 39.5%.  The 20-80 ns quoted in section 4.1 needs
+    tau_ext =  20 ns  ->  mu = 1.5e-02 cm^2/Vs
+    tau_ext =  80 ns  ->  mu = 3.8e-03 cm^2/Vs
+  which is one to two orders above a disordered bulk heterojunction
+  and at or beyond the best ordered organic films.  So the
+  mechanism's margin, tau_ext << tau_s, is real at high mobility and
+  gone at low mobility, and the preprint asserts the high end while
+  its introduction argues the low end.
+
+==============================================================================
+The spin statistics the suppression is measured against
+==============================================================================
+  Section 1 states that uncorrelated encounters form 25% singlet and
+  75% triplet, and section 4.1 blocks the triplet channel.  If the
+  triplet channel is blocked, what is left is the singlet fraction:
+    achiral device, spin statistics alone      beta_eff = 0.250 beta_L
+    section 4.1, chiral, P = 0.85              beta_eff = 0.314 beta_L
+  The chiral result is the larger of the two.  Unless beta_L is read
+  as the spin-blind Langevin coefficient - in which case an ordinary
+  achiral blend should already show 0.250 - the expression as written
+  does not improve on the statistics it replaces.  Reference [3],
+  Rao et al. 2013, which the preprint cites for the triplet drain, is
+  precisely the measurement of this spin control in achiral blends.
+
+==============================================================================
+What P_CISS = tanh(dE / 2kT) commits the design to
+==============================================================================
+  Read as written, the polarisation is a thermal population ratio, so
+  a polarisation measured at 300 K fixes the splitting:
+
+  P_CISS          required dE (meV)
+  0.75                      50.0
+  0.85                      64.5
+  0.90                      75.7
+
+  Holding that splitting fixed at 64.5 meV, the same formula then
+  predicts how the whole mechanism behaves with temperature - and a
+  solar cell does not run at 25 C:
+
+  T (degC)         P_CISS  beta_eff/beta_L    suppression
+  0                 0.879           0.2728          72.7%
+  25                0.850           0.3199          68.0%
+  45                0.827           0.3569          64.3%
+  59                0.810           0.3821          61.8%
+  85                0.780           0.4271          57.3%
+
+  This is a prediction, and a testable one: the suppression weakens
+  as the module heats up and strengthens in the cold.  Section 4.2
+  claims the opposite advantage, better low-irradiance winter
+  behaviour, for unrelated reasons; this is the cleaner signature.
+
+==============================================================================
+xi_SOC proportional to Z^4
+==============================================================================
+  Section 1 justifies the weak spin-orbit coupling of carbon with
+  'xi_SOC proportional to Z^4'.  Z^4 is the hydrogenic fine-structure
+  scaling, for an electron in a bare nuclear potential.  The
+  electrons that carry spin in a conjugated polymer are valence p
+  electrons, screened, and the exponent can be measured: the ground
+  term splitting of the halogens is exactly one valence np shell
+  stepped down one column of the periodic table.
+
+  element  Z      2P(3/2)-2P(1/2) (1/cm)
+  F        9                 404.141
+  Cl       17                882.351
+  Br       35               3685.240
+  I        53               7602.976
+
+  least-squares fit of ln(splitting) against ln(Z):
+    measured exponent          1.69
+    claimed in section 1       4.0
+    valence scaling in the review literature  2.0
+    worst fit residual         20%
+
+  So the exponent is 1.69, below even the Z^2 the review literature
+  gives for outermost electrons, and far from 4.  It does not change
+  the conclusion: from carbon to lead the measured trend still gives
+    measured         factor        83 between Z = 6 and Z = 82
+    Z^2              factor       187 between Z = 6 and Z = 82
+    Z^4 as claimed   factor     34886 between Z = 6 and Z = 82
+  Carbon's advantage is real whichever exponent is used.  Only the
+  size of it, and the law quoted for it, are wrong.
+
+### sections 2.2 and 5, and table 1: the materials
+==============================================================================
+The energy ordering of section 2.2, with the preprint's own numbers
+==============================================================================
+  Section 2.1 requires   E(S1) >= 2 E(T1)
+  Section 2.2 requires   E(S1) >= 2 E(T1) >= 2 E_CT >= 2 E_g(IR)
+  Section 2.2 specifies  E(S1) = 2.25 eV, E(T1) = 1.15 eV,
+                         E_g(IR) = 1.12 eV
+
+  2 E(T1) = 2.30 eV against E(S1) = 2.25 eV:
+    the first link fails by 50 meV.  The fission the architecture
+    rests on is endothermic by 50 meV, which is 1.9 kT at 25 C,
+    not exothermic as section 2.1 requires.
+  2 E(T1) = 2.30 eV against 2 E_g(IR) = 2.24 eV:
+    this link holds, with 60 meV to spare.
+
+  Endothermic fission is not fatal - tetracene is endothermic and
+  still efficient - but section 2.1 also demands 1/k_SF below 100 fs
+  to outrun singlet decay, and sub-100 fs fission is what exothermic
+  chromophores do.  The two requirements pull opposite ways.
+
+  What the ordering demands of a real chromophore:
+    E(T1) >= E_g(IR) = 1.12 eV   and   E(S1) >= 2 E(T1) >= 2.24 eV
+
+  chromophore     E(S1)    E(T1)     2T1-S1  T1 >= 1.12?  S1 >= 2 T1?
+  pentacene        2.20     0.86      -0.48           no          yes
+  tetracene        2.32     1.25       0.18          yes           no
+  rubrene          2.21     1.14       0.07          yes           no
+  the preprint     2.25     1.15       0.05          yes           no
+
+  Each of the three measured chromophores fails one of the two
+  conditions, and so do the preprint's own numbers.  Pentacene, the
+  one that fissions in 80 fs, has E(T1) = 0.86 eV: it cannot feed a
+  1.12 eV acceptor at all, because its triplets lie below the gap.
+  Rubrene comes closest and misses by 70 meV.  Table 1's named
+  donor, TIPS-tetracene, is a tetracene: endothermic, picoseconds.
+  The window is narrow rather than empty, and nothing in the
+  preprint is measured inside it.
+
+==============================================================================
+Layer 6: the altermagnetic collector
+==============================================================================
+  Table 1 specifies oriented RuO2(101) or MnTe, 40 nm, with a spin
+  splitting of ~0.8 eV; section 5.1 says 0.5-1.0 eV.
+
+  The splitting is right.  Angle-resolved photoemission on MnTe
+  measures 0.37 eV and 0.80 eV in two independent studies, so the
+  0.8 eV in table 1 is the published number for the material named.
+  Reference [7], Smejkal, Sinova and Jungwirth, Phys. Rev. X 12,
+  040501 (2022), is the right citation for altermagnetism, correctly
+  attached, and the symmetry argument in section 5.1 - rotation
+  rather than translation or inversion, hence spin-split bands where
+  a collinear antiferromagnet has none - is stated correctly.
+
+  What is not stated is the temperature at which it stops.
+
+                                        T (K)
+  MnTe Neel temperature, measured       267 - 307
+  standard test conditions             298.15
+  typical module NOCT                  318.15
+  measured NOCT, thin film             332.15
+  IEC 61215 upper qualification        358.15
+
+  A module in the field runs above MnTe's ordering temperature on
+  both published values.  At the 332 K measured for a thin-film
+  module under the IEC 61215 method, the collector is 25 to 65 K
+  into its paramagnetic phase, where the spin splitting that layer 6
+  exists for is zero.  Even standard test conditions, 298.15 K, sit
+  at or above the lower published value.
+
+  The alternative named first, RuO2, has the opposite problem: its
+  ordering temperature is well above room temperature, but whether
+  it is magnetically ordered at all has been contested since 2024.
+  Muon spin rotation and neutron diffraction put the bulk moment
+  below 1.4e-4 muB/Ru, with the dissent coming from thin films and
+  surfaces - which is the form table 1 specifies, so the question is
+  open rather than closed against it.  Either way, the two materials
+  offered for layer 6 are the one whose magnetism is disputed and
+  the one that orders below the cell's operating temperature.
+
+==============================================================================
+Table 2: specific power of at least 10,000 W/kg
+==============================================================================
+  Layer by layer, at mid-range for the three assumed values:
+
+  layer                             g/m^2      share
+  1 substrate, PEN                 68.000      56.3%
+  2 ITO anode                       0.714       0.6%
+  3 c-SAM hole layer                0.002       0.0%
+  4 active layer                    0.264       0.2%
+  5 MgO tunnel barrier              0.004       0.0%
+  6 altermagnet, RuO2               0.279       0.2%
+  6 back reflector, Ag              1.573       1.3%
+  7 encapsulation                  50.000      41.4%
+  total                           120.836
+
+  The 50 um substrate and the 25 um encapsulation are 97.7% of the
+  mass and do no physics.  Everything that does - the two absorbers,
+  the electrodes, the barrier and the altermagnet - is 2.84 g/m^2.
+
+  Specific power, across the full range of the three assumptions:
+
+                                        g/m^2           W/kg
+  lightest case, PCE as claimed         115.3           3087
+  heaviest case, PCE as claimed         126.4           2815
+  mid case, PCE as claimed              120.8           2944
+  mid case, PCE recomputed              120.8           2468
+  claimed in table 2                        -          10000
+
+  The claim is short by a factor 3.4 at every corner of the sweep.
+  To reach 10,000 W/kg at the claimed 35.6% the whole cell must
+  weigh 35.6 g/m^2.  The functional stack already weighs 2.84 g/m^2,
+  so the packaging budget is 32.7 g/m^2 against the 118.0 g/m^2 that
+  table 1's 75 um of polymer actually weighs.
+  At a mean packaging density of 1.68 g/cm^3 that is 19 um of
+  polymer in total, against the 75 um of table 1.  The claim
+  is reachable for a free-standing ultrathin cell, which is where
+  the 5,000-10,000 W/kg figures in that column come from; it is not
+  reachable for the stack in table 1.
+
+==============================================================================
+What 52.3 mA/cm^2 costs the rest of the stack
+==============================================================================
+  A higher current makes every series resistance matter more.  The
+  fill-factor loss from series resistance is about
+  dFF/FF = R_s J_sc / V_oc, so the budget for layers 2, 3 and 5
+  together, to hold the claimed FF to within one point, is:
+
+  J_sc (mA/cm^2)            R_s for 1 point   R_s for 5 points
+  42.8                      0.189 ohm.cm^2    0.946 ohm.cm^2
+  52.3                      0.155 ohm.cm^2    0.774 ohm.cm^2
+
+  The 42.8 mA/cm^2 row is the silicon cell in table 2, for scale.
+  The whole stack above the absorber - a 100 nm ITO film, a 1.5 nm
+  chiral monolayer and a 1.2 nm MgO tunnel barrier in series - has
+  to come in under 0.15 ohm.cm^2.  Nothing here says it cannot; the
+  point is that the claimed current tightens that budget by a
+  further 22% relative to a silicon cell, while adding two layers
+  in series that a silicon cell does not have.
+
+### the vocabulary of the series, in this deposit
+==============================================================================
+The vocabulary of the series, in this deposit
+==============================================================================
+  tensor                  0
+  tensor core             0
+  octonion                0
+  quaternion              0
+  sedenion                0
+  hypercomplex            0
+  non-associative         0
+  associator              0
+  causal                  0
+  intensional             0
+  maxwell                 0
+  zero divisor            0
+  GPU                     0
+  CUDA                    0
+  RTX                     0
+  clock cycle             0
+  Theory of Everything    0
+  Gemini                  0
+
+  total occurrences of the series vocabulary: 0
+
+  This is the first deposit of the eighteen with no tensor in it at
+  all, no hypercomplex algebra, no causal logic, and no named
+  graphics card.  Its mechanisms are drawn from the literature of
+  its own field instead:
+
+  singlet fission     10
+  Dexter              10
+  chiral              30
+  CISS                21
+  altermagnet         18
+  Pauli                7
+  spin                70
+  Shockley-Queisser    4
+  detailed balance     1
+  drift-diffusion      1
+  Langevin             5
+  triplet             18
+  quantum yield        2
+  phonon               1
+  exciton             11
+  EQE                  6
+  AM1.5G               9
+
+==============================================================================
+Form
+==============================================================================
+  references listed                          7
+  occurrences of the author's own name       1
+  self-citations in the reference list       0
+  unfilled ORCID placeholder                 absent
+  'Gemini AI' credited as an author          no
+
+  Earlier deposits in the series carry an unfilled ORCID field in
+  the PDF header; three of them credit or cite 'Gemini AI'; several
+  cite each other.  This one does none of that.  Its seven
+  references are all external, all real, and each is attached to a
+  claim it genuinely supports - which, measured across the series in
+  the reference-audit repository, is not the usual case.
+  The reference that carries the central number, [5], is the one
+  that does not support it, and that is a misreading of a row in a
+  table rather than an invented citation.
+
+### the preprint against itself: the same quantity twice
+==============================================================================
+Quantities the preprint gives two values for
+==============================================================================
+  Both values in every row are the preprint's own, and so is the
+  arithmetic between them.
+
+  1. The absorption edge of the fission donor
+       section 2.2        2.25 eV (551 nm), stated
+       section 6.2        1.96 eV (634 nm), the edge its own 23.8 mA/cm^2
+                          needs at its own EQE_high = 1.53
+       disagreement       294 meV
+
+  2. E(S1) of the donor
+       section 2.2        2.25 eV, stated
+       section 2.1        at least 2.30 eV, required by E(S1) >= 2 E(T1)
+       disagreement       50 meV, so the fission is endothermic by 1.9 kT
+
+  3. Electrons per absorbed photon above the edge
+       section 6.2        1.53, stated as EQE_high = 153%
+       section 6.2        2.44, required by its own 23.8 mA/cm^2 over the
+                          9.76 mA/cm^2 the spectrum carries above 2.25 eV
+       disagreement       59%, and 22% over fission's own ceiling of two
+
+  4. tau_ext, the extraction transit time
+       section 4.1        20 to 80 ns, stated
+       section 4.1        256 ns, required by its own eta_PB = 0.95 through
+                          its own eta_PB = exp(-tau_ext / tau_s), tau_s = 5 us
+       disagreement       a factor 3.2 to 12.8, in the preprint's favour
+
+  5. eta_PB, the same inconsistency read the other way
+       section 4.1        0.95, stated
+       section 4.1        0.9841 to 0.9960, from the two times in the same
+                          sentence; the suppression is then 71.1%, not 68.6%
+       disagreement       2.5 points of suppression, in the preprint's favour
+
+  6. Carrier mobility of the active layer
+       section 1          "low carrier mobilities", no number, used to
+                          introduce the recombination problem
+       section 4.1        3.8e-03 to 1.5e-02 cm^2/Vs, required by the 20 to
+                          80 ns above through tau_ext = d^2/(2 mu V) and
+                          table 1's 220 nm
+       disagreement       one to two orders of magnitude, against itself
+
+  7. Spin splitting the mechanism runs on
+       table 1, layer 6   ~0.8 eV, and 0.5 to 1.0 eV in section 5.1
+       section 4.1        64.5 meV, required by its own P_CISS = 0.85 through
+                          its own P_CISS = tanh(dE / 2kT) at 298.15 K
+       disagreement       a factor 12.4
+
+  8. Specific power of the cell
+       table 2            at least 10000 W/kg, stated
+       table 1            2944 W/kg, from its own seven thicknesses at its own
+                          PCE of 35.58%, 120.8 g/m^2 of stack
+       disagreement       a factor 3.4
+
+==============================================================================
+What holds
+==============================================================================
+  The same test applied to every other quantity that appears twice.
+  Each of these is a single expression evaluated inside one
+  sentence, and each comes out right:
+
+  quantity                                recomputed  as published     check
+  --------------------------------------------------------------------------
+  EQE_high = 1.85 x 0.92 x 0.90               1.5318  153% (6.2)       ok
+  1 - eta_PB P_CISS^2                         0.3136  0.314 (4.1)      ok
+  the suppression that follows                 68.6%  68.6% (4.1)      ok
+  P_CISS of the worked example                  0.85  0.75-0.90 (3.2)  ok
+  splitting of table 1                        0.8 eV  0.5-1.0 eV (5.1) ok
+  V_oc = 0.90 V - 0.09 V                      0.81 V  0.81 V (6.2)     ok
+  PCE = J_sc V_oc FF / P_in                   35.58%  35.58% (6.2)     ok
+  2 E(T1) >= 2 E_g(IR), the second link 2.30 >= 2.24 eV  required by 2.2  ok
+
+  8 of 8 hold.  Every arithmetic step the preprint performs it
+  performs correctly.  What disagrees is never the algebra; it is
+  always the numbers put into it.
+
+==============================================================================
+Row 1 is not an inconsistency but an exclusion
+==============================================================================
+  The other seven rows could each be repaired by choosing one of
+  the two values.  Row 1 cannot, because section 2.2's own
+  thermodynamic ordering fixes which value is allowed:
+
+      E(S1_D) >= 2 E(T1_D) >= 2 E_CT >= 2 E_g(IR)
+
+  2 E_g(IR) = 2.24 eV, so the chain forbids any donor whose S1 lies
+  below that.  The edge its photocurrent needs is 1.96 eV, which is
+  284 meV below the floor.
+
+  Read the other way, a donor with E(S1) = 1.96 eV may have at most
+  E(T1) = 0.98 eV, and that is 142 meV *below* the 1.12 eV gap of
+  the acceptor it is supposed to feed, so the Dexter step of
+  section 2.2 would run uphill and the cascade would not exist.
+
+  So the two values are mutually exclusive rather than merely
+  different: either the high-energy channel carries 14.95 mA/cm^2
+  and not 23.8, or the energy cascade the architecture is built
+  from is thermodynamically forbidden.  Nothing outside the
+  preprint is needed to reach that.
