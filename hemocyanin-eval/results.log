@@ -1,0 +1,214 @@
+
+########## oxygen.py ##########
+
+0. Where the constants in this script come from
+
+        5  [P] from the preprint
+       11  [V] verified against a named source
+        5  [A] assumed range, swept
+
+      The preprint reports no measured quantity of any kind, so every
+      number below is either [V] from the literature or [A] and swept.
+
+1. Oxygen-carrying capacity
+
+      fluid                        vol%    vs human
+      human arterial blood        20.00       1.00x
+      Cancer magister              3.44        5.8x
+      Octopus dofleini             3.06        6.5x
+      Nautilus pompilius           2.30        8.7x
+      Octopus vulgaris             1.37       14.6x
+      cephalopod ceiling           4.50        4.4x
+
+      So hemocyanin carries 4.4 to 14.6 times less oxygen per
+      unit volume than human blood, taking the most generous published
+      ceiling at one end and a measured octopus at the other.
+
+      And it cannot be fixed by concentrating it.  From the paper the
+      preprint's own first citation garbles:
+
+        "a low molecular weight monomeric protein dissolved in the hemolymph is not efficient for oxygen transport"
+        "If its concentration in the hemolymph is high enough to transport a significant amount of oxygen, it will yield an unbearably high osmotic pressure."
+
+      Haemoglobin evades that by being packed inside erythrocytes, where it
+      is osmotically invisible.  Hemocyanin is dissolved in the haemolymph,
+      so its concentration is capped by colloid osmotic pressure and
+      viscosity.  The capacity gap is structural, not a matter of degree.
+
+2. What a human resting metabolism requires of the circulation
+
+  [V] resting oxygen consumption           3.5 mL O2/kg/min  (1 MET)
+      for a 70 kg adult                  245.0 mL O2/min
+
+      [A] cardiac output at rest      4.0 - 6.0 L/min
+
+        cardiac output    a-v difference required
+                4.0 L/min                  6.12 vol%
+                6.0 L/min                  4.08 vol%
+
+      For reference, human arterial blood is 20 vol% and venous blood about
+      15, so the measured arteriovenous difference at rest is about 5 vol% --
+      which is what this calculation reproduces.  The arithmetic is
+      therefore calibrated against the system it describes.
+
+3. The same requirement, met with hemocyanin
+
+      Extraction cannot be complete: unloading needs a partial-pressure
+      gradient, so some oxygen always returns in the venous fluid.
+
+      [A] extraction fraction         25% - 75%
+
+        capacity  extraction   delivered   cardiac output needed   vs human
+         4.50          25%     1.12 vol%               21.8 L/min       4.4x
+         4.50          75%     3.38 vol%                7.3 L/min       4.4x
+         1.37          25%     0.34 vol%               71.5 L/min      14.6x
+         1.37          75%     1.03 vol%               23.8 L/min      14.6x
+
+      At the published cephalopod ceiling and a generous 75% extraction
+      a resting human needs 7.3 L/min of cardiac output, above the
+      normal resting range; at the measured O. vulgaris capacity it is
+      24 to 72 L/min, against a maximal human cardiac
+      output of roughly 20-25 L/min in a trained athlete.
+
+      So the proposal fails at rest, before any activity is considered.
+
+4. And activity is where it fails by more
+
+      [A] VO2max as a multiple of resting   8 - 20 x
+
+        exertion          VO2  cardiac output with hemocyanin at the ceiling
+            rest       245 mL/min                                        7 L/min
+         8x rest      1960 mL/min                                       58 L/min
+        20x rest      4900 mL/min                                      145 L/min
+
+      The preprint claims thermoregulatory independence and a lifespan of
+      centuries for an organism whose oxygen delivery cannot support it
+      sitting still.
+
+5. Why the animals that do use hemocyanin are not a counterexample
+
+      Squid reach mass-specific metabolic rates comparable to mammals, which
+      is the strongest argument available for the preprint and is worth
+      stating.  They do it by moving far more fluid, and the cost is named
+      by the people who measured it:
+
+        "The constraint on power output in squids is clearly not oxygen uptake, but oxygen transport in the blood"
+
+      -- i.e. the limit on a squid is precisely the quantity the preprint
+      proposes to adopt.  They also run a Bohr effect of -1.2 to -2.3
+      against the human -0.35 to -0.5, venous saturations around 14 %, and
+      effectively no aerobic scope.  The largest hemocyanin animal, the
+      colossal squid, is an ambush predator with a metabolic rate orders
+      below an active squid of the same clade.
+
+6. Protein mass per oxygen carried, for the mechanism behind the gap
+
+      [A] haemoglobin: 4 O2 per 64.5 kDa tetramer =  16.1 kDa per O2
+      [A] hemocyanin:  1 O2 per binuclear site, 50-100 kDa per O2
+      ratio                                3.1 - 6.2 x the protein mass per O2
+
+      That bracket, 3 to 6 times, is the same size as the measured capacity
+      gap of 4.4 to 14.6 times, which is what one would expect if the
+      difference is largely stoichiometric and partly osmotic.  Both figures
+      here are [A] and this section is an explanation of the gap rather than
+      evidence for it; the capacity measurements in Sec. 1 are the evidence.
+
+########## genetics.py ##########
+
+0. Where the constants in this script come from
+
+        5  [P] from the preprint
+       11  [V] verified against a named source
+        5  [A] assumed range, swept
+
+1. Is there a gene to switch on?
+
+  [V] hemocyanin family                hemocyanin/hexamerin + tyrosinase binuclear type-3 copper centre (IPR013788)
+      genes of that family in Vertebrata (taxon 7742)       0
+      same query restricted to Chordata (taxon 7711)        0
+
+  [V] human genes carrying the tyrosinase domain the hemocyanins grew from:
+      TYR, TYRP1, DCT
+      and the active site of TYRP1 holds zinc, not
+      copper -- "Because zinc ions, in contrast to copper ions, are not
+      redox-active" -- so it is not even a latent oxygen binder.
+
+      An epigenetic mechanism can change which of an organism's genes are
+      expressed.  It cannot express a gene the lineage does not have.  There
+      is nothing here to unlock, which makes this a precondition failure
+      rather than a question of degree.
+
+2. How the preprint uses the word
+
+  [P] "epigenetic" and its forms           8 occurrences
+      methylation                           0
+      histone                               0
+      chromatin                             0
+      measured quantities reported          0
+
+      So the word carries the argument eight times without any of the three
+      mechanisms it names appearing once.  And the reference glossed as the
+      "baseline framework for understanding the epigenetic adaptation of
+      organisms to extreme environmental metal concentrations" --
+      Tchounwou et al. 2012 -- contains:
+      "epigenet"                            0 occurrences
+
+3. The molecular bridge the preprint names, and its own source
+
+  [P] ceruloplasmin is "the fundamental human protein for copper transport
+      in the blood" and is "structurally related to invertebrate
+      hemocyanins"
+
+  [V] Hellman & Gitlin, the cited review, abstract:
+        "Ceruloplasmin is a serum ferroxidase"
+        "Despite the need for copper in ceruloplasmin function, this protein plays no essential role in the transport or metabolism of this metal."
+
+  [V] ceruloplasmin family             multicopper oxidase, cupredoxin fold (IPR045087)
+      hemocyanin family                hemocyanin/hexamerin + tyrosinase binuclear type-3 copper centre (IPR013788)
+      domain intersection              empty
+
+      Different superfamily, different fold, different class of copper site:
+      ceruloplasmin carries type-1 plus a trinuclear T2/T3 cluster, the
+      hemocyanins a binuclear type-3 centre.  And ceruloplasmin's
+      physiological role runs through IRON efflux, which is the opposite of
+      the direction the preprint needs.  This is its only concrete molecular
+      link between humans and hemocyanin, and the cited abstract denies it
+      in so many words.
+
+4. Copper is redox-active too, from the preprint's own reference
+
+  [P] the proposal rests on copper binding oxygen "without generating a
+      cascade of destructive free radicals" and on "absolute resistance to
+      oxidative stress (absence of the Fenton reaction)"
+
+  [V] Tchounwou et al. 2012, the preprint's fourth reference:
+        "it is this property of copper that also makes it potentially toxic because the transitions between Cu(II) and Cu(I) can result in the generation of superoxide and hydroxyl radicals."
+
+      Hydroxyl radicals are the species the Fenton reaction is named for.
+      The argument for replacing iron is that it generates them; the cited
+      source attributes the same chemistry to copper. Both metals are redox
+      couples, which is why both can carry oxygen and why neither is inert.
+
+5. The one real precedent, which runs the other way
+
+      This is the strongest thing available to the proposal and the preprint
+      does not cite it.  Pigment class really has been replaced in an animal
+      lineage:
+
+  [V]   "snails of the family Planorbidae are unique among gastropods in that they have replaced the ancestral (blue) hemocyanin as an oxygen-carrier with secondarily evolved hemoglobin"
+
+      So a switch is possible in principle.  Two problems.  The direction is
+      from hemocyanin TO haemoglobin, and the reason given is the one this
+      whole repository measures:
+
+  [V]   "B. glabrata hemoglobin evolved from pulmonate myoglobin, possibly to replace a less-efficient hemocyanin"
+
+      And it is not reversible:
+  [V]   "Once lost, hemocyanin was not regained."
+
+      Three further findings that genuinely support parts of the idea, also
+      uncited by the preprint, are recorded in PAPER.md Sec. 6: hemocyanin
+      genes persist in the genome after a switch, the same cell type makes
+      either pigment in different snails, and hemocyanin expression is
+      upregulated up to tenfold under hypoxia.  None of them reaches across
+      to a lineage that has no hemocyanin gene at all.
