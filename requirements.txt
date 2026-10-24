@@ -1,0 +1,7 @@
+# Union of every subdirectory's requirements.  Each evaluation has its own,
+# narrower requirements.txt, and that is what its run_all.sh expects.
+numpy>=1.24
+sympy>=1.12          # octonion-mppt-eval only
+torch                # xternary-eval only, needs one CUDA GPU
+transformers         # xternary-eval only
+datasets             # xternary-eval only
