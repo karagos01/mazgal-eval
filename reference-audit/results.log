@@ -1,0 +1,498 @@
+
+########## carrier.py ##########
+
+1. Per deposit
+
+  record     deposit                 ext  self  in-text  gloss  carrier for a hidden defence?
+  --------------------------------------------------------------------------------------
+  22876757   Acoustic Projector        6     0        5      0  yes, 5 reference(s) attached to a sentence
+  22877345   X-Ternary                 5     0        0      0  none -- nothing is attached to anything
+  22877912   MPPT v1.0                 0     0        0      0  none -- no reference list at all
+  22914238   MPPT v1.1                 0     0        0      0  none -- no reference list at all
+  22923154   COBAR                     5     0        0      0  none -- nothing is attached to anything
+  22934058   Momentum Drive            8     0        0      0  none -- nothing is attached to anything
+  22959886   CQFT                      0     0        0      0  none -- no reference list at all
+  22962188   PCTP                      5     1        0      0  none -- nothing is attached to anything
+  22962557   SOTP                      5     2        2      0  yes, 2 reference(s) attached to a sentence
+  23112560   openQL v1.0               5     0        0      5  partial, 5 gloss(es) state what each establishes
+  23156927   Cymatic                   5     0        0      0  none -- nothing is attached to anything
+  23174932   Phytomining               6     0        0      6  partial, 6 gloss(es) state what each establishes
+  23186884   Na-ion HFRS               5     0        0      0  none -- nothing is attached to anything
+  23209266   Hemocyanin                4     1        0      4  partial, 4 gloss(es) state what each establishes
+  23241148   openQL v1.1               5     0        0      0  none -- nothing is attached to anything
+  23241777   Intensional Physics       5     0        0      0  none -- nothing is attached to anything
+  23263528   openOmega                 5     0        0      0  none -- nothing is attached to anything
+  23364732   HOS-PV 2.0                7     0        7      0  yes, 7 reference(s) attached to a sentence
+  --------------------------------------------------------------------------------------
+             TOTAL                    81     4       14     15
+
+2. The corpus as a whole
+
+  Zenodo records                                        18
+  distinct works (openQL and MPPT each have two versions)  16
+  external reference entries                            81
+    attached to a sentence by an in-text marker         14   (17.3%)
+    carrying only a parenthetical gloss                 15   (18.5%)
+    with no stated relation to any claim                52   (64.2%)
+  self-citations                                         4
+
+  deposits with no reference list at all    3   MPPT v1.0, MPPT v1.1, CQFT
+  deposits citing a reference in the body   3   Acoustic Projector, SOTP, HOS-PV 2.0
+  deposits glossing every reference         3   openQL v1.0, Phytomining, Hemocyanin
+  deposits with references but no link      9   X-Ternary, COBAR, Momentum Drive, PCTP, Cymatic, Na-ion HFRS, openQL v1.1, Intensional Physics, openOmega
+
+3. What that means for the claim being tested
+
+  3 deposits have no references, so there is nothing for a defence to hide in.
+  9 deposits list 48 references with no stated relation to any claim,
+  and 4 more sit unlinked inside deposits that link some of their references (Acoustic Projector 1, SOTP 3).
+  For those 52 a reader cannot tell which claim any of them would defend.
+  That leaves 6 deposits (29 references) where the link is stated and the
+  claim is therefore testable.  Those are audited in refdata.py.
+
+########## audit.py ##########
+
+1. Verdicts, by deposit
+
+  Acoustic Projector  (22876757)
+    ^ [1]        PARTIAL     [full-text     ] Klippel, W. (2006). Tutorial: Loudspeaker Nonlinearities -
+    ^ [2]        NO SUPPORT  [full-text     ] Mandelbrot, B. B. (1983). The Fractal Geometry of Nature. 
+    ^ [3]        PARTIAL     [full-text     ] Baez, J. C. (2002). The Octonions. Bull. AMS 39(2), 145-20
+    ^ [4]        PARTIAL     [full-text     ] Canaan Inc. (2018). Kendryte K210 Standalone Commercial Ed
+    ^ [5]        REFUTES     [full-text     ] Texas Instruments. (2018). TPA3116D2 50-W Stereo Class-D A
+      [6]        UNRESOLVED  [none          ] Putland, P. A. (1993). Active Control of Loudspeakers. Aud
+
+  X-Ternary  (22877345)
+      1          PARTIAL     [full-text     ] Ma, S., et al. (2024). The Era of 1-bit LLMs: All Large La
+      2          REFUTES     [full-text     ] NVIDIA Corporation. (2024). NVIDIA Hopper Architecture In-
+      3          NO SUPPORT  [full-text     ] Kirkpatrick, J., et al. (2017). Overcoming catastrophic fo
+      4          NO SUPPORT  [full-text     ] Schulman, J., et al. (2017). Proximal Policy Optimization 
+      5          REFUTES     [full-text     ] Ouyang, L., et al. (2022). Training language models to fol
+
+  MPPT v1.0              -- no reference list
+  MPPT v1.1              -- no reference list
+  COBAR  (22923154)
+      [1]        PARTIAL     [full-text     ] Tesla, N. (1894). Coil for Electro-Magnets. U.S. Patent 51
+      [2]        NO SUPPORT  [metadata      ] Beranek, L. L., & Mellow, T. (2012). Acoustics: Sound Fiel
+      [3]        NO SUPPORT  [abstract      ] Klippel, W. (1992). Dynamic Measurement and Interpretation
+      -> resolves to: J. Audio Eng. Soc. 38(12), 944-955 (1990) -- the year in the citation is wrong
+      [4]        NO SUPPORT  [full-text     ] Griffiths, D. J. (2017). Introduction to Electrodynamics (
+      [5]        NO SUPPORT  [full-text     ] Jirsak, O., Sanetrnik, F., Pelka, F., Lukas, D., & Kotek, 
+
+  Momentum Drive  (22934058)
+      [1]        REFUTES     [abstract      ] Demokritov, S. O., et al. (2006). Bose-Einstein condensati
+      [2]        NO SUPPORT  [full-text     ] Zhu, H., et al. (2018). Observation of chiral phonons. Sci
+      [3]        NO SUPPORT  [full-text     ] Nagaosa, N., & Tokura, Y. (2013). Topological properties a
+      [4]        NO SUPPORT  [full-text     ] Levin, M. A., & Wen, X. G. (2005). String-net condensation
+      [5]        NO SUPPORT  [full-text     ] Google Quantum AI and Collaborators. (2023). Non-Abelian b
+      [6]        NO SUPPORT  [full-text     ] Xiao, D., Chang, M. C., & Niu, Q. (2010). Berry phase effe
+      [7]        NO SUPPORT  [full-text     ] Kikkawa, T., et al. (2016). Magnon polarons in the spin Se
+      [8]        PARTIAL     [abstract      ] Hashimoto, Y., Koike, Y., & Ueha, S. (1996). Near-field ac
+
+  CQFT                   -- no reference list
+  PCTP  (22962188)
+      [1]        PARTIAL     [author-summary] Adler, S. L. (1995). Quaternionic Quantum Mechanics and Qu
+      [2]        NO SUPPORT  [full-text     ] Shen, Y., et al. (2017). Deep learning with coherent nanop
+      [3]        NO SUPPORT  [abstract      ] Allen, L., Beijersbergen, M. W., Spreeuw, R. J., & Woerdma
+      [4]        PARTIAL     [abstract      ] Bi, L., et al. (2011). On-chip optical isolation in monoli
+      -> resolves to: the real title is '...non-reciprocal optical RESONATORS'
+      [5]        REFUTES     [full-text     ] Doherty, M. W., et al. (2013). The nitrogen-vacancy colour
+
+  SOTP  (22962557)
+    ^ [3]        PARTIAL     [full-text     ] Furey, C. (2016). Standard Model Physics from an Algebra? 
+    ^ [4]        PARTIAL     [author-summary] Dixon, G. M. (1994). Division Algebras: Octonions, Quatern
+      [5]        NO SUPPORT  [abstract      ] Fert, A., Reyren, N., & Cros, V. (2017). Magnetic skyrmion
+      [6]        REFUTES     [full-text     ] Manchon, A., et al. (2019). Current-induced spin-orbit tor
+      [7]        SUPPORTS    [full-text     ] Baez, J. C. (2002). The octonions. Bull. AMS 39(2), 145-20
+
+  openQL v1.0  (23112560)
+    ~ [1]        PARTIAL     [full-text     ] Kuipers, J. B. (1999). Quaternions and Rotation Sequences.
+    ~ [2]        NO SUPPORT  [full-text     ] Raissi, M., Perdikaris, P., & Karniadakis, G. E. (2019). P
+    ~ [3]        PARTIAL     [full-text     ] Markidis, S., et al. (2018). NVIDIA tensor core programmab
+    ~ [4]        PARTIAL     [full-text     ] Mildenhall, B., et al. (2020). NeRF: Representing Scenes a
+    ~ [5]        NO SUPPORT  [full-text     ] Baez, J. C. (2002). The Octonions. Bull. AMS 39(2), 145-20
+
+  Cymatic  (23156927)
+      Hassanien  REFUTES     [abstract      ] Hassanien et al. (2014), the review the preprint cites for
+
+  Phytomining  (23174932)
+    ~ 1          REFUTES     [author-summary] Buchachenko, A. L. (2009). Magnetic Isotope Effect in Chem
+      -> resolves to: the real title is '...in Chemistry and BIOCHEMISTRY' (WorldCat OCLC 847652591)
+    ~ 2          PARTIAL     [full-text     ] Cotruvo, J. A. (2019). The Chemistry of Lanthanides in Bio
+    ~ 3          PARTIAL     [full-text     ] Lehmann, J., et al. (2011). Biochar effects on soil biota 
+    ~ 4          REFUTES     [full-text     ] Reith, F., et al. (2006). Mechanisms of gold biomineraliza
+      -> resolves to: Reith, F., Etschmann, B., Grosse, C., et al. (2009), PNAS 106(42), 17757-17762, DOI 
+    ~ 5          REFUTES     [abstract      ] Sheoran, V., Sheoran, A. S., & Poonia, P. (2009). Phytomin
+    ~ 6          NO SUPPORT  [abstract      ] Wright, S. F., & Upadhyaya, A. (1998). A survey of soils f
+
+  Na-ion HFRS  (23186884)
+      1          PARTIAL     [metadata      ] Tarascon, J.-M., & Armand, M. (2001). Issues and challenge
+      -> resolves to: Nature 414(6861), 359-367 -- the issue number is wrong
+      2          PARTIAL     [metadata      ] Macdonald, J. R. (2005). Impedance Spectroscopy: Theory, E
+      -> resolves to: Barsoukov, E. & Macdonald, J. R. (eds.) (2005), 2nd edition. Macdonald alone edited 
+      3          SUPPORTS    [metadata      ] Jones, E. A., et al. (2016). Review of Commercial GaN Powe
+      4          REFUTES     [abstract      ] Purushothaman, B. K., & Landau, U. (2006). Rapid Charging 
+      5          SUPPORTS    [metadata      ] Kennedy, J., & Eberhart, R. (1995). Particle swarm optimiz
+
+  Hemocyanin  (23209266)
+    ~ 1          REFUTES     [full-text     ] Decker, H., et al. (2007). Structure and function of hemoc
+      -> resolves to: Does not exist as printed. The venue maps to van Holde, K. E., Miller, K. I. & Decke
+    ~ 2          PARTIAL     [abstract      ] Dixon, S. J., & Stockwell, B. R. (2014). The role of iron 
+    ~ 3          REFUTES     [abstract      ] Hellman, N. E., & Gitlin, J. D. (2002). Ceruloplasmin meta
+    ~ 4          REFUTES     [full-text     ] Tchounwou, P. B., et al. (2012). Heavy metal toxicity and 
+    ~ 5          NO SUPPORT  [full-text     ] Mazgal, M. (2026). Quantum Biofortification and In-Situ Ph
+
+  openQL v1.1  (23241148)
+      [1]-[5]    NO SUPPORT  [full-text     ] Kuipers 1999; Raissi et al. 2019; Markidis et al. 2018; Mi
+
+  Intensional Physics  (23241777)
+      [1]        NO SUPPORT  [full-text     ] Fitting, M. (2015). Intensional Logic. The Stanford Encycl
+      [2]-[5]    NO SUPPORT  [full-text     ] Raissi et al. 2019; Markidis et al. 2018; Mildenhall et al
+
+  openOmega  (23263528)
+      [1]        PARTIAL     [full-text     ] Dirac, P. A. M. (1930). A Theory of Electrons and Protons.
+      [3]        SUPPORTS    [full-text     ] Moreno, G. (1998). The Zero Divisors of the Cayley-Dickson
+      [2,4,5]    NO SUPPORT  [full-text     ] Baez 2002; Markidis et al. 2018; Raissi et al. 2019
+
+  HOS-PV 2.0  (23364732)
+    ^ [1]        PARTIAL     [abstract      ] Shockley, W. & Queisser, H. J. (1961). Detailed Balance Li
+    ^ [2]        PARTIAL     [abstract      ] Dediu, V. A., Hueso, L. E., Bergenti, I. & Taliani, C. (20
+    ^ [3]        PARTIAL     [full-text     ] Rao, A., Chow, P. C. Y., Gelinas, S., et al. (2013). The r
+    ^ [4]        PARTIAL     [author-summary] Smith, M. B. & Michl, J. (2010). Singlet Fission. Chemical
+    ^ [5]        REFUTES     [abstract      ] Hanna, M. C. & Nozik, A. J. (2006). Solar conversion effic
+    ^ [6]        PARTIAL     [abstract      ] Naaman, R. & Waldeck, D. H. (2015). Spintronics and Chiral
+    ^ [7]        PARTIAL     [full-text     ] Smejkal, L., Sinova, J. & Jungwirth, T. (2022). Emerging R
+
+  ^ attached to a sentence in the body    ~ carries a gloss in the list
+
+2. Totals
+
+  SUPPORTS      4   5.8%   the cited work says what it is cited for
+  PARTIAL      25  36.2%   part of the claim is supported, part is not
+  NO SUPPORT   24  34.8%   the cited work does not address the claim
+  REFUTES      15  21.7%   the cited work states the opposite
+  UNRESOLVED    1   1.4%   the reference itself could not be located
+               69         rows (some cover several references)
+
+3. How far the cited works could be read
+
+  full-text        43   full text of the cited work obtained
+  abstract         16   abstract only; the full text was paywalled or absent
+  author-summary    4   the work itself was unreachable; a summary of it written by its own author was used
+  metadata          5   metadata and contents listing only
+  none              1   could not be reached at all
+
+  rows resting on a full text: 43/69 (62%)
+  Every row that does not rest on a full text says so, and its verdict is
+  scoped to what the abstract or the contents listing supports.  Where a
+  book was unreachable, quotations come from the same author's own papers
+  or from their own summary of the book, and the source field says which.
+
+4. Keyword counts, where a full text was obtained
+
+  0 means the term was searched for and is absent, not that it was
+  assumed absent.  Counts on an OCR index are strong, not absolute.
+
+  Acoustic Projector   [1]        Klippel, W. 
+      absent: brain, neuro, neural, cochlea, psychoacoustic, thermal compression
+  Acoustic Projector   [2]        Mandelbrot, B. B. 
+      absent: auditory, cochlea, psychoacoust, perception, viscoelast, hysteres, rheolog
+      present: acoustic x1
+  Acoustic Projector   [3]        Baez, J. C. 
+      absent: time-dependen, over time, dynamics, memory, signal process, hysteresis, acoustic, loudspeaker, engineering
+  Acoustic Projector   [4]        Canaan Inc. 
+      absent: tensor, matrix, GEMM, TOPS, GOPS, FLOPS, multiply-accumulate
+  Acoustic Projector   [5]        Texas Instruments. 
+      absent: dead
+  X-Ternary            1          Ma, S., et al. 
+      absent: FP8, block, group, 2:4, sparsit, octonion, determinis, hallucinat
+  X-Ternary            3          Kirkpatrick, J., et al. 
+      absent: quantiz, ternary, 2-bit, LLM, inference
+  X-Ternary            4          Schulman, J., et al. 
+      absent: quantiz, ternary, inference, GPU, straight-through
+  X-Ternary            5          Ouyang, L., et al. 
+      absent: quantiz, 2-bit, octonion, determinis
+  COBAR                [1]        Tesla, N. 
+      absent: iron, core, resonance, acoustic, sound, transducer, diaphragm, bifilar
+  COBAR                [4]        Griffiths, D. J. 
+      absent: reluctance, magnetic circuit, loudspeaker, transducer, parametric
+  COBAR                [5]        Jirsak, O., Sanetrnik, F., Pelka, 
+      absent: PVDF, polyvinylidene, piezo, acoust, sound, membrane, diaphragm, copper, nanowire, yarn
+  Momentum Drive       [2]        Zhu, H., et al. 
+      absent: force, propulsion, thrust
+  Momentum Drive       [3]        Nagaosa, N., & Tokura, Y. 
+      absent: Magnus, momentum conservation, net force, recoil
+  Momentum Drive       [4]        Levin, M. A., & Wen, X. G. 
+      absent: momentum, force, torque, rotation, magnon, Bose, temperature, material, propulsion
+  Momentum Drive       [5]        Google Quantum AI and Collaborator
+      absent: momentum, force, motion, mechanical, propulsion, torque, room temperature
+  Momentum Drive       [6]        Xiao, D., Chang, M. C., & Niu, Q. 
+      absent: momentum conservation, conservation of momentum, propulsion, thrust, net force, reaction force, magnon
+  Momentum Drive       [7]        Kikkawa, T., et al. 
+      absent: momentum, force, torque, pressure, recoil, propulsion, conservation
+  PCTP                 [2]        Shen, Y., et al. 
+      absent: quaternion, commut, polariz, Stokes, angular momentum
+  PCTP                 [5]        Doherty, M. W., et al. 
+      absent: quaternion, orbital angular momentum, Si3N4, nitride, evanescent, latch, non-destructive, QND
+  SOTP                 [5]        Fert, A., Reyren, N., & Cros, V. 
+      absent: helicity, octonion, non-associative, algebra
+  SOTP                 [6]        Manchon, A., et al. 
+      absent: octonion, non-associative, Fano, 10 T
+  openQL v1.0          [1]        Kuipers, J. B. 
+      absent: octonion, Cayley algebra, Cayley-Dickson, eight-dimensional, sedenion, subalgebra, homomorphism
+  openQL v1.0          [2]        Raissi, M., Perdikaris, P., & Karn
+      absent: symplectic
+  openQL v1.0          [3]        Markidis, S., et al. 
+      absent: real-time
+  openQL v1.0          [5]        Baez, J. C. 
+      absent: 112, 12-dimensional, 12 dimensional
+  Phytomining          2          Cotruvo, J. A. 
+      absent: neuron, synapse, brain, nuclear spin, quantum, coherence, aging, longevity, toxic
+  Phytomining          6          Wright, S. F., & Upadhyaya, A. 
+      absent: water retention, water-holding capacity, permanent
+  Hemocyanin           1          Decker, H., et al. 
+      absent: hemoglobin, haemoglobin, thermodynam, stabilit, efficient
+  Hemocyanin           4          Tchounwou, P. B., et al. 
+      absent: epigenet
+  Hemocyanin           5          Mazgal, M. 
+      absent: hemocyanin, hemoglobin, oxygen transport, respirat, epigenet, Fenton
+      present: copper x1
+  Intensional Physics  [1]        Fitting, M. 
+      absent: tensor, GPU, matrix, quantum
+  openOmega            [3]        Moreno, G. 
+      absent: antimatter, positron, electron, vacuum, Dirac, energy, physics, sedenion, tensor, GPU
+  HOS-PV 2.0           [3]        Rao, A., Chow, P. C. Y., Gelinas, 
+      absent: fill factor, chiral, CISS, Pauli, spin blockade, singlet fission
+      present: delocalis x10
+  HOS-PV 2.0           [7]        Smejkal, L., Sinova, J. & Jungwirt
+      absent: organic-inorganic, hybrid perovskite, photovoltaic, solar, chiral, CISS
+      present: perovskite x3
+
+5. Citations that do not resolve as printed
+
+  COBAR                [3]        Klippel, W. (1992). Dynamic Measurement and Interpre
+      J. Audio Eng. Soc. 38(12), 944-955 (1990) -- the year in the citation is wrong
+
+  PCTP                 [4]        Bi, L., et al. (2011). On-chip optical isolation in 
+      the real title is '...non-reciprocal optical RESONATORS'
+
+  Phytomining          1          Buchachenko, A. L. (2009). Magnetic Isotope Effect i
+      the real title is '...in Chemistry and BIOCHEMISTRY' (WorldCat OCLC 847652591)
+
+  Phytomining          4          Reith, F., et al. (2006). Mechanisms of gold biomine
+      Reith, F., Etschmann, B., Grosse, C., et al. (2009), PNAS 106(42), 17757-17762, DOI 10.1073/pnas.0904583106. The coordinates as printed point at unrelated cardiovascular genetics
+
+  Na-ion HFRS          1          Tarascon, J.-M., & Armand, M. (2001). Issues and cha
+      Nature 414(6861), 359-367 -- the issue number is wrong
+
+  Na-ion HFRS          2          Macdonald, J. R. (2005). Impedance Spectroscopy: The
+      Barsoukov, E. & Macdonald, J. R. (eds.) (2005), 2nd edition. Macdonald alone edited the 1st edition (1987), which has a different title: 'Impedance Spectroscopy: Emphasizing Solid Materials and Systems'
+
+  Hemocyanin           1          Decker, H., et al. (2007). Structure and function of
+      Does not exist as printed. The venue maps to van Holde, K. E., Miller, K. I. & Decker, H. (2001), 'Hemocyanins and Invertebrate Evolution', JBC 276(19), 15563-15566, DOI 10.1074/jbc.R100010200; the author and year map to Decker, H., et al. (2007), 'Minireview: Recent progress in hemocyanin research', Integr. Comp. Biol. 47(4), 631-644, DOI 10.1093/icb/icm063
+
+  Acoustic Projector   [6]        NOT LOCATED: Putland, P. A. (1993). Active Control of Loudspe
+      AES e-library returns HTTP 403 behind Cloudflare; not in the Wayback Machine
+
+  'Not located' is negative evidence: it means the reference could not be
+  found, which is weaker than showing it does not exist.
+
+########## hidden.py ##########
+
+1. Support found, ranked
+
+  [1] Furey (2016), arXiv:1611.09182, ch. 2  [cited in SOTP, Zenodo 22962557, as [3]]
+      supports: the conceptual core of the whole 'Causal' trilogy: that causality and irreversible time arise from the structure of an algebraic expression
+        "Taking multiplication to be the propagation along an edge, and addition to be the joining of two edges at a vertex, it can be seen that this unevaluated algebraic expression gives a causal set."
+        "In the case of an algebra, an event is a calculation. ... an event can be seen to be irreversible, it cannot 'unhappen'. ... Time, then, is simply a sequence of calculations, and is clearly irreversible."
+        "the octonions' non-associativity is not a impediment, but instead a gift, and that this misunderstood algebra is really at the heart of the standard model of particle physics."
+      rider: Furey's own next step is the rider. Her gauge apparatus lives in an ASSOCIATIVE algebra -- 'As the composition of maps is always associative, C(x)O-left is an associative algebra', faithfully representing Cl(6) -- and her causal-set claim is conjectured only for associative expressions: 'It is at this early stage only a conjecture that any (associative) algebraic expression gives a causal set.' So the motive is supported and the mechanism, the associator as a hardware observable, is not.
+      -> supports the motive, refutes the mechanism, from the same thesis
+
+  [2] Shockley & Queisser (1961), J. Appl. Phys. 32, 510, footnote 22  [cited in HOS-PV 2.0, Zenodo 23364732, as [1]]
+      supports: the premise the whole deposit rests on: that the 33.7% limit is a one-pair-per-photon limit and carrier multiplication lies outside it, which is the defence of 'exceeding the Shockley-Queisser limit' in the title
+        "Once a photon exceeds about three times the energy gap [E_g], the probability of producing two or more hole-electron pairs becomes appreciable"
+        "the data can be well fitted up to quantum yields greater than two by assuming a threshold of only slightly more than [E_g] and assuming the energy divides equally between the photohole and the photoelectron. This effect would slightly increase the possible quantum efficiency; however, we shall not consider it further in this article."
+      rider: The authors of the limit excluded multiplication by choice, so exceeding it this way is legitimate and the deposit is right about that. The rider is the size of the gap: the same deposit's reference [5] puts a single junction with multiplication at 44.4%, not the 45.9% claimed, and 45.9% is inside that work's two-gap TANDEM range of 45.7-47.7%. The model rebuilt in hospv-eval reproduces 33.77%, 44.62% and 42.09% for multiplication capped at two carriers per photon, which is what singlet fission does.
+      -> the best-hidden genuine defence in the corpus, in a footnote of a 1961 paper, for a claim that then overshoots it
+
+  [3] Baez (2002), arXiv:math/0105155, sec. 2.3 and 3.3  [cited in openQL v1.0, Zenodo 23112560, as [5]]
+      supports: a real-matrix encoding of octonion multiplication, and a derivation of the number 12 better than either of the two the preprint gives
+        "Left multiplication by any element a in K gives an operator L_a : K -> K, x -> ax. ... its matrix is block diagonal, built from 2 x 2 blocks ... We thus obtain a representation of the Clifford algebra Cliff(Im(K)) on K."
+        "we define sl(m, K) to be the Lie algebra of operators on K^m generated by operators of this form. ... Note that multiplication in this group is given by composition of real-linear operators, which is associative even for K = O."
+        "Note that the numbers 9, 10, 12 and 16 are 8 more than the dimensions of R, C, H and O. As usual, this is no coincidence!"
+      rider: The weak form of the claim is supported and the strong form is excluded: L_a o L_b != L_{ab}, so this is a representation of operators, not an isomorphism of algebras. The openql-eval repository already measures exactly this construction -- L_x L_y against L_{xy} gives 1.8e-15 for H and 29.5 (relative 2.76) for O -- but did not credit Baez with supplying it. For 12: sl(3,H) acts on H^3 ~ R^12 as real 12x12 operators and the magic square carries so(12) at (H,H). The preprint never points at this.
+      -> genuine support the preprint does not claim, and a better derivation than its own
+
+  [4] Moreno (1998), arXiv:q-alg/9710013, introduction  [cited in openOmega, Zenodo 23263528, as [3]]
+      supports: that non-zero elements whose product is exactly zero really do exist in the sedenions, which is the mechanism the deposit executes annihilation with
+        "for n >= 4 this norm-preserving formula is not true in general and this opens the possibility of the existence of zero divisors in A_n for n >= 4 i.e. x and y non-zero elements in A_n such that xy = 0 e.g. let x = e1 + e10 and y = e15 - e4 in R^16 = A_4"
+      rider: Two riders out of the same two pages. The zero divisors exist BECAUSE ||xy|| = ||x|| ||y|| fails above dimension 8, so the norm is destroyed in exactly the operation the deposit performs 'with absolute energy conservation'. And Moreno's own item 2) disposes of the need for sedenions at all in the deposit's own matrix formulation: 'in an associative (alternative) context as in M_n(R) ... 0 != A is a zero divisor if and only if det A = 0'.
+      -> the example the openomega-eval repository found by brute search, up to the sign of y, was printed in the reference all along
+
+  [5] Adler (1995), via his own summary arXiv:hep-th/9607008, with Horwitz arXiv:quant-ph/9602001 and Baez & Huerta arXiv:1101.5690  [cited in PCTP, Zenodo 22962188, as [1]]
+      supports: the premise that the ordinary tensor product fails over the quaternions -- a genuine, long-standing obstruction, and Adler is the right citation for it
+        "The construction of a tensor product of quaternion modules ... has long been an obstacle in quaternionic theories, since there is an essential destruction of linearity, i.e., f q (x) g != (f (x) g)q, where q in H."
+        "the tensor product of quaternionic Hilbert spaces is not naturally a quaternionic Hilbert space."
+      rider: Adler's key result is fatal to the application: 'the S-matrix is always a complex matrix with no dependence on the quaternionic units j, k ... Hence the asymptotic dynamics for quaternionic quantum mechanics is always an effective complex theory', and 'noncommutative dynamics hides itself beneath effective complex quantum mechanical structures'. A processor whose output is measured cannot exhibit the non-commutativity it is built to execute.
+      -> supports the premise, refutes the device, from the same book
+
+  [6] Smejkal, Sinova & Jungwirth (2022), PRX 12, 040501, Table III  [cited in HOS-PV 2.0, Zenodo 23364732, as [7]]
+      supports: the altermagnetic collector, in the one place in this corpus where a reference is stronger than the claim it carries
+        "RuO2 ... TN 400 K ... Splitting 1400 meV ... dxy, P-2"
+        "MnTe ... TN 310 K ... Splitting 1100 meV ... g-wave, B-4"
+        "The electrical current then becomes spin-polarized when the bias is applied along the x or y-direction"
+      rider: The deposit asks for 0.5-1.0 eV of spin splitting and the table gives 1.1-1.4 eV for the two materials it names. The riders are in the same row: MnTe is listed as g-wave, not the d-wave the sentence claims, its Neel temperature of 310 K is twelve kelvin above standard test conditions and below the 318-332 K a module runs at, and the 'organic-inorganic altermagnetic perovskites' of the same sentence are not in the table, which has an inorganic perovskite oxide at 20 meV and an organic insulator below 50 meV.
+      -> supported, and the temperature that defeats it is in the same table
+
+  [7] Rao et al. (2013), arXiv:1303.2821  [cited in HOS-PV 2.0, Zenodo 23364732, as [3]]
+      supports: the triplet drain the architecture is built to close, and the 25%/75% spin statistics of the sentences before the marker, word for word
+        "recombination of spin-uncorrelated charges should lead to the formation of 1CT and 3CT states in a 1:3 ratio based on spin statistics"
+        "We show that triplet exciton formation can be the major loss mechanism in OPVs."
+      rider: The cure is in the same paper and it is not chirality: 'even when energetically favoured, the relaxation of 3CT to T1 can be strongly suppressed, via control over wavefunction delocalisation', and in the efficient blend 'no triplet formation is observed at room temperature'. The word 'chiral' occurs zero times in it. The claim's other half fares worse: 'fill factor' occurs zero times, and the level ordering the deposit calls a V_oc degrader is 'required to maximise open circuit voltage' here.
+      -> supports the disease, reports an achiral cure for it
+
+  [8] Bi et al. (2011), DOI 10.1038/nphoton.2011.270  [cited in PCTP, Zenodo 22962188, as [4]]
+      supports: on-chip non-reciprocity, which is the element the preprint needs in order to forbid back-propagation and enforce a causal ordering
+        "we report the first monolithically integrated magneto-optical isolator on silicon. Using a non-reciprocal optical resonator ... we demonstrate unidirectional optical transmission with an isolation ratio up to 19.5 dB"
+      rider: Non-reciprocity is S != S-transpose, not AB != BA. It does not produce non-commuting operators: Jones matrices are already non-commutative in the reciprocal case. And the numbers do not match -- the preprint claims better than 35 dB of reverse isolation against this source's 19.5 dB.
+      -> real hardware support for one element, not for the logic
+
+  [9] Lehmann et al. (2011), DOI 10.1016/j.soilbio.2011.04.022, abstract  [cited in Phytomining, Zenodo 23174932, as 3]
+      supports: biochar as a carrier for a bacterial inoculant, which is the smart-pellet concept
+        "a significant number of early studies on biochar-type materials as soil amendments either for managing pathogens, as inoculant carriers or for manipulative experiments"
+      rider: The same review contradicts the 'massive CEC' the preprint claims -- 'typically have initially low cation exchange capacities (CEC)' -- and reports nitrogen immobilisation 'with resultant decreases in N uptake and growth of crops' and loss of mycorrhizal fungi where heavy-metal content is high.
+      -> real precedent for the delivery vehicle, not for its cargo
+
+  [10] Tesla (1894), US 512,340  [cited in COBAR, Zenodo 22923154, as [1]]
+      supports: the preprint's sentence on distributed capacitance in a bifilar winding, which is the patent's own teaching
+        "Capacity secured in this particular way possesses an additional advantage in that it is evenly distributed, a consideration of the greatest importance in many cases."
+      rider: Two corrections against this audit's own prior assumption. The patent does NOT presuppose an iron core; it is explicitly agnostic ('any conductor'), so it can be cited neither for nor against coreless operation. And Tesla's aim is to cancel self-inductance so the coil behaves 'as though it possessed no self-induction', not to build a high-Q tank for force generation. Acoustic transduction: no mention in the patent.
+      -> supported, plus a correction to this audit rather than to the preprint
+
+2. The pattern in the algebra deposits
+
+  Furey, Dixon and Baez all resolve the non-associativity problem the
+  same way, by moving to the associative algebra of left-multiplication
+  operators:
+
+    Furey:  "As the composition of maps is always associative,
+             C(x)O-left is an associative algebra"
+    Dixon:  "O_L ~ R(8) ~ CL(0,6) ... (Note: O_L is trivially
+             associative.)"
+    Baez:   "multiplication in this group is given by composition of
+             real-linear operators, which is associative even for
+             K = O"
+
+  That manoeuvre is exactly the one the architecture is premised on not
+  making.  So the hidden defence exists for the motivation of these
+  papers and is refuted for their mechanism, out of the same pages.
+
+3. Claims with no carrier anywhere in the 81 references
+
+  - the associator executed as a hardware observable
+      SOTP, PCTP; Furey, Dixon and Baez all pass to an associative algebra of left-multiplication operators instead
+  - 2-bit or ternary tensor-core arithmetic
+      X-Ternary; the Hopper whitepaper lists FP8, FP16, BF16, TF32, FP64 and INT8, and no generation has a sub-INT4 MMA type
+  - pure spin currents with zero ohmic dissipation
+      SOTP; Manchon et al. derive the spin current from an applied charge current, at 1e7-1e8 A/cm^2 and about 100 fJ per bit
+  - non-destructive readout of an NV centre without state collapse
+      PCTP; Doherty et al.: the optical readout 'simultaneously spin-polarise[s] the centre into the m_s = 0 spin projection'
+  - the elimination of hallucinations by determinism
+      X-Ternary; InstructGPT reports 41% to 21%, and its 1.3B PPO-ptx model does worse than GPT-3 of the same size
+  - net momentum on a closed system
+      Momentum Drive; the magnon BEC forms in both +/-k_min minima with zero group velocity, and the one reference with real forces is a squeeze-film reaction against a plate tens of micrometres away
+  - accelerated DNA transcription and repair from magnetic isotopes
+      Phytomining; Buchachenko measures 3-5x SUPPRESSION of DNA synthesis for the same three isotopes and proposes them to kill cells
+  - biogenic gold as a scavenger of reactive oxygen species
+      Phytomining; Reith et al.: gold INDUCES oxidative stress, and the cell exports it
+  - a structural relationship between ceruloplasmin and hemocyanin
+      Hemocyanin; Hellman & Gitlin: ceruloplasmin 'plays no essential role in the transport or metabolism of' copper, and the domain intersection is empty
+  - a symplectic update step
+      Intensional Physics Computing; 'symplectic' occurs in one work in the whole corpus, Baez, about the Freudenthal space for E7
+  - 112 as a dimension
+      openQL; '112' does not occur in Baez or Kuipers. The only '112' in the six works is Markidis's '112.7 Tflops/s theoretical peak' -- a throughput
+  - 45.9% as a single-junction thermodynamic limit
+      HOS-PV 2.0; the reference it is attached to gives 44.4% for a single gap with carrier multiplication and 45.7-47.7% for an ideal two-gap tandem, and the model rebuilt in hospv-eval caps doubling at 42.09%
+  - 23.8 mA/cm2 collected above 2.25 eV
+      HOS-PV 2.0; attached to no reference. The AM1.5G spectrum carries 9.76 mA/cm2 above that energy at one electron per photon, so the figure needs 2.44 electrons per absorbed photon and fission gives two
+  - a carbon matrix that is spin-orbit weak and spin-selective at once
+      HOS-PV 2.0; Naaman & Waldeck, cited for the CISS magnitudes, say the models 'all presume an unusually large spin-orbit coupling in chiral molecules for the effect to display the magnitudes seen in experiments'
+  - xi_SOC proportional to Z^4
+      HOS-PV 2.0; attached to no reference, and a fit to the NIST ground-term splittings of F, Cl, Br and I gives an exponent of 1.69
+  - annihilation with absolute energy conservation
+      openOmega; the zero divisors it runs on exist only because the norm is not multiplicative above dimension 8, which is what Moreno's cited paper is about
+  - the positron as a hole in the Dirac sea
+      openOmega; the 1930 paper it cites identifies the holes as protons, and says a uniform sea is 'completely unobservable'
+  - coreless acoustic transduction efficiency
+      COBAR; the cited Beranek & Mellow contains the relation by which a coreless design loses four to six decades of efficiency
+  - conductive nanofibres co-spun into a membrane
+      COBAR; the Jirsak patent is about spinning throughput, spins aqueous PVA, and lists no acoustic application
+
+4. Scoring the claim that was tested
+
+  support found and substantial          10 places
+  claims with no carrier in any reference 19
+
+  The claim is partly vindicated.  In openQL and SOTP the cited
+  literature does carry support the preprints never spell out, and in
+  one case a better derivation than the preprint's own.  That is the
+  author's point and it stands.  It does not extend to the 52 references attached to
+  nothing, to the 3 deposits with no references, or to the claims above, which the
+  cited works contradict in their own words.
+
+  HOS-PV 2.0 of 14 October is where the claim comes closest to being
+  simply true.  It is the first deposit in which every external reference is
+  attached to a sentence, all 7 of them, and 6 of the 7 carry part of what
+  they are cited for rather than none of it.  Three of the entries above come
+  from it.  Its two largest problems are in its references too: 45.9% is the
+  tandem row of the paper it is taken from, and the altermagnet's Neel
+  temperature is in the table it is cited from.
+
+########## keywords.py ##########
+
+1. Citation markers in the body text
+
+  No corpus directory given, so these are the values recorded when
+  the audit was run, not measured now.  Run ./fetch.sh first to
+  recompute them.
+
+  deposit                 ext  in-text  gloss
+  acoustic-projector        6        5      0
+  x-ternary                 5        0      0
+  mppt-v1.0                 0        0      0
+  mppt-v1.1                 0        0      0
+  cobar                     5        0      0
+  momentum-drive            8        0      0
+  cqft                      0        0      0
+  pctp                      5        0      0
+  sotp                      5        2      0
+  openql-v1.0               5        0      5
+  cymatic                   5        0      0
+  phytomining               6        0      6
+  na-ion-hfrs               5        0      0
+  hemocyanin                4        0      4
+  openql-v1.1               5        0      0
+  intensional-physics       5        0      0
+  openomega                 5        0      0
+  hospv                     7        7      0
+
+2. Reference-list glosses
+
+  recorded: openql-v1.0 5, phytomining 6, hemocyanin 4, rest 0
+
+3. Vocabulary census across the corpus
+
+  Needs the corpus; run ./fetch.sh.  Recorded result: maxwell,
+  octonion, quaternion, hypercomplex, non-associative and causal are
+  all zero in the cymatic, phytomining, na-ion and hemocyanin
+  deposits.  'causal' first reaches zero one deposit earlier than
+  that, in openQL / openOL v1.0 of 3 October, which still carries
+  'Maxwell' twice and 'quaternion' seven times.  The two deposits of
+  8 October reintroduce 'tensor' and 'intensional' but not the
+  hypercomplex vocabulary, except that openQL v1.1 keeps 'octonion'
+  in its abstract while dropping it from its keywords.  openOmega
+  of 9 October brings back 'tensor' 10 times and 'octonion' once
+  with 'causal' still at zero, and HOS-PV 2.0 of 14 October is
+  zero in nine of the ten columns -- its only hit is 'quantum', 9
+  times -- the first deposit without 'tensor' since 7 October.
