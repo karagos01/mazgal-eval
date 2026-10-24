@@ -1,0 +1,293 @@
+
+########## frequency.py ##########
+
+==============================================================================
+1. NEAREST EQUAL-TEMPERED PITCH TO EACH PUBLISHED FREQUENCY
+==============================================================================
+               published    nearest 12-TET       exact       error     cents
+     246.910 Hz      Sec. 2.3, reactor  B3                  246.942      -0.032     -0.22
+      61.720 Hz          Sec. 3, field  B1                   61.735      -0.015     -0.43
+
+  A cent is 1/100 of a semitone; the just-noticeable pitch difference for
+  a trained listener is about 5 cents.  Both published frequencies are
+  inside that, i.e. they are the note B as a tuner would set it.
+==============================================================================
+2. THE OPTICAL TIMING IS THE SAME NUMBER
+==============================================================================
+  pulse                     50.0 us
+  dark phase              4000.0 us
+  period                   4.050 ms
+  repetition rate         246.91 Hz
+  cymatic frequency       246.91 Hz
+  difference            3.58e-03 Hz   (1.5e-05 relative)
+
+  Sec. 2.2 derives the optical timing from 'the enzymatic turnover rate of
+  the Calvin cycle'.  Sec. 2.3 derives the acoustic frequency from guard
+  cell mechanics.  Measured, they agree to 1.5 parts in 100 000, which is
+  the rounding of 246.91 Hz to two decimals -- they are one number, and
+  that number is B3.
+==============================================================================
+3. THE SUBHARMONIC
+==============================================================================
+  F_reactor / F_field = 4.00049
+  f/4 is the 4th subharmonic, two octaves down -- the naming is correct.
+  wavelength at 61.72 Hz:  5.56 m
+  wavelength at 246.91 Hz: 1.389 m
+==============================================================================
+4. THE BAND
+==============================================================================
+  band asserted by the preprint, Sec. 3:           50.0 -   120.0 Hz
+  band of the review it cites (Hassanien 2014):   100.0 -  1000.0 Hz
+    that review's working level: 70 dB SPL at 30-60 m
+
+           frequency    in preprint band    in cited band
+   reactor 246.91 Hz               False             True
+   field    61.72 Hz                True            False
+
+  Sec. 3 divides by four so that the result 'falls perfectly within the
+  empirically proven PAFT sensitive band'.  Measured against the band of
+  the review it cites for that claim, the division does the opposite:
+  246.91 Hz was inside, 61.72 Hz is below it.
+
+########## light.py ##########
+
+==============================================================================
+1. THE DUTY CYCLE AND THE AVERAGE PHOTON FLUX
+==============================================================================
+  duty cycle                     1.2346 %      (1 : 81.0)
+  peak irradiance                4500.0 W/m^2  =     20700 umol/m^2/s =  10.35 x full sun
+  time-averaged irradiance         55.6 W/m^2  =       256 umol/m^2/s =   0.13 x full sun
+
+  If the 4500 W/m^2 of Sec. 2.2 is total rather than PAR irradiance, the
+  photon flux is lower still; this takes the figure at its most favourable.
+------------------------------------------------------------------------------
+  Carbon fixed over a day is set by the average flux, not the peak: the
+  pulse is 50 us and the Calvin cycle integrates over seconds.
+  C3 light saturation: 400 (lettuce) ... 1400 (wheat) umol/m^2/s
+  the average produced here is 1.57 x BELOW the lowest
+  of those and 5.48 x below the highest.
+
+  NPQ is a saturation-regime loss.  At 256 umol/m^2/s a continuous-light
+  control is not light-saturated either, so it engages little NPQ: the
+  mechanism the design exists to bypass is not active in the regime the
+  design creates.  The comparison in Sec. 1 is against continuous
+  HIGH-intensity light, which this scheme does not deliver on average.
+------------------------------------------------------------------------------
+  Ceiling on the gain even where NPQ is fully engaged: the preprint puts
+  the loss at up to 60 %, so recovering all of it is 1/(1-0.6) = 2.50 x.
+  Bounded, and bounded by a number the preprint supplies itself.
+==============================================================================
+2. WHICH TIMESCALE THE 4 ms DARK PHASE MATCHES
+==============================================================================
+  dark phase, Sec. 2.2                          4.00 ms
+  RuBisCO turnover 1/kcat, kcat = 2-4 /s      250 - 500 ms   <- 'the Calvin cycle'
+  plastoquinol oxidation at cyt b6f              2 -  20 ms   <- the PQ pool
+  ratio of the Calvin figure to 4 ms:           62 - 125 x off
+
+  4 ms is the right order for reoxidation of the plastoquinone pool, which
+  is exactly what Sec. 1 says the design must relieve.  The timing works.
+  The justification given for it names the Calvin cycle, which is two
+  orders of magnitude slower.  Right number, wrong mechanism.
+==============================================================================
+3. GRAMS PER KILOWATT-HOUR IS INVARIANT UNDER PULSING
+==============================================================================
+  scheme                                               g/m^2/d    W/m^2    g/kWh
+  pulsed, 1.23 % duty, NPQ fully bypassed                 33.1    111.1    12.42
+  continuous at the same average flux, no NPQ             33.1    111.1    12.42
+  the same, if NPQ cost the published 60 % here           13.2    111.1     4.97
+  continuous at full sun, NPQ at the published 60 %      103.7    869.6     4.97
+
+  Rows 1 and 2 are identical because pulsing divides the dry matter and
+  the electrical input by the same duty cycle.  The ratio cannot move.
+  Row 3 is hypothetical: at 256 umol/m^2/s there is little NPQ to pay.
+------------------------------------------------------------------------------
+  The invariance is structural, so it must survive varying the duty cycle
+  while the peak stays at 4500 W/m^2.  Rows past light saturation are
+  marked (*): there the linear quantum-yield model no longer holds, and
+  the real g/kWh would FALL, never rise.
+    duty %   avg umol/m^2/s    g/m^2/d     W/m^2     g/kWh
+     1.235              256       33.1     111.1     12.42
+     5.000             1035      134.1     450.0     12.42
+    10.000             2070      268.3     900.0     12.42 (*)
+    25.000             5175      670.7    2250.0     12.42 (*)
+   100.000            20700     2682.7    9000.0     12.42 (*)
+  spread of g/kWh across an 81-fold range of duty cycle: 3.553e-15  (floating point only)
+------------------------------------------------------------------------------
+  g/kWh does depend on the quantum yield, and on nothing else in the
+  design.  Doubling the assumed yield doubles it exactly:
+   quantum yield     g/kWh    ratio to the first row
+           0.020      4.97                    1.0000
+           0.040      9.94                    2.0000
+           0.050     12.42                    2.5000
+           0.080     19.87                    4.0000
+           0.125     31.05                    6.2500
+
+  So the only lever on energy efficiency is the quantum yield, and the
+  most that bypassing NPQ can add to it is the 2.50 x ceiling of Sec. 1
+  above -- in a regime where, as measured, NPQ is barely engaged.
+  Sec. 5 claims the reactor 'redefines the gram-per-watt limit of CEA'.
+  Commercial vertical farming already sits at roughly 5-10 g dry per kWh.
+==============================================================================
+4. THE 100 % PHOTON CAPTURE CLAIM
+==============================================================================
+  Sec. 2.1: planar arrays lose 40-50 %, the cylinder lets
+  'photon capture efficiency approach the theoretical maximum of 100%'.
+  PAR absorptance of a single green leaf: 0.84 - 0.90
+  so a photon striking one leaf once is absorbed with probability <= 0.90.
+  A closed reflective cavity can exceed that by multiple passes, so 100 %
+  is not excluded outright -- but the bound is then set by the reflectance
+  of the enclosure wall, which is where the LEDs are.  This is recorded as
+  an unquantified claim rather than as a defect.
+
+########## acoustics.py ##########
+
+==============================================================================
+1. BLADE-PASS FREQUENCY AGAINST THE TARGET
+==============================================================================
+   rotor rpm   blade-pass Hz  harmonic of BPF at 61.72 Hz
+         9.0           0.450                         137.2
+        14.0           0.700                          88.2
+        18.0           0.900                          68.6
+
+  rotor speed for which BPF = 61.72 Hz:      1234.4 rpm
+  rated rotor speed of the class:               14.0 rpm   (88 x)
+------------------------------------------------------------------------------
+   blade R     tip speed    Mach     tip accel        in g
+        40       5171 m/s    15.1     668389 m/s2       68133
+        50       6463 m/s    18.8     835486 m/s2       85167
+        60       7756 m/s    22.6    1002583 m/s2      102200
+
+  'RPM Lock: Electromagnetically braking the rotor via the grid inverter
+  forces the turbine to maintain exact rotational speeds ... ensuring a
+  phase-stable 61.72 Hz emission' requires 1234 rpm at the
+  rotor.  Braking cannot raise a rotor speed, and the speed asked for is
+  supersonic at the blade tip.
+
+  Taken instead as a harmonic of the blade pass, 61.72 Hz is near the 88th.
+  'Pitch Tuning' shifting noise by 'a fraction of a degree' moves broadband
+  stall noise, which has no line structure to place at a chosen frequency.
+==============================================================================
+2. THE LEVEL THAT REACHES THE FIELD
+==============================================================================
+  PAFT in the cited review works at 70 dB SPL (+/- 5) at 30-60 m.
+  Declared apparent sound power of a 2-3 MW turbine: 100-110 dB re 1 pW (31.6 mW at 105 dB), broadband.
+
+    r [m]   turbine | Lw needed for 65     70  75 dB |  short at 70     ratio
+      100   57.0 dB |            113.0  118.0  123.0 |      13.0 dB       20 x
+      300   47.5 dB |            122.5  127.5  132.5 |      22.5 dB      179 x
+      500   43.0 dB |            127.0  132.0  137.0 |      27.0 dB      497 x
+     1000   37.0 dB |            133.0  138.0  143.0 |      33.0 dB     1987 x
+------------------------------------------------------------------------------
+  Sensitivity to the declared sound power, shortfall at 300 m and 70 dB:
+    turbine Lw   shortfall   power ratio
+        100 dB     27.5 dB           565 x
+        105 dB     22.5 dB           179 x
+        110 dB     17.5 dB            57 x
+
+  Atmospheric absorption at 63 Hz is about 0.1 dB/km (ISO 9613-1), so over
+  1 km it costs 0.1 dB against the 24 dB of geometric spreading from 60 m
+  to 1 km.  Sec. 3 is right that a low frequency travels with 'minimal
+  atmospheric attenuation' -- and that is not the loss that matters.
+  Choosing the frequency addresses the negligible term.
+
+  All of the above compares the turbine's whole broadband output against
+  a requirement in one narrow band, so the real shortfall is larger.
+==============================================================================
+3. A WIND FARM AS A PHASED ARRAY
+==============================================================================
+  wavelength at 61.72 Hz:                     5.56 m
+  element spacing for a grating-lobe-free array (lambda/2):   2.78 m
+  actual spacing in a wind farm, 5-10 rotor diameters:
+       5 D =     500 m =     90.0 wavelengths  (180 x the limit)
+      10 D =    1000 m =    179.9 wavelengths  (360 x the limit)
+
+  To hold a phase error below lambda/10, the timing of the blade pass
+  must be stable to 1.62 ms.  One revolution at 14 rpm takes 4.29 s,
+  so that is 0.136 degrees of rotor angle, held against gusts,
+  across every turbine in the farm simultaneously.
+==============================================================================
+4. THE TRANSFORMER
+==============================================================================
+  line frequency                        50.00 Hz  (+/- 0.05 Hz, ENTSO-E)
+  Magnetostrictive strain follows |B|, so the core is excited at 2f:
+    100, 200, 300, 400 Hz
+  A DC bias saturates alternate half cycles, which adds the odd lines:
+    50, 100, 150, 200, 250, 300 Hz
+  target                                61.72 Hz  = 1.2344 x f_line
+  nearest line available                50.00 Hz  (off by 11.72 Hz)
+
+  Every line a grid-locked core can emit is an integer multiple of 50 Hz.
+  61.72 Hz is not one, and no firmware setting creates a spectral line
+  at a frequency the excitation does not contain.  Producing it needs an
+  independent source at that frequency -- which is a loudspeaker, not a
+  'smart-grid inverter modulation'.
+
+  Separately, 'asymmetric DC injection' is half-cycle saturation: the
+  geomagnetically-induced-current failure mode, which raises magnetizing
+  current, losses, hot-spot temperature and noise.  It is a damage
+  mechanism, and grid codes limit injected DC to around 1 A for exactly
+  that reason.
+
+########## water.py ##########
+
+==============================================================================
+1. TRANSPIRATION ACROSS THE MIDDAY DEPRESSION
+==============================================================================
+  state                                  g_s     VPD            E
+  morning, stomata open                 0.30     1.0     2.96 mmol/m^2/s
+  midday, natural depression            0.10     3.0     2.96 mmol/m^2/s
+  midday, held open as proposed         0.30     3.0     8.88 mmol/m^2/s
+
+  The depression almost exactly cancels the rise in VPD: morning 2.96
+  against natural midday 2.96 mmol/m^2/s.  That is what the response is for.
+  Suppressing it multiplies midday transpiration by 3.0 x, at the hour of peak demand.
+------------------------------------------------------------------------------
+  Sensitivity: the factor is g_s(held) / g_s(depressed) and does not depend
+  on VPD at all, so it survives any choice of the midday VPD:
+    VPD kPa         natural       held open    factor
+        2.0       1.97 mmol       5.92 mmol       3.0 x
+        2.5       2.47 mmol       7.40 mmol       3.0 x
+        3.0       2.96 mmol       8.88 mmol       3.0 x
+        4.0       3.95 mmol      11.85 mmol       3.0 x
+        5.0       4.94 mmol      14.81 mmol       3.0 x
+==============================================================================
+2. WHAT IS BOUGHT WITH IT
+==============================================================================
+  Assimilation does rise when stomata reopen, but it saturates in CO2
+  while transpiration stays linear in g_s, so water-use efficiency falls.
+  A(g_s) = g_s / (g_s + K) with K = 0.10 as an illustrative shape;
+  the value of K is chosen, not measured.
+     g_s   A (relative)     E mmol   A/E (relative)
+    0.10          0.500       2.96           16.883
+    0.15          0.600       4.44           13.507
+    0.20          0.667       5.92           11.256
+    0.25          0.714       7.40            9.648
+    0.30          0.750       8.88            8.442
+
+  Tripling g_s from 0.10 to 0.30 multiplies
+  transpiration by 3.0 x regardless of K, and assimilation by:
+         K    A gain    water per gram of carbon
+      0.03      1.18 x                      2.54 x
+      0.05      1.29 x                      2.33 x
+      0.10      1.50 x                      2.00 x
+      0.20      1.80 x                      1.67 x
+      0.50      2.25 x                      1.33 x
+    linear      3.00 x                      1.00 x
+  Only an exactly linear A(g_s) breaks even; every saturating shape costs
+  more water per unit carbon, which is the definition of the trade-off
+  the stomatal response exists to manage.
+  The preprint states the direction of this itself: 'evapotranspiration
+  rates will rise ... must be paired with continuous soil moisture
+  monitoring and sufficient irrigation buffers'.  That is correct, and it
+  is the cost rather than a caveat: the proposal is to defeat a drought
+  response in open fields of winter wheat, sugar beet and potatoes.
+==============================================================================
+3. THE YIELD CLAIM
+==============================================================================
+  claimed net biomass increase: 15-18 %
+  No derivation is given, and nothing in the paper links it to the
+  61.72 Hz stimulation, to a dose, to a duration or to a crop.
+  The cited PAFT review reports yield gains of 5.7 % (rice) to 37.1 %
+  (cucumber) at 70 dB and 30-60 m from a dedicated generator, so the
+  claimed range is plausible for that exposure.  What is not available is
+  that exposure: see acoustics.py.
