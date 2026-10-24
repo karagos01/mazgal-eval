@@ -1,0 +1,248 @@
+
+########## density.py ##########
+
+1. The two densities in one sentence
+
+  [P] plough depth                                 0.30 m
+      soil volume under 1 m2                    300,000 cm3
+
+  [P] "1 pellet per 5 cm3" implies               60,000 pellets/m2
+  [P] "approximately 2,500 pellets per 1 m2"       2,500 pellets/m2
+      ratio                                        24.0 x
+
+      2,500 pellets/m2 corresponds to 1 pellet per 120 cm3, not 5.
+
+2. Which of the two the rest of the paper uses
+
+  [P] 25 t/ha                                      2.50 kg/m2
+      mass per pellet at 2,500/m2                1.0000 g
+      mass per pellet at 60,000/m2               0.0417 g
+
+      So the mass budget is self-consistent with 2,500 pellets of 1 g each,
+      which is a sensible pellet.  The 5 cm3 figure is the one that does not
+      fit, and the paper's economics are built on the 2,500.
+
+3. What honouring the 5 cm3 figure would cost
+
+      at the paper's own 1 g per pellet:
+        matrix                    600 t/ha      paper:           25 t/ha
+        for 30 ha              18,000 t         paper:          750 t
+        at the same $/t    $24,000,000           paper:  $1,000,000
+
+      i.e. the sentence's own premise, taken at face value, multiplies the
+      case study by 24 and the budget with it.  This is a single arithmetic
+      slip in one sentence, not a defect in the concept; what it costs the
+      paper is that the physical-contact requirement and the costed design
+      are not the same design.
+
+4. What "constant physical contact" comes to at each density
+
+    pellets/m2       per m3   mean spacing  max distance to nearest
+         2,500        8,333        4.93 cm                  2.47 cm
+        60,000      200,000        1.71 cm                  0.85 cm
+
+      On a cubic lattice at the costed density a root is never more than
+      2.5 cm from a pellet, and at the stated density never more than 0.9 cm.
+      Neither is contact; both are a distance a root has to grow across, and
+      the paper gives no root-length density to compare them against.
+
+5. The one figure in this section that checks out
+
+  [P] Sec. 1: "A plant is capable of assimilating only 30% to 50% of the
+      supplied nutrients in real-time"
+  [V] "Fertilizer N-recovery efficiency by the first crop is 30 to 50%"
+      -- IFA, Nutrient/fertilizer use efficiency, ch. 1 (2014)
+      This is correct, and it is the premise the whole paper starts from.
+
+########## isotopes.py ##########
+
+0. Where the constants in this script come from
+
+       12  [P] from the preprint
+       20  [V] verified against a named source
+        8  [A] assumed range, swept
+
+      Every conclusion drawn from an [A] value below is computed across its
+      whole range and stated only where it holds throughout.
+
+1. The spins, which the paper has right
+
+   isotope   spin   natural abundance   where the paper puts it
+    La-138      5            0.0888%   synaptic calcium substitute
+     Mg-25    5/2            10.000%   chlorophyll, ATP synthase
+     Zn-67    5/2             4.100%   zinc fingers
+     Ca-43    7/2             0.135%   synaptic calcium
+
+  All four spins are stated correctly in the preprint.  They are non-zero
+  because each nuclide has an odd number of either protons or neutrons,
+  while the abundant isotopes of the same elements -- Mg-24/26, Zn-64/66/68,
+  Ca-40 -- are even-even and therefore have I = 0 exactly.  That contrast is
+  what makes the magnetic isotope effect possible, and the paper's reasoning
+  up to this point is sound.
+
+2. La-138 is not a stable isotope
+
+  [P] abstract, Sec. 3.3 and the Zenodo keywords all call it stable
+  [V] it is a primordial RADIONUCLIDE
+        half-life   1.03e+11 years
+        decay       beta+ 65.5% to Ba-138,  beta- 34.5% to Ce-138
+        stable?     False
+
+  It is one of only a handful of odd-odd nuclides that survive from the
+  formation of the Earth, which is exactly why it is rare.  The rarity the
+  paper selects for and the instability it overlooks are the same fact.
+
+3. The premise fails for lanthanum before stability even matters
+
+  [P] "the selection of rare, stable isotopes with a non-zero ... nuclear spin"
+  [V] La-139, 99.91% of all lanthanum, has spin 7/2
+
+  Non-zero.  So for lanthanum there is nothing to gain by selecting the rare
+  isotope on spin grounds: the common one already has one, and a larger one.
+  For Mg, Zn and Ca the paper's logic does work, because there the abundant
+  isotopes are spinless.  Lanthanum is the element it does not work for, and
+  it is the element the section is built around.
+
+4. At natural abundance the matrix adds less than the field already holds
+
+  [P] 1 t La2O3 over 30 ha
+      mass fraction La in La2O3                0.8527
+      lanthanum added                           2.842 g/m2
+
+  [V] soil La at 31 ppm (Rudnick & Gao), swept over bulk density:
+          bulk density    soil mass    La present  increase   new ppm
+             1.1 g/cm3       330 kg    10.23 g/m2     27.8%      39.6
+             1.4 g/cm3       420 kg    13.02 g/m2     21.8%      37.8
+             1.6 g/cm3       480 kg    14.88 g/m2     19.1%      36.9
+
+      So the 'most radical innovation' raises the field's lanthanum by about
+      a fifth, and -- since the paper never says the lanthanum is
+      isotopically enriched -- leaves the La-138 fraction exactly where it
+      was, at 0.0888 %.  A natural isotope ratio is not something a soil can
+      be deficient in.
+
+5. The same test for the other two isotopes named
+
+      [A] soil contents are swept, not asserted; see constants.py
+       isotope      element in soil, g/m2      isotope present, g/m2
+         Mg-25       840.0 -     12600.0         84.00 -     1260.00
+         Zn-67         8.4 -        50.4          0.34 -        2.07
+
+      Chlorophyll already contains Mg-25 at 10.00 % of its magnesium and
+      zinc-finger proteins already contain Zn-67 at 4.10 % of their zinc.
+      Across the whole swept range the quantity already in the ploughed
+      layer exceeds anything the matrix adds by orders of magnitude.  The
+      magnetic isotope effect, whatever its size, is already running.
+
+6. What enrichment would have cost instead
+
+      to obtain 1 t of La-138 at 0.0888% natural abundance
+      requires      1,126 t of natural lanthanum as feed
+
+      The paper's budget has 1 t of lanthanum oxide at a price consistent
+      with ordinary commercial material, and never uses the word enriched.
+      Both readings are therefore unavailable to it at once: unenriched, the
+      Quantum Circuit adds nothing; enriched, the budget is wrong by orders
+      of magnitude.
+
+7. Radiologically the added La-138 is negligible, and that is in the
+   paper's favour
+
+      La-138 in 1 t of natural La2O3               757.3 g
+      decay constant                          2.132e-19 /s
+      specific activity of pure La-138            931.2 Bq/g
+      total activity added over 30 ha               705.2 kBq
+      areal activity                               2.35 Bq/m2
+
+      [A] against the potassium-40 already in the soil, swept:
+        K-40 at   100 Bq/kg ->      42,000 Bq/m2    added / present = 5.6e-05
+        K-40 at   700 Bq/kg ->     294,000 Bq/m2    added / present = 8.0e-06
+
+      Between 4 and 5 orders of magnitude below the natural potassium
+      background, across the whole range.  Calling La-138 a stable isotope
+      is a factual error about the nuclide, not a safety problem with the
+      proposal, and the distinction is worth keeping.
+
+8. Gold loading, for scale
+
+  [P] 5 kg over 30 ha                    16.667 mg/m2
+      at bulk density 1.1 g/cm3                  50.5 ppb
+      at bulk density 1.6 g/cm3                  34.7 ppb
+      [A] crustal gold is quoted as 1-4 ppb,
+          unverified here, so this is scale only and carries no conclusion.
+
+########## economics.py ##########
+
+1. The gold line against the spot price on the date of deposit
+
+  [V] spot, 6 October 2026           $  4,168.80/troy oz  = $134.03/g
+  [P] $417,000 for 5 kg implies      $  2,594.03/troy oz  = $ 83.40/g
+
+      5 kg at spot                     $     670,150
+      shortfall in that one line       $     253,150   (1.61 x)
+      total capex restated             $   1,253,150
+
+      The implied price is roughly what gold cost two years before the
+      preprint was written, so this reads as a stale figure rather than an
+      error of method.  It moves the headline total by a quarter.
+
+2. The return, on the paper's own numbers
+
+  [P] capital expenditure              $   1,000,000
+  [P] annual saving                    $      25,000
+      simple payback, undiscounted                40 years
+      capex per hectare                $      33,333 /ha
+
+      break-even discount rate in perpetuity   2.50% per year
+
+      [A]   rate     PV of the saving              NPV
+           0.0%            unbounded        unbounded
+           1.0% $          2,500,000 $      1,500,000
+           2.0% $          1,250,000 $        250,000
+           2.5% $          1,000,000 $              0
+           3.0% $            833,333 $       -166,667
+           5.0% $            500,000 $       -500,000
+           7.0% $            357,143 $       -642,857
+
+      The investment is positive only at a real discount rate at or below
+      2.5 % held in perpetuity.  The paper calls it 'permanent capital',
+      which is the right frame for the claim -- but the claim then needs the
+      inventory to actually be permanent, which is the next section.
+
+3. How much leakage the closed loop can take
+
+      The loop is only closed if the metals return.  Phytomining works by
+      concentrating metal into harvested biomass, and biomass leaves the
+      field, so the return fraction is the whole question.  The paper assumes
+      it is exactly 1.
+
+      [A]  annual loss   half the inventory gone in
+                 0.1%                    692.8 years
+                 0.5%                    138.3 years
+                 1.0%                     69.0 years
+                 2.0%                     34.3 years
+                 5.0%                     13.5 years
+                10.0%                      6.6 years
+
+      For more than half the inventory to survive to the 40-year
+      payback, the annual loss has to stay below 1.72%.
+
+      That is a demanding number for an open field: it has to cover harvest
+      removal net of returned manure, leaching, erosion and runoff, all at
+      once.  The paper gives no figure for any of them, so this is a bound
+      on what the claim requires rather than a measurement of what happens.
+
+4. What the comparison omits
+
+  [P] the saving is 'synthetic fertilizers, pesticides, and associated
+      diesel fuel' at $25,000/yr for 30 ha
+
+      Not costed anywhere in the paper, and each would move the result:
+        - replacement of the pellet matrix as biochar mineralises
+        - the yield difference, positive or negative, which is never measured
+        - the cost of monitoring metal levels in food crops
+        - any regulatory cost of putting 5 kg of gold and 1 t of lanthanum oxide into farmland
+
+      The first matters most to the 'permanent capital' claim: biochar is
+      the carrier for everything else, and the cited Lehmann review treats
+      its persistence in soil as an open question rather than a given.
