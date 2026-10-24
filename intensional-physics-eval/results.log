@@ -1,0 +1,285 @@
+
+########## queries.py ##########
+
+0. Where the constants in this script come from
+
+       10  [P] from the preprints
+       14  [V] verified against a named source
+        5  [A] assumed range, swept
+
+      Hardware figures are the RTX 3090 the author's own preprints
+      specify, from the catalogue.  No GPU is needed to run this.
+
+1. The claimed rate against the card, for each node size
+
+  [P] "millions of physical queries per millisecond" = 1,000,000,000 /s and up
+
+      4x4 node  (32 B, 128 FLOP per MMA)
+        compute ceiling             1,109,375,000,000 queries/s
+        bandwidth ceiling              14,625,000,000 queries/s
+        binding                        14,625,000,000 queries/s   (bandwidth)
+        vs the claim                            14.62 x   the claim FITS
+
+      112x112 node  (25,088 B, 2,809,856 FLOP per MMA)
+        compute ceiling                    50,536,398 queries/s
+        bandwidth ceiling                  18,654,337 queries/s
+        binding                            18,654,337 queries/s   (bandwidth)
+        vs the claim                             0.02 x   the claim EXCEEDS the card
+
+      So the claim is true for the 4x4 node with 14x of headroom, and
+      false by 54x for the 112x112 node, and Sec. 5 makes it for both at
+      once.  Worth stating plainly: half of this claim is correct.
+
+2. But the node sizes do not match the hardware's tile
+
+  [V] tensor-core MMA granularity      16x16
+        4x4   node needs 1x1 tile(s), occupancy   6.2%
+      112x112 node needs 7x7 tile(s), occupancy 100.0%
+
+      A 4x4 node fills one sixteenth of a 16x16 tile, so the compute
+      ceiling above is optimistic by that factor unless many nodes are
+      packed into one tile -- which is possible, but is a different
+      algorithm from the one-node-one-MMA model Sec. 3 describes.  112 is
+      also not a multiple of 16, so it needs 7x7 tiles at 100% only by
+      coincidence of 112 = 7 x 16.  That one is exact.
+
+3. The rate against the application it is claimed for
+
+  [P] IPC Sec. 4: a cast ray "interrogates" the local node at each step,
+      so every march step is a query.
+
+      [A] target 1920x1080 at 60 Hz = 124,416,000 pixel-frames/s
+
+       steps/pixel     queries/s needed   vs the claim
+                32        3,981,312,000          3.98x
+                64        7,962,624,000          7.96x
+               128       15,925,248,000         15.93x
+               256       31,850,496,000         31.85x
+
+      the claimed rate buys                8.0 march steps per pixel
+
+      Volumetric ray marching normally wants 64 to 256 samples per pixel,
+      so the claimed rate is 4 to 32 times short of its own application --
+      and that is before any of those steps does physics, writes a result,
+      or reads the ray state.  The rate is simultaneously achievable in the
+      abstract and insufficient for the purpose it is quoted for.
+
+4. What the paper's own rendering reference cost
+
+  [V] NeRF, reference [4] of both preprints:
+      queries per rendered image          150 - 200 million
+      time per frame on a V100           30.0 s   = 0.033 frames/s
+
+      So the work cited as the predecessor for "absolute real-time"
+      volumetric synthesis ran at about 0.03 frames per second.  Its query
+      count per image is in the same range this script computes as
+      necessary, which is a point in the preprint's favour: the
+      architecture's estimate of how much work a frame takes is right.
+      What it gets wrong is how fast that work can be done.
+
+5. The word that got stronger between versions
+
+  [P] openQL v1.0 Sec. 2.3 said the update "preserves the Lie group symmetries"
+  [P] IPC Sec. 3 calls it "a symplectic discrete Hamiltonian operator"   True
+
+      The expression is unchanged:  S(t+1) = sigma(W_PINN (x) S(t) + b)
+
+  [V] "symplectic" occurs in 1 work cited by
+      either preprint -- Baez, about the 56-dimensional Freudenthal space
+      for E7 -- and not in connection with a time step.
+
+      This claim was already measured in openql-eval/symplectic.py and the
+      numbers are reproduced there, not here, to avoid duplicating a
+      measurement: with sigma = tanh a harmonic oscillator drifts to
+      2e-5 x E(0) over 1e5 steps, and a W fitted to exact pendulum data
+      reaches 10.2 x E(0), while leapfrog holds 1.0000 x E(0) untrained.
+      A nonlinearity applied after an affine map is not a symplectic map;
+      stating it more strongly in a later paper does not change that.
+
+########## bldc.py ##########
+
+0. Where the constants in this script come from
+
+       10  [P] from the preprints
+       14  [V] verified against a named source
+        5  [A] assumed range, swept
+
+1. What one evaluation costs
+
+  [P] 12x12 fp16 node                             288 B
+  [P] million-node grid, state only                274.7 MiB
+      fits in 24 GiB                                    89 such grids
+      one full update sweep moves                  549.3 MiB
+      time for one sweep at 936 GB/s                0.615 ms
+
+      This is a bandwidth bound, not a FLOP bound, so it is the floor on
+      what a sweep can cost however the arithmetic is arranged.
+
+2. How many sweeps "millions per day" leaves
+
+        topologies/day      time each   sweeps affordable
+             1,000,000      86.400 ms              140.4
+             2,000,000      43.200 ms               70.2
+             5,000,000      17.280 ms               28.1
+            10,000,000       8.640 ms               14.0
+
+      So the claim requires a converged field solution in 14 to
+      140 sweeps of the whole grid, depending on how many millions
+      is meant.
+
+      For scale: a multigrid Poisson solve on a 100^3 grid is in that
+      range for ONE linear solve.  And the objective function Sec. 6.1
+      describes is not one linear solve -- it has to evaluate, at minimum:
+        - the magnetostatic field of the proposed winding
+        - the resulting torque and its ripple over a full electrical cycle
+        - cogging torque, which is a function of rotor position
+        - iron loss, which needs the B-H history at every node
+        - the thermal steady state, which needs the loss field as input
+
+      Each of those is at least one solve, several are coupled, and the
+      position-dependent ones need the field recomputed at many rotor
+      angles.  The budget is one solve's worth of sweeps for all of it.
+
+3. What the zero-branching argument actually buys
+
+  [P] "computing empty space takes the exact same nanosecond fraction as
+      computing a highly complex, asymmetric copper coil"
+
+      This is TRUE, and it is the one part of the argument that survives
+      intact.  An MMA pipeline does not skip work, so cost is independent
+      of content.  But that is a statement that there is no SAVING on empty
+      space, not that there is a speed advantage -- and a conventional
+      solver's main economy on a motor grid is precisely that most of the
+      volume is air:
+
+        grid empty   sparse solver does   dense does    penalty
+              50%               50.0%        100%       2.0x
+              70%               30.0%        100%       3.3x
+              90%               10.0%        100%      10.0x
+              99%                1.0%        100%     100.0x
+
+      So zero-branching is the price of the architecture, not its
+      advantage.  Sec. 6.1 presents the absence of a saving as the thing
+      that "circumvents" the combinatorial limit.
+
+4. And the combinatorial claim is not about the grid at all
+
+  [P] "Applying blind brute-force to a million-node grid yields an
+      insurmountable combinatorial explosion."
+
+      The explosion is in the SEARCH SPACE of topologies, not in the cost
+      of evaluating one.  A genetic algorithm addresses it by evaluating
+      few candidates well, so what it needs is a cheap, accurate objective
+      -- which is what Sec. 2 computes the budget for.  Making each
+      evaluation branchless does not reduce the number of candidates, and
+      the number of candidates is the quantity called insurmountable.
+
+      [P] the stated inputs are a spatial volume and "48V",
+      with no stated parameterisation of the winding, so the dimension of
+      the search space is not given and cannot be checked here.
+
+5. The one new physical claim in Sec. 6.1
+
+  [P] "fractal-like winding patterns that minimize skin effect"
+
+      Skin effect is current crowding toward a conductor's surface, and the
+      established remedy is to SUBDIVIDE the conductor into strands thinner
+      than the skin depth and transpose them, which is Litz wire.  A
+      fractal boundary increases surface area at fixed cross-section, which
+      is the opposite move: more perimeter for the same copper means more
+      of the conductor sits in the high-current-density region.
+
+      Fractal and space-filling geometries do have real uses in RF
+      antennas, where a long electrical path in a small volume is wanted.
+      That is a different objective from minimising AC resistance in a
+      motor winding, and Sec. 6.1 gives no mechanism linking the two.
+      This is recorded as an unsupported claim rather than a measured
+      defect: no skin-effect calculation is attempted here, because the
+      section specifies no winding geometry to compute one for.
+
+########## versions.py ##########
+
+0. Where the constants in this script come from
+
+       10  [P] from the preprints
+       14  [V] verified against a named source
+        5  [A] assumed range, swept
+
+      v1.0 is DOI 10.5281/zenodo.23112560, 3 October 2026.
+      v1.1 is DOI 10.5281/zenodo.23241148, 8 October 2026.
+      Both are reproduced by fetch.sh in the reference-audit repository.
+
+1. Removed in v1.1
+
+      - the derivation of 112  <- measured in openql-eval
+          "The dimensionality of 112 in openOL is derived from the necessary
+           degrees of freedom to encapsulate the macroscopic 12D gauge groups
+           alongside the microstate variables of crystallography, spin
+           configurations, and valence orbital interactions"
+
+      - the tensor-core load figure  <- measured in openql-eval
+          "keeps Tensor Core load in the efficient 15-20% range when
+           simulating environments with millions of nodes"
+
+      - the node footprint  <- measured in openql-eval
+          "the memory footprint of a single node reaches tens of kilobytes"
+
+      - the correction-loop clause  <- measured in openql-eval
+          "without requiring floating-point correction loops"
+
+      - all five reference glosses
+
+      - the keywords 'octonions' and 'dimensional reduction'
+
+      4 of 6 removals are claims that openql-eval
+      measured and reported.  No causal claim is made: the revision has no
+      changelog, and the coincidence is the whole of the evidence.
+
+2. Added in v1.1
+
+      + Sec. 2, extensional vs intensional computing, imported from the MPPT papers
+      + Sec. 6.1, the BLDC motor case study measured in bldc.py
+      + fractal-like winding patterns that minimize skin effect
+
+3. Unchanged in v1.1
+
+      the update rule:  S(t+1) = sigma(W_PINN (x) S(t) + b)
+        v1.0 said it "preserves the Lie group symmetries"
+        v1.1 keeps the same wording; the companion IPC paper of the same
+        day strengthens it to "a symplectic discrete Hamiltonian
+        operator" -- see queries.py Sec. 5
+
+      the ORCID placeholder in the PDF header, still unfilled:
+        v1.0  Author: Michal Mazgal [ORCID: enter-your-orcid]
+        v1.1  Author: Michal Mazgal [ORCID: Zadejte-svuj-ORCID]
+
+      The placeholder was not filled in; it was regenerated in Czech.  The
+      author's real ORCID has been attached to the Zenodo record metadata
+      since 3 October, so the identifier exists and only the PDF template
+      is stale.
+
+      Also unchanged: the abstract still says the architecture works "By
+      transforming quaternion and octonion algebra into unified block
+      matrices", while "octonions" has been dropped from the keywords.
+      The octonion half of that sentence is the one excluded by a theorem,
+      measured in openql-eval/octonion.py, and it is still in the abstract.
+
+4. What the two deposits of 8 October are, relative to v1.0
+
+      IPC (23241777) is openQL's Sec. 2, Sec. 4 and part of Sec. 5 restated
+      as a standalone paper, with four of its five references shared with
+      openQL and the fifth being Fitting's Stanford Encyclopedia entry on
+      intensional logic.  It contains no new architecture.  What is new is
+      the word 'symplectic' and the queries-per-millisecond figure, both
+      measured in queries.py.
+
+      v1.1 (23241148) is v1.0 with the six removals above, the three
+      additions, and Sec. 6.1, which is the only substantively new section
+      in either deposit.  It is measured in bldc.py.
+
+      One internal inconsistency between them is worth noting: openQL puts
+      12 dimensions in a 12x12 node built from three concatenated 4x4
+      quaternion blocks, while IPC Sec. 3 says the node is "a 4x4 (for 12D
+      macroscopic physics)" matrix -- 16 slots for 12 numbers, in a
+      different arrangement from the one openQL specifies for the same
+      layer.
